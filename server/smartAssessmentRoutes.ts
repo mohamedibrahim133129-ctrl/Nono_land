@@ -15,8 +15,14 @@ import type {
   SmartAssessmentQuestionPublic,
   SmartAssessmentStartResponse,
   SmartAssessmentSubmitResponse,
+  StoredAgeGroupId,
   WorldId,
 } from '../src/types/nonoland';
+import {
+  getInternalAgeBand,
+  isContentAppropriateForChild,
+  UNIFIED_STAGE_ID,
+} from '../src/utils/ageAdaptation';
 import { recordAuditEvent } from './auditLog';
 import type { AuthenticatedRequest, ServerDb, StoredChildRecord } from './dbTypes';
 import { getClientIp } from './security';
@@ -53,7 +59,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'arabic',
     skillId: 'arabic-literacy',
     difficulty: 'easy',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '2-3',
     worldId: 'arabic-letters',
     revisionScreen: 'reading-adventure',
     prompt: { ar: 'أي كلمة تبدأ بحرف الألف (أ)؟', en: 'Which word starts with the Arabic letter Alef (أ)?' },
@@ -81,7 +88,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'science',
     skillId: 'science-discovery',
     difficulty: 'easy',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-4',
     worldId: 'science-galaxy',
     revisionScreen: 'discovery-lab',
     prompt: { ar: 'أي صورة تمثل الكوكب الذي نعيش عليه؟', en: 'Which picture shows the planet Earth we live on?' },
@@ -107,7 +115,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'english',
     skillId: 'english-literacy',
     difficulty: 'easy',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-4',
     worldId: 'english-letters',
     revisionScreen: 'reading-adventure',
     prompt: { ar: 'استمع جيداً واختر الحرف أو الكلمة المطابقة: "Ball"', en: 'Listen carefully and choose the matching word: "Ball"' },
@@ -136,7 +145,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'science',
     skillId: 'early-recognition',
     difficulty: 'medium',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '2-3',
     worldId: 'animal-jungle',
     revisionScreen: 'entertainment-hub',
     prompt: { ar: 'طابق كل كائن ببيئته أو طعامه المناسب', en: 'Match each animal with its right match' },
@@ -163,7 +173,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'colors-shapes',
     skillId: 'life-health',
     difficulty: 'medium',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-4',
     worldId: 'healthy-body',
     revisionScreen: 'entertainment-hub',
     prompt: { ar: 'صنّف العناصر إلى فواكه أم خضروات', en: 'Sort each food into Fruits or Vegetables' },
@@ -195,7 +206,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'math',
     skillId: 'logic-patterns',
     difficulty: 'medium',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '2-3',
     worldId: 'numbers-kingdom',
     revisionScreen: 'academy',
     prompt: { ar: 'رتّب الأرقام من الأصغر إلى الأكبر', en: 'Put the numbers in order from smallest to largest' },
@@ -217,7 +229,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'logic',
     skillId: 'memory-focus',
     difficulty: 'medium',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-4',
     worldId: 'intelligence-castle',
     revisionScreen: 'brain-games',
     prompt: { ar: 'لعبة الذاكرة: اقلب البطاقات وطابق كل زوج متشابه!', en: 'Memory check: flip and match all identical pairs!' },
@@ -243,7 +256,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'english',
     skillId: 'english-literacy',
     difficulty: 'medium',
-    ageGroups: ['5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '3-4',
     worldId: 'english-letters',
     revisionScreen: 'reading-adventure',
     prompt: { ar: 'أكمل الصوت الناقص لكلمة _AT (قطة):', en: 'Pick the missing starting phonics sound for _AT (🐱):' },
@@ -272,7 +286,8 @@ const SMART_BANK: InternalSmartQuestion[] = [
     domain: 'math',
     skillId: 'numeracy',
     difficulty: 'easy',
-    ageGroups: ['3-4', '5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-4',
     worldId: 'numbers-kingdom',
     revisionScreen: 'academy',
     prompt: { ar: 'عدّ التفاحات وأوجد المجموع الكلي:', en: 'Count the apples and find the total:' },
@@ -292,32 +307,33 @@ const SMART_BANK: InternalSmartQuestion[] = [
       { ar: 'أشر بإصبعك: ١، ٢، ٣... ثم ٤، ٥!', en: 'Point and count: 1, 2, 3... then 4, 5!' },
     ],
   },
-  // 10. AGE-BASED LOGIC CHALLENGE (ADVANCED)
+  // 10. AGE-BASED LOGIC CHALLENGE (GENTLE COUNTING PATTERN FOR AGES 3-4)
   {
     id: 'sa-challenge-pattern',
     format: 'age-challenge',
     domain: 'logic',
     skillId: 'math-reasoning',
     difficulty: 'advanced',
-    ageGroups: ['5-6', '7', '8'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '3-4',
     worldId: 'intelligence-castle',
     revisionScreen: 'brain-games',
-    prompt: { ar: 'تحدي الأذكياء: ما الرقم الناقص في النمط 2، 4، 6، __؟', en: 'Smart Challenge: What number completes the pattern 2, 4, 6, __?' },
-    visualCue: '2 → 4 → 6 → ?',
+    prompt: { ar: 'تحدي الأذكياء: ما الرقم الناقص في السلسلة 1، 2، 3، __؟', en: 'Smart Challenge: What number completes the sequence 1, 2, 3, __?' },
+    visualCue: '1 → 2 → 3 → ?',
     options: [
-      { id: 'n7', label: { ar: '٧', en: '7' }, visual: '7' },
-      { id: 'n8', label: { ar: '٨', en: '8' }, visual: '8' },
-      { id: 'n10', label: { ar: '١٠', en: '10' }, visual: '10' },
+      { id: 'n4', label: { ar: '٤', en: '4' }, visual: '4' },
+      { id: 'n5', label: { ar: '٥', en: '5' }, visual: '5' },
+      { id: 'n2', label: { ar: '٢', en: '2' }, visual: '2' },
     ],
-    correctOptionId: 'n8',
-    hintText: { ar: 'لاحظ أننا نقفز بمقدار ٢ في كل مرة (+2)!', en: 'Notice we skip-count by adding +2 each step!' },
+    correctOptionId: 'n4',
+    hintText: { ar: 'نعدّ تصاعدياً خطوة واحدة (+1) بعد ٣!', en: 'Count forward one step (+1) after 3!' },
     workedExample: {
-      visual: '2 (+2)→ 4 (+2)→ 6 (+2)→ 8',
-      explanation: { ar: '٦ + ٢ = ٨.', en: '6 + 2 = 8.' },
+      visual: '1 (+1)→ 2 (+1)→ 3 (+1)→ 4',
+      explanation: { ar: '٣ + ١ = ٤.', en: '3 + 1 = 4.' },
     },
     simplifiedSteps: [
-      { ar: 'من ٢ إلى ٤ زدنا ٢.', en: 'From 2 to 4 we added 2.' },
-      { ar: 'أضف ٢ إلى ٦ فتصل إلى ٨!', en: 'Add 2 to 6 to reach 8!' },
+      { ar: 'عدّ: ١، ٢، ٣...', en: 'Count: 1, 2, 3...' },
+      { ar: 'الرقم التالي مباشرة هو ٤!', en: 'The very next number is 4!' },
     ],
   },
 ];
@@ -330,6 +346,7 @@ function toPublicQuestion(q: InternalSmartQuestion): SmartAssessmentQuestionPubl
     skillId: q.skillId,
     difficulty: q.difficulty,
     ageGroups: q.ageGroups,
+    recommendedAgeRange: q.recommendedAgeRange,
     prompt: q.prompt,
     audioText: q.audioText,
     audioLang: q.audioLang,
@@ -345,16 +362,21 @@ function toPublicQuestion(q: InternalSmartQuestion): SmartAssessmentQuestionPubl
 }
 
 function selectNextAdaptiveQuestion(
-  ageGroup: AgeGroupId,
+  ageGroup: StoredAgeGroupId,
   targetTier: AdaptiveDifficultyTier,
   askedIds: string[],
   preferredFormats?: SmartAssessmentFormat[],
+  childContext?: Pick<StoredChildRecord, 'ageGroup' | 'birthYear' | 'birthMonth'>,
 ): InternalSmartQuestion | null {
   const unasked = SMART_BANK.filter((q) => !askedIds.includes(q.id));
   if (unasked.length === 0) return null;
 
-  const ageMatched = unasked.filter((q) => q.ageGroups.includes(ageGroup));
-  const pool = ageMatched.length > 0 ? ageMatched : unasked;
+  const normalizedStage: AgeGroupId = ageGroup === '3-4' ? UNIFIED_STAGE_ID : '1-4';
+  const stageMatched = unasked.filter((q) => q.ageGroups.includes(normalizedStage));
+  const bandFiltered = childContext
+    ? stageMatched.filter((q) => isContentAppropriateForChild(q, childContext))
+    : stageMatched;
+  const pool = bandFiltered.length > 0 ? bandFiltered : stageMatched.length > 0 ? stageMatched : unasked;
 
   // Prefer unseen format first if requested, or match difficulty tier
   if (preferredFormats && preferredFormats.length > 0) {
@@ -469,14 +491,15 @@ export function registerSmartAssessmentRoutes({
     const db = getDb();
     const body = (req.body || {}) as {
       childId?: string;
-      ageGroup?: AgeGroupId;
+      ageGroup?: StoredAgeGroupId;
       mode?: 'diagnostic' | 'practice';
       questionCount?: number;
     };
 
     const childId = typeof body.childId === 'string' && body.childId.trim() ? body.childId.trim() : 'demo-sample';
-    let resolvedAge: AgeGroupId = body.ageGroup || '5-6';
-    let initialTier: AdaptiveDifficultyTier = resolvedAge === '3-4' ? 'easy' : 'medium';
+    let resolvedAge: StoredAgeGroupId = body.ageGroup === '3-4' ? '1-4' : body.ageGroup || '1-4';
+    let initialTier: AdaptiveDifficultyTier = 'easy';
+    let childForContext: StoredChildRecord | undefined;
 
     if (req.authSession) {
       if (req.authSession.user.role === 'teacher') {
@@ -485,7 +508,10 @@ export function registerSmartAssessmentRoutes({
       const checked = assertChildAccess(req, res, childId);
       if (!checked) return;
       if (checked !== 'untracked-sample') {
+        childForContext = checked;
         resolvedAge = checked.ageGroup;
+        const internalBand = getInternalAgeBand(checked);
+        initialTier = internalBand === '3-4' ? 'medium' : 'easy';
         const avgTier = checked.skillProgress['early-recognition']?.difficultyTier;
         if (avgTier) initialTier = avgTier;
       }
@@ -494,7 +520,7 @@ export function registerSmartAssessmentRoutes({
     }
 
     const totalQuestions = Math.min(SMART_BANK.length, Math.max(5, Number(body.questionCount || 8)));
-    const firstQ = selectNextAdaptiveQuestion(resolvedAge, initialTier, []);
+    const firstQ = selectNextAdaptiveQuestion(resolvedAge, initialTier, [], undefined, childForContext);
     if (!firstQ) {
       return res.status(500).json({ error: 'Assessment bank unavailable' });
     }
@@ -611,8 +637,9 @@ export function registerSmartAssessmentRoutes({
     );
 
     const hasMore = session.results.length < session.totalQuestions;
+    const childContext = db.children[session.childId];
     const nextQ = hasMore
-      ? selectNextAdaptiveQuestion(session.ageGroup, session.difficultyTier, session.askedQuestionIds)
+      ? selectNextAdaptiveQuestion(session.ageGroup, session.difficultyTier, session.askedQuestionIds, undefined, childContext)
       : null;
 
     if (nextQ) {

@@ -376,8 +376,8 @@ export const TeacherHomeworkPanel: React.FC<TeacherHomeworkPanelProps> = ({
               }}
               className="w-full h-11 px-3 rounded-xl border border-[#27345C]/20 bg-white"
             >
-              <option value={1}>Level 1 (Ages 3-4)</option>
-              <option value={2}>Level 2 (Ages 5-6)</option>
+              <option value={1}>{language === 'ar' ? 'التأسيس — المستكشفون الصغار (١–٤ سنوات)' : 'Track 1 · Foundations (Little Explorers)'}</option>
+              <option value={2}>{language === 'ar' ? 'الاستكشاف المتدرج — المستكشفون الصغار (١–٤ سنوات)' : 'Track 2 · Step-Up Explorers (Little Explorers)'}</option>
             </select>
           </div>
         </div>

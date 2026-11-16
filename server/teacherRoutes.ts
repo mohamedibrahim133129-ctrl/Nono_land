@@ -1857,12 +1857,10 @@ export function registerTeacherAndLevel2Routes(deps: TeacherRoutesDeps): void {
       return { ok: false, error: 'Invalid exam subject' };
     }
     const level: 1 | 2 = Number(payload.level) === 2 ? 2 : 1;
-    const validAges: AgeGroupId[] = ['3-4', '5-6', '7', '8'];
-    const ageGroup: AgeGroupId = validAges.includes(payload.ageGroup as AgeGroupId)
-      ? (payload.ageGroup as AgeGroupId)
-      : level === 2
-        ? '5-6'
-        : '3-4';
+    if (payload.ageGroup && !['1-4', '3-4'].includes(String(payload.ageGroup))) {
+      return { ok: false, error: 'Only Little Explorers (1-4) stage is supported for new exams' };
+    }
+    const ageGroup: AgeGroupId = '1-4';
 
     const questionIds = Array.from(
       new Set(Array.isArray(payload.questionIds) ? payload.questionIds.map((x) => String(x)) : []),

@@ -1,6 +1,10 @@
 export type Language = 'ar' | 'en';
 
-export type AgeGroupId = '3-4' | '5-6' | '7' | '8';
+export type AgeGroupId = '1-4';
+export type LegacyAgeGroupId = '3-4' | '5-6' | '7' | '8';
+export type StoredAgeGroupId = AgeGroupId | LegacyAgeGroupId;
+export type InternalAgeBand = '1-2' | '2-3' | '3-4';
+export type RecommendedAgeRange = InternalAgeBand | '1-4';
 
 export type WorldId =
   | 'arabic-letters'
@@ -137,7 +141,8 @@ export type ExamQuestionType =
 export interface ExamQuestionItem {
   id: string;
   subject: Exclude<ExamSubject, 'comprehensive'>;
-  ageGroups: AgeGroupId[];
+  ageGroups: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   type: ExamQuestionType;
   difficulty: 1 | 2 | 3;
   lessonRefId: string;
@@ -164,7 +169,7 @@ export interface ExamAttemptSummary {
   id: string;
   childId: string;
   childName: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   subject: ExamSubject;
   mode: 'practice' | 'official';
   score: number;
@@ -184,7 +189,8 @@ export interface CmsLessonRecord {
   domain: ConceptDomain;
   title: LocalizedText;
   summary: LocalizedText;
-  ageGroups: AgeGroupId[];
+  ageGroups: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   targetSymbol: string;
   colorHex?: string;
   imageUrl?: string;
@@ -211,7 +217,8 @@ export interface CuratedYouTubeVideo {
   videoId: string;
   title: LocalizedText;
   category: YouTubeCategory;
-  ageGroups: AgeGroupId[];
+  ageGroups: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   approvedByParent: boolean;
   featured: boolean;
   addedAt: string;
@@ -357,7 +364,8 @@ export interface Level1LessonDefinition {
   id: string; // e.g., AR01..AR28, EN01..EN26, NM01..NM11, CL01..CL10
   subject: Level1Subject;
   level: 1;
-  ageRange: '3-4';
+  ageRange: '1-4';
+  recommendedAgeRange?: RecommendedAgeRange;
   unit: string;
   order: number;
   title: LocalizedText;
@@ -464,7 +472,7 @@ export interface LearningAttempt {
   activityId: string;
   worldId: WorldId;
   skillId: SkillId;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   score: number;
   maxScore: number;
   accuracy: number;
@@ -486,7 +494,7 @@ export interface OfflineSyncItem {
 export interface AssessmentResult {
   id: string;
   childId: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   mode: 'baseline' | 'lab';
   date: string;
   questionsCompleted: number;
@@ -516,7 +524,7 @@ export interface ChildProfile {
   displayName: string;
   birthYear: number;
   birthMonth: number;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   language: Language;
   interests: string[];
   companionId: string;
@@ -631,7 +639,8 @@ export interface GameActivity {
   instructions: LocalizedText;
   mechanic: GameMechanic;
   skillId: SkillId;
-  ageEligibility: AgeGroupId[];
+  ageEligibility: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   difficulty: 1 | 2 | 3;
   estimatedMinutes: number;
   isPremium?: boolean;
@@ -672,7 +681,8 @@ export interface Story {
   title: LocalizedText;
   summary: LocalizedText;
   category?: StoryCategory;
-  ageEligibility: AgeGroupId[];
+  ageEligibility: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   worldId: WorldId;
   coverEmoji: string;
   accentColor: string;
@@ -729,7 +739,7 @@ export interface Certificate {
   totalQuestions?: number;
   percentage?: number;
   passingPercentage?: number;
-  ageGroup?: AgeGroupId;
+  ageGroup?: StoredAgeGroupId;
   verificationUrl?: string;
   revoked?: boolean;
 }
@@ -760,7 +770,8 @@ export interface Classroom {
   subject: string;
   level: 1 | 2 | 'all';
   description?: string;
-  ageGroup?: AgeGroupId;
+  ageGroup?: StoredAgeGroupId;
+  recommendedAgeRange?: RecommendedAgeRange;
   teacherId: string;
   studentIds: string[];
   active: boolean;
@@ -851,6 +862,7 @@ export interface TeacherQuestion {
   acceptedAnswers?: string[]; // for fill-blank / short-answer
   marks: number;
   difficulty: TeacherQuestionDifficulty;
+  recommendedAgeRange?: RecommendedAgeRange;
   explanation: LocalizedText;
   feedbackCorrect: LocalizedText;
   feedbackIncorrect: LocalizedText;
@@ -885,7 +897,8 @@ export interface TeacherExam {
   description: LocalizedText;
   subject: TeacherSubject | 'comprehensive';
   level: 1 | 2;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
+  recommendedAgeRange?: RecommendedAgeRange;
   lessonIds: string[];
   questionIds: string[];
   questionSnapshots?: Record<string, TeacherQuestion>;
@@ -1027,7 +1040,8 @@ export interface Level2LessonDefinition {
   id: string; // e.g., L2-AR01 .. L2-WA08
   subject: Level2Subject;
   level: 2;
-  ageRange: '5-6';
+  ageRange: '1-4';
+  recommendedAgeRange?: RecommendedAgeRange;
   lessonNumber: number;
   title: LocalizedText;
   learningObjective: LocalizedText;
@@ -1130,6 +1144,7 @@ export interface HomeworkAssignment {
   instructions: LocalizedText;
   subject: TeacherSubject | 'comprehensive';
   level: 1 | 2;
+  recommendedAgeRange?: RecommendedAgeRange;
   lessonIds: string[];
   homeworkType: HomeworkType;
   questionIds: string[];
@@ -1309,7 +1324,7 @@ export interface LabCompletionRecord {
   completedAt: string;
   attempts: number;
   starsAwarded: number;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
 }
 
 export type ReportSubjectKey =
@@ -1397,7 +1412,7 @@ export interface MonthlyReportData {
   monthKey: string; // YYYY-MM
   childId: string;
   childName: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   learningDaysCount: number;
   learningStreakDays: number;
   totalLearningMinutes: number;
@@ -1472,7 +1487,8 @@ export interface SmartAssessmentQuestionPublic {
   domain: 'arabic' | 'english' | 'math' | 'colors-shapes' | 'logic' | 'science';
   skillId: SkillId;
   difficulty: AdaptiveDifficultyTier;
-  ageGroups: AgeGroupId[];
+  ageGroups: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   prompt: LocalizedText;
   audioText?: string;
   audioLang?: Language;

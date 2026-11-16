@@ -3,7 +3,6 @@ import { LEARNING_WORLDS } from '../data/worlds';
 import { SKILL_LABELS } from '../i18n/translations';
 import {
   AdaptiveDifficultyTier,
-  AgeGroupId,
   ChildProfile,
   GameActivity,
   GameQuestion,
@@ -11,9 +10,11 @@ import {
   ParentInsight,
   SkillId,
   SkillProgress,
+  StoredAgeGroupId,
   WorldId,
   LearningWorld,
 } from '../types/nonoland';
+import { isContentAppropriateForChild } from '../utils/ageAdaptation';
 
 export const SPACED_REVIEW_DAYS = [1, 3, 7, 14] as const;
 
@@ -153,8 +154,11 @@ export function evaluateSkillUpdate(
  * 4. Returns a tailored recommendation + human-readable explanation for Parent/Teacher & Child.
  */
 export function getAdaptiveRecommendation(child: ChildProfile): AdaptiveRecommendation {
-  const ageActivities = GAME_ACTIVITIES.filter((a) => a.ageEligibility.includes(child.ageGroup));
-  const pool = ageActivities.length > 0 ? ageActivities : GAME_ACTIVITIES;
+  const ageActivities = GAME_ACTIVITIES.filter((a) => isContentAppropriateForChild(a, child));
+  const pool =
+    ageActivities.length > 0
+      ? ageActivities
+      : GAME_ACTIVITIES.filter((a) => a.ageEligibility.includes('1-4'));
   const nowMs = Date.now();
 
   // Score skills by review due date, low attempt count, or lower accuracy
@@ -241,13 +245,16 @@ export interface DiscoveryLabQuestion {
   sourceWorldId: WorldId;
 }
 
-export function buildAgeAssessmentDeck(ageGroup: AgeGroupId): DiscoveryLabQuestion[] {
-  const eligibleActivities = GAME_ACTIVITIES.filter(
-    (a) =>
-      a.ageEligibility.includes(ageGroup) &&
-      (a.mechanic === 'visual-tap' || a.mechanic === 'sequence-builder') &&
-      a.questions.length > 0,
-  );
+export function buildAgeAssessmentDeck(
+  ageGroup: StoredAgeGroupId,
+  child?: Pick<ChildProfile, 'ageGroup' | 'birthYear' | 'birthMonth' | 'skillProgress'> | null,
+): DiscoveryLabQuestion[] {
+  const eligibleActivities = GAME_ACTIVITIES.filter((a) => {
+    const isTapOrSeq = a.mechanic === 'visual-tap' || a.mechanic === 'sequence-builder';
+    if (!isTapOrSeq || a.questions.length === 0) return false;
+    if (child) return isContentAppropriateForChild(a, child);
+    return a.ageEligibility.includes(ageGroup === '3-4' ? '1-4' : ageGroup);
+  });
 
   const deck: DiscoveryLabQuestion[] = [];
   const seenSkills = new Set<SkillId>();
@@ -314,8 +321,8 @@ export function generateParentInsights(child: ChildProfile): ParentInsight[] {
     id: 'insight-lessons-count',
     type: 'strength',
     text: {
-      ar: `أتمّ ${child.displayName} ${totalCompletedLessons} من أصل ١٢٧ درساً عبر المستويين (المستوى ١: ${l1Count}/٧٥ · المستوى ٢: ${l2Count}/٥٢).`,
-      en: `${child.displayName} has completed ${totalCompletedLessons} of 127 lessons across Level 1 (${l1Count}/75) and Level 2 (${l2Count}/52).`,
+      ar: `أتمّ ${child.displayName} ${totalCompletedLessons} من أصل ١٢٧ درساً في منهج المستكشفون الصغار (الأساسي: ${l1Count}/٧٥ · المتدرج: ${l2Count}/٥٢).`,
+      en: `${child.displayName} has completed ${totalCompletedLessons} of 127 Little Explorers lessons (Foundations: ${l1Count}/75 · Step-Up: ${l2Count}/52).`,
     },
   });
 

@@ -1,4 +1,5 @@
-import { GameActivity } from '../types/nonoland';
+import { GameActivity, StoredAgeGroupId } from '../types/nonoland';
+import { isContentAppropriateForChild } from '../utils/ageAdaptation';
 
 export const GAME_ACTIVITIES: GameActivity[] = [
   // ==========================================
@@ -13,7 +14,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'استمع إلى نونو واضغط على الحرف المطلوب!', en: 'Listen to Nono and tap the requested Arabic letter!' },
     mechanic: 'visual-tap',
     skillId: 'arabic-literacy',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -61,7 +63,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اقلب البطاقات وطابق كل حرف بصورته الصحيحة', en: 'Flip cards to match each Arabic letter with its picture' },
     mechanic: 'memory-match',
     skillId: 'arabic-literacy',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -87,7 +90,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'رتّب الحروف بالترتيب الصحيح لتكوّن الكلمة!', en: 'Tap the letters in order to build the Arabic word!' },
     mechanic: 'sequence-builder',
     skillId: 'arabic-literacy',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -186,7 +190,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'استخدم الفرشاة الملونة لرسم الحروف والأشكال بحرية!', en: 'Use the colorful brush to trace and draw letters freely!' },
     mechanic: 'drawing-studio',
     skillId: 'arabic-literacy',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 4,
     drawingPrompt: { ar: 'جرب رسم حرف (أ) أو (ب) بألوانك المفضلة!', en: 'Try drawing the letter أ or A in your favorite colors!' },
@@ -205,7 +210,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط على الحرف الصحيح كما ينطقه نونو', en: 'Tap the matching English letter!' },
     mechanic: 'visual-tap',
     skillId: 'english-literacy',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -242,7 +248,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اقلب البطاقات لتوصيل كل حرف بالصورة المناسبة', en: 'Flip cards to pair each letter with its icon' },
     mechanic: 'memory-match',
     skillId: 'english-literacy',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -268,7 +275,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط الحروف بالترتيب لتكوين الكلمة', en: 'Tap the letters in order to spell the word' },
     mechanic: 'sequence-builder',
     skillId: 'english-literacy',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -355,7 +363,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط على كل تفاحة لتعدّها مع نونو!', en: 'Tap each apple one by one to count with Nono!' },
     mechanic: 'math-lab',
     skillId: 'numeracy',
-    ageEligibility: ['3-4'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -384,7 +393,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'عدّ الأشكال بعناية ثم اختر الرقم الصحيح', en: 'Count the items carefully and tap the matching number' },
     mechanic: 'visual-tap',
     skillId: 'numeracy',
-    ageEligibility: ['5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -421,7 +431,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اجمع أو اطرح العناصر واختر الناتج الصحيح', en: 'Add or subtract the items and tap the answer' },
     mechanic: 'visual-tap',
     skillId: 'math-reasoning',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -538,7 +549,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط على الأرقام من الأصغر إلى الأكبر!', en: 'Tap the numbers in order from smallest to largest!' },
     mechanic: 'sequence-builder',
     skillId: 'numeracy',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -565,7 +577,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اسمع الوصف واضغط على الحيوان الصحيح!', en: 'Listen to the clue and tap the matching animal!' },
     mechanic: 'visual-tap',
     skillId: 'early-recognition',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -602,7 +615,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اعثر على كل حيوانين متشابهين!', en: 'Flip cards to match identical animal pairs!' },
     mechanic: 'memory-match',
     skillId: 'memory-focus',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -627,7 +641,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'وزّع كل حيوان على المكان الذي يعيش فيه', en: 'Sort each animal into its natural home!' },
     mechanic: 'sort-classify',
     skillId: 'science-discovery',
-    ageEligibility: ['5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -658,7 +673,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اكتشف أي حيوان يطابق هذا الوصف والظل', en: 'Match each animal silhouette clue!' },
     mechanic: 'memory-match',
     skillId: 'early-recognition',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -719,7 +735,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اسمع نونو واضغط على اللون الصحيح!', en: 'Listen to Nono and tap the requested color!' },
     mechanic: 'visual-tap',
     skillId: 'early-recognition',
-    ageEligibility: ['3-4'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -754,7 +771,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اختر الشكل الهندسي المطلوب', en: 'Tap the shape Nono asks for!' },
     mechanic: 'visual-tap',
     skillId: 'early-recognition',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -789,7 +807,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'ما الشكل التالي لإكمال السلسلة؟', en: 'Which shape comes next to complete the pattern?' },
     mechanic: 'visual-tap',
     skillId: 'logic-patterns',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -826,7 +845,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط على كل عنصر وضعه في السلة المناسبة', en: 'Assign each item to its matching basket' },
     mechanic: 'sort-classify',
     skillId: 'early-recognition',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -886,7 +906,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اقلب كل بطاقتين متطابقتين في أقل عدد محاولات', en: 'Match all hidden pairs in the castle!' },
     mechanic: 'memory-match',
     skillId: 'memory-focus',
-    ageEligibility: ['5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -912,7 +933,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'حرّك نونو باستخدام الأسهم للوصول إلى النجمة الذهبية!', en: 'Guide Nono with the directional arrows to reach the golden star!' },
     mechanic: 'maze-explorer',
     skillId: 'logic-patterns',
-    ageEligibility: ['5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -1042,7 +1064,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'رتّب الصور من البداية إلى النهاية!', en: 'Tap the pictures in chronological order!' },
     mechanic: 'sequence-builder',
     skillId: 'logic-patterns',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -1069,7 +1092,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اختر ما يضيء السماء في وقت النهار!', en: 'Tap what shines brightly in the daytime sky!' },
     mechanic: 'visual-tap',
     skillId: 'science-discovery',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -1203,7 +1227,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'وزّع الأطعمة بين سلة الطعام الصحي وسلة المناسبات فقط', en: 'Sort foods into Everyday Healthy vs Occasional Treats!' },
     mechanic: 'sort-classify',
     skillId: 'life-health',
-    ageEligibility: ['3-4', '5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -1233,7 +1258,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'طابق كل عضو بما نشعر به عبره!', en: 'Match each organ with what it helps us sense!' },
     mechanic: 'memory-match',
     skillId: 'life-health',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -1259,7 +1285,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'رتّب خطوات الاستعداد للنوم الهانئ', en: 'Order the healthy bedtime routine steps' },
     mechanic: 'sequence-builder',
     skillId: 'life-health',
-    ageEligibility: ['5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '2-3',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -1312,7 +1339,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اضغط على الوجه الذي يعبر عن الشعور المطلوب', en: 'Tap the face showing the feeling!' },
     mechanic: 'visual-tap',
     skillId: 'life-health',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -1347,7 +1375,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'وجّه نونو في القرية للوصول إلى المنزل!', en: 'Navigate the village paths to reach home!' },
     mechanic: 'maze-explorer',
     skillId: 'logic-patterns',
-    ageEligibility: ['5-6', '7'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -1403,7 +1432,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اجلسا معاً وناقشا الترتيب الأفضل ليوم ممتع ومتوازن!', en: 'Team up with a parent to order a joyful balanced day!' },
     mechanic: 'sequence-builder',
     skillId: 'life-health',
-    ageEligibility: ['3-4', '5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 4,
     questions: [
@@ -1426,7 +1456,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'ضع كل مادة في حاوية التدوير الصحيحة', en: 'Sort each item into Paper, Plastic, or Compost!' },
     mechanic: 'sort-classify',
     skillId: 'life-health',
-    ageEligibility: ['5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '3-4',
     difficulty: 2,
     estimatedMinutes: 3,
     questions: [
@@ -1460,7 +1491,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'ارسم عالماً سحرياً أو حيوانك المفضل ثم احفظ اللوحة لغرفتك!', en: 'Paint anything you imagine and save it to My Room!' },
     mechanic: 'drawing-studio',
     skillId: 'creativity-expression',
-    ageEligibility: ['3-4', '5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 5,
     drawingPrompt: {
@@ -1478,7 +1510,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'استمع إلى نغمات النجوم الملونة ثم اعزف نفس اللحن!', en: 'Listen to the glowing musical notes and play them back!' },
     mechanic: 'music-rhythm',
     skillId: 'memory-focus',
-    ageEligibility: ['3-4', '5-6', '7', '8'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 3,
     questions: [
@@ -1505,7 +1538,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'اختر ألوانك وأضف أختام النجوم والزهور على اللوحة!', en: 'Pick colors and stamp stars, rainbows & flowers!' },
     mechanic: 'drawing-studio',
     skillId: 'creativity-expression',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 4,
     drawingPrompt: {
@@ -1541,7 +1575,8 @@ export const GAME_ACTIVITIES: GameActivity[] = [
     instructions: { ar: 'لاحظ الرموز المختفية بين الزهور واختر المطلوب!', en: 'Spot the hidden object hiding among the garden emojis!' },
     mechanic: 'visual-tap',
     skillId: 'memory-focus',
-    ageEligibility: ['3-4', '5-6'],
+    ageEligibility: ['1-4'],
+    recommendedAgeRange: '1-4',
     difficulty: 1,
     estimatedMinutes: 2,
     questions: [
@@ -1560,10 +1595,25 @@ export const GAME_ACTIVITIES: GameActivity[] = [
   },
 ];
 
-export function getActivitiesForWorldAndAge(worldId: string, ageGroup?: string): GameActivity[] {
-  return GAME_ACTIVITIES.filter(
-    (act) => act.worldId === worldId && (!ageGroup || act.ageEligibility.includes(ageGroup as never)),
-  );
+export function getActivitiesForWorldAndAge(
+  worldId: string,
+  ageGroup?: StoredAgeGroupId | string,
+  birthYear?: number,
+  birthMonth?: number,
+): GameActivity[] {
+  const normalizedAge = ageGroup === '3-4' ? '1-4' : ageGroup;
+  return GAME_ACTIVITIES.filter((act) => {
+    if (act.worldId !== worldId) return false;
+    if (!normalizedAge) return true;
+    if (!act.ageEligibility.includes(normalizedAge as StoredAgeGroupId)) return false;
+    if (normalizedAge === '1-4' && typeof birthYear === 'number') {
+      return isContentAppropriateForChild(
+        { ageEligibility: act.ageEligibility, recommendedAgeRange: act.recommendedAgeRange },
+        { ageGroup: '1-4', birthYear, birthMonth },
+      );
+    }
+    return true;
+  });
 }
 
 export function getActivityById(id: string): GameActivity | undefined {

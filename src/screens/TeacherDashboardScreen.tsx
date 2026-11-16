@@ -29,12 +29,14 @@ import type {
   Classroom,
   ExamStatus,
   LocalizedText,
+  StoredAgeGroupId,
   TeacherExam,
   TeacherQuestion,
   TeacherQuestionDifficulty,
   TeacherQuestionType,
   TeacherSubject,
 } from '../types/nonoland';
+import { getSafeStageShortLabel, UNIFIED_STAGE_ID } from '../utils/ageAdaptation';
 import {
   ALLOWED_TEACHER_QUESTION_TYPES,
   ALLOWED_TEACHER_SUBJECTS,
@@ -66,7 +68,7 @@ interface LessonOption {
 interface TeacherStudentRow {
   id: string;
   displayName: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   language: string;
   level: number;
   stars: number;
@@ -97,7 +99,7 @@ export const TeacherDashboardScreen: React.FC = () => {
     }>;
     recentActivity: Array<{ id: string; summary: string; createdAt: string }>;
   } | null>(null);
-  const [classes, setClasses] = useState<Array<Classroom & { students: Array<{ id: string; displayName: string; ageGroup: AgeGroupId }> }>>([]);
+  const [classes, setClasses] = useState<Array<Classroom & { students: Array<{ id: string; displayName: string; ageGroup: StoredAgeGroupId }> }>>([]);
   const [students, setStudents] = useState<TeacherStudentRow[]>([]);
   const [lessons, setLessons] = useState<LessonOption[]>([]);
   const [questions, setQuestions] = useState<TeacherQuestion[]>([]);
@@ -175,7 +177,7 @@ export const TeacherDashboardScreen: React.FC = () => {
   const [exDescEn, setExDescEn] = useState('');
   const [exSubject, setExSubject] = useState<TeacherExam['subject']>('arabic');
   const [exLevel, setExLevel] = useState<1 | 2>(2);
-  const [exAgeGroup, setExAgeGroup] = useState<AgeGroupId>('5-6');
+  const [exAgeGroup, setExAgeGroup] = useState<AgeGroupId>(UNIFIED_STAGE_ID);
   const [exQuestionIds, setExQuestionIds] = useState<string[]>([]);
   const [exPassingPct, setExPassingPct] = useState(70);
   const [exDurationMin, setExDurationMin] = useState(20);
@@ -741,7 +743,7 @@ export const TeacherDashboardScreen: React.FC = () => {
                             onClick={() => void loadStudentDrilldown(st.id)}
                             className="px-2.5 py-1 rounded-lg bg-white border border-[#27345C]/15 text-xs font-bold hover:border-[#8054D9] cursor-pointer"
                           >
-                            {st.displayName} ({st.ageGroup})
+                            {st.displayName} ({getSafeStageShortLabel(st.ageGroup, language)})
                           </button>
                         ))}
                       </div>
@@ -794,7 +796,7 @@ export const TeacherDashboardScreen: React.FC = () => {
                     {filteredStudents.map((st) => (
                       <tr key={st.id} className="border-b border-[#27345C]/8">
                         <td className="py-2.5 font-extrabold">{st.displayName}</td>
-                        <td>{st.ageGroup}</td>
+                        <td>{getSafeStageShortLabel(st.ageGroup, language)}</td>
                         <td>{st.classes.join(', ')}</td>
                         <td>{st.level1MasteredCount} / {st.level2MasteredCount}</td>
                         <td>{st.averageExamPercentage !== null ? `${st.averageExamPercentage}%` : '—'}</td>
@@ -948,8 +950,8 @@ export const TeacherDashboardScreen: React.FC = () => {
                       onChange={(e) => setQLevel(Number(e.target.value) === 2 ? 2 : 1)}
                       className="w-full h-10 px-3 rounded-xl border border-[#27345C]/20 bg-white"
                     >
-                      <option value={1}>Level 1 (Ages 3-4)</option>
-                      <option value={2}>Level 2 (Ages 5-6)</option>
+                      <option value={1}>Track 1 · Foundations</option>
+                      <option value={2}>Track 2 · Step-Up Explorers</option>
                     </select>
                   </div>
                   <div>
@@ -1281,12 +1283,9 @@ export const TeacherDashboardScreen: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block mb-1">Age Group</label>
+                  <label className="block mb-1">Stage</label>
                   <select value={exAgeGroup} onChange={(e) => setExAgeGroup(e.target.value as AgeGroupId)} className="w-full h-10 px-2.5 rounded-xl border border-[#27345C]/20 bg-white">
-                    <option value="3-4">3-4</option>
-                    <option value="5-6">5-6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
+                    <option value="1-4">Little Explorers (1–4 Years)</option>
                   </select>
                 </div>
                 <div>
@@ -1599,7 +1598,7 @@ export const TeacherDashboardScreen: React.FC = () => {
                   <div className="p-4 rounded-2xl bg-[#F4EEFF] flex flex-wrap justify-between items-center">
                     <div>
                       <p className="text-lg font-extrabold text-[#27345C]">{studentDrilldown.student.displayName}</p>
-                      <p>Age {studentDrilldown.student.ageGroup} · Stars ⭐ {studentDrilldown.student.stars}</p>
+                      <p>{getSafeStageShortLabel(studentDrilldown.student.ageGroup, language)} · Stars ⭐ {studentDrilldown.student.stars}</p>
                     </div>
                     <div className="text-end">
                       <p>L1 Tracked: {Object.keys(studentDrilldown.level1Progress).length}</p>

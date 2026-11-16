@@ -135,9 +135,9 @@ async function main() {
 
   const childRes1 = await parentClient.req('POST', '/api/children', {
     displayName: 'Zain',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'ar',
-    birthYear: 2020,
+    birthYear: 2023,
     birthMonth: 4,
   });
   assert.strictEqual(childRes1.status, 201);
@@ -167,9 +167,9 @@ async function main() {
   });
   const otherChildRes = await otherParentClient.req('POST', '/api/children', {
     displayName: 'Unassigned Kid',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'en',
-    birthYear: 2020,
+    birthYear: 2023,
     birthMonth: 6,
   });
   assert.strictEqual(otherChildRes.status, 201);

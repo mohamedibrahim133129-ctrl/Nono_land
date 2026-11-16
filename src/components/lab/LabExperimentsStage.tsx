@@ -2,31 +2,44 @@ import React, { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, RotateCcw, Sparkles, Volume2 } from 'lucide-react';
 import { LabExperimentSpec } from '../../data/worldCatalog';
-import { AgeGroupId, Language, LocalizedText } from '../../types/nonoland';
+import { Language, LocalizedText, StoredAgeGroupId } from '../../types/nonoland';
+import { getInternalAgeBand } from '../../utils/ageAdaptation';
 import { soundEngine } from '../../utils/soundEngine';
 
 interface Props {
   experiment: LabExperimentSpec;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
+  birthYear?: number;
+  birthMonth?: number;
   language: Language;
   alreadyDone: boolean;
   onComplete: () => void;
 }
 
-function getAgeTier(ageGroup: AgeGroupId): 'young' | 'mid' | 'older' {
+function getAgeTier(
+  ageGroup: StoredAgeGroupId,
+  birthYear?: number,
+  birthMonth?: number,
+): 'young' | 'mid' | 'older' {
   if (ageGroup === '3-4') return 'young';
   if (ageGroup === '5-6') return 'mid';
+  if (ageGroup === '7' || ageGroup === '8') return 'older';
+  const band = getInternalAgeBand({ ageGroup, birthYear, birthMonth });
+  if (band === '1-2') return 'young';
+  if (band === '2-3') return 'mid';
   return 'older';
 }
 
 export const LabExperimentsStage: React.FC<Props> = ({
   experiment,
   ageGroup,
+  birthYear,
+  birthMonth,
   language,
   alreadyDone,
   onComplete,
 }) => {
-  const tier = getAgeTier(ageGroup);
+  const tier = getAgeTier(ageGroup, birthYear, birthMonth);
   const explanation = experiment.explanationByAge[tier];
 
   return (
@@ -78,6 +91,8 @@ export const LabExperimentsStage: React.FC<Props> = ({
         {experiment.id === 'lab-scientist-challenges' && (
           <ScientistChallengeBench
             ageGroup={ageGroup}
+            birthYear={birthYear}
+            birthMonth={birthMonth}
             language={language}
             explanation={explanation}
             alreadyDone={alreadyDone}
@@ -788,14 +803,17 @@ const AnimalHabitatBench: React.FC<{
 
 // 8. LITTLE SCIENTIST CHALLENGES
 const ScientistChallengeBench: React.FC<{
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
+  birthYear?: number;
+  birthMonth?: number;
   language: Language;
   explanation: LocalizedText;
   alreadyDone: boolean;
   onDone: () => void;
-}> = ({ ageGroup, language, explanation, alreadyDone, onDone }) => {
+}> = ({ ageGroup, birthYear, birthMonth, language, explanation, alreadyDone, onDone }) => {
   const puzzles = useMemo(() => {
-    if (ageGroup === '3-4') {
+    const tier = getAgeTier(ageGroup, birthYear, birthMonth);
+    if (tier === 'young') {
       return [
         {
           q: { ar: 'ماذا تحتاج النبتة لتكبر؟', en: 'What does a little seed need to grow?' },

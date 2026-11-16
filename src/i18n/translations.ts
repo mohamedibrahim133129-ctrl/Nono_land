@@ -1,56 +1,48 @@
-import { AgeGroupId, Language, SkillId } from '../types/nonoland';
+import { AgeGroupId, Language, SkillId, StoredAgeGroupId } from '../types/nonoland';
 
-export const AGE_GROUP_META: Record<
-  AgeGroupId,
-  {
-    label: { ar: string; en: string };
-    badgeTitle: { ar: string; en: string };
-    description: { ar: string; en: string };
-    styleFocus: { ar: string; en: string };
-    color: string;
-  }
-> = {
-  '3-4': {
-    label: { ar: '٣ – ٤ سنوات', en: '3 – 4 Years' },
-    badgeTitle: { ar: 'ملعب الاكتشاف السحري', en: 'Magical Discovery Playground' },
-    description: {
-      ar: 'تعلم بالصوت واللمس والألوان والأشكال بدون الحاجة للقراءة',
-      en: 'Learn through voice, touch, colors, shapes, and playful animal discovery',
-    },
-    styleFocus: { ar: 'أزرار كبيرة وتوجيه صوتي مرح', en: 'Large visual targets & gentle voice cues' },
-    color: '#FF78B7',
+export interface AgeStageMetaEntry {
+  label: { ar: string; en: string };
+  badgeTitle: { ar: string; en: string };
+  description: { ar: string; en: string };
+  styleFocus: { ar: string; en: string };
+  color: string;
+}
+
+export const UNIFIED_STAGE_META: AgeStageMetaEntry = {
+  label: { ar: '١ – ٤ سنوات', en: '1–4 Years' },
+  badgeTitle: { ar: 'المستكشفون الصغار', en: 'Little Explorers' },
+  description: {
+    ar: 'رحلة تعليمية واحدة متكيفة مع عمر الطفل (١–٤ سنوات) عبر اللعب، الصوت، الألوان، الحروف، الأرقام والقصص التفاعلية',
+    en: 'One unified learning world adapting silently to ages 1–4 through sensory play, vocabulary, counting, letters, phonics & stories',
   },
-  '5-6': {
-    label: { ar: '٥ – ٦ سنوات', en: '5 – 6 Years' },
-    badgeTitle: { ar: 'مستكشف الحروف والأرقام', en: 'Letters & Numbers Explorer' },
-    description: {
-      ar: 'رحلات منظمة للحروف العربية والإنجليزية والأرقام والأنماط والذاكرة',
-      en: 'Structured adventures in Arabic & English letters, numbers 1–20, patterns & memory',
-    },
-    styleFocus: { ar: 'تحديات مرحة متعددة الخطوات', en: 'Playful multi-step challenges' },
-    color: '#39BDF2',
+  styleFocus: {
+    ar: 'أنشطة متكيفة مع عمر وقدرات طفلك دون تعقيد',
+    en: 'Adaptive activities scaled gently to your child’s age & pace',
   },
-  '7': {
-    label: { ar: '٧ سنوات', en: '7 Years' },
-    badgeTitle: { ar: 'المحقق والمخترع الصغير', en: 'Young Detective & Inventor' },
-    description: {
-      ar: 'فهم المقروء، بناء الكلمات، المنطق، التجارب العلمية وبدايات الضرب',
-      en: 'Reading comprehension, word building, logic mazes, science & early multiplication',
-    },
-    styleFocus: { ar: 'مهام استكشاف وألغاز منطقية', en: 'Detective missions & logic puzzles' },
-    color: '#8054D9',
-  },
-  '8': {
-    label: { ar: '٨ سنوات', en: '8 Years' },
-    badgeTitle: { ar: 'المستكشف القائد', en: 'Master Explorer' },
-    description: {
-      ar: 'مهام متقدمة في الكسور والقسمة والقواعد اللغوية والتفكير النقدي والعلوم',
-      en: 'Multi-stage quests in fractions, division, grammar, critical thinking & science',
-    },
-    styleFocus: { ar: 'مشاريع إبداعية وتحديات ذكية', en: 'Multi-stage missions & critical thinking' },
-    color: '#55D98B',
-  },
+  color: '#FF78B7',
 };
+
+export const AGE_GROUP_META: Record<AgeGroupId, AgeStageMetaEntry> = {
+  '1-4': UNIFIED_STAGE_META,
+};
+
+export function getAgeGroupMeta(ageGroup: StoredAgeGroupId | string | undefined | null): AgeStageMetaEntry {
+  if (!ageGroup || ageGroup === '1-4' || ageGroup === '3-4') {
+    return UNIFIED_STAGE_META;
+  }
+  return {
+    label:
+      ageGroup === '5-6'
+        ? { ar: 'سجل محفوظ (٥–٦ سنوات)', en: 'Preserved (5–6 yrs)' }
+        : ageGroup === '7'
+          ? { ar: 'سجل محفوظ (٧ سنوات)', en: 'Preserved (7 yrs)' }
+          : { ar: 'سجل محفوظ (٨ سنوات)', en: 'Preserved (8 yrs)' },
+    badgeTitle: { ar: 'سجل تعليمي محفوظ', en: 'Preserved Learning Record' },
+    description: UNIFIED_STAGE_META.description,
+    styleFocus: UNIFIED_STAGE_META.styleFocus,
+    color: '#8054D9',
+  };
+}
 
 export const SKILL_LABELS: Record<SkillId, { ar: string; en: string; color: string }> = {
   'early-recognition': { ar: 'التمييز البصري والسمعي', en: 'Early Visual & Sound Recognition', color: '#FF78B7' },

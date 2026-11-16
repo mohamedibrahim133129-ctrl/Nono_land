@@ -17,7 +17,7 @@ import { NonoLandLogo } from '../components/NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
 import { DEFAULT_NEXT_MONTH_PLAN } from '../data/worldCatalog';
 import { buildMonthlyReport, getCurrentMonthKey } from '../engine/monthlyReportEngine';
-import { AGE_GROUP_META, formatNumber, t } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t } from '../i18n/translations';
 import { LearningPlanGoal, MonthlyReportData } from '../types/nonoland';
 import { exportMonthlyReportPdf } from '../utils/pdfReportExporter';
 import { soundEngine } from '../utils/soundEngine';
@@ -131,7 +131,7 @@ export const MonthlyReportScreen: React.FC = () => {
               {language === 'ar' ? 'التقرير الشهري لتطور الطفل' : 'Monthly Child Development Report'}
             </h1>
             <p className="text-xs text-[#27345C]/70">
-              {report.childName} · {t(AGE_GROUP_META[report.ageGroup].label, language)}
+              {report.childName} · {t(getAgeGroupMeta(report.ageGroup).label, language)}
             </p>
           </div>
         </div>
@@ -241,8 +241,8 @@ export const MonthlyReportScreen: React.FC = () => {
                 </h2>
               <p className="text-xs sm:text-sm text-white/90">
                 {language === 'ar'
-                  ? `الفئة العمرية: ${t(AGE_GROUP_META[report.ageGroup].label, language)} · بيانات حقيقية مبنية على سجل التعلم`
-                  : `Age Group: ${t(AGE_GROUP_META[report.ageGroup].label, language)} · Calculated strictly from saved activity records`}
+                  ? `المرحلة التعليمية: ${t(getAgeGroupMeta(report.ageGroup).label, language)} · بيانات حقيقية مبنية على سجل التعلم`
+                  : `Stage: ${t(getAgeGroupMeta(report.ageGroup).label, language)} · Calculated strictly from saved activity records`}
               </p>
               </div>
             </div>

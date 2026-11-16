@@ -33,7 +33,7 @@ interface GovernanceProps {
 }
 
 const FLAG_META: Array<{ key: keyof FeatureFlags; ar: string; en: string; desc: string }> = [
-  { key: 'level2Enabled', ar: 'تفعيل المستوى ٢ (٥–٦ سنوات)', en: 'Level 2 Curriculum Enabled', desc: 'Allows students to view lessons and start Level 2 mastery checks.' },
+  { key: 'level2Enabled', ar: 'تفعيل مسار الاستكشاف المتدرج (المستوى ٢)', en: 'Step-Up Explorers Track Enabled', desc: 'Allows eligible explorers to access Step-Up lessons and mastery checks.' },
   { key: 'teacherHomeworkEnabled', ar: 'تفعيل نظام الواجبات المدرسية', en: 'Teacher Homework Module', desc: 'Enables homework creation, attachments, tracking, and student submission.' },
   { key: 'paidAssessmentsEnabled', ar: 'تفعيل الامتحانات الرسمية المدفوعة', en: 'Official Paid Assessments', desc: 'Controls official 40-question exam checkout gate.' },
   { key: 'certificatesEnabled', ar: 'تفعيل إصدار الشهادات الموثّقة', en: 'Certificates Issuance', desc: 'Issues verifiable PDF/QR certificates on completion/pass.' },

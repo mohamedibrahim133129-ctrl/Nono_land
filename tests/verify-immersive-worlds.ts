@@ -98,9 +98,9 @@ async function main() {
 
   const createChildRes = await parentA.req('POST', '/api/children', {
     displayName: 'Lina',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'ar',
-    birthYear: 2020,
+    birthYear: 2023,
     birthMonth: 6,
     interests: ['science', 'art'],
     companionId: 'nono',

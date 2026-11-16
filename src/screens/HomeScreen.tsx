@@ -31,8 +31,13 @@ import { DEFAULT_AVATAR_CONFIG } from '../data/worldCatalog';
 import { getWorldById, LEARNING_WORLDS } from '../data/worlds';
 import { getAdaptiveRecommendation } from '../engine/adaptiveEngine';
 import { calculateStreakDays, getTodayDayKey } from '../engine/monthlyReportEngine';
-import { AGE_GROUP_META, formatNumber, t, UI_COPY } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
 import { NonoMood } from '../types/nonoland';
+import {
+  getInternalAgeBand,
+  isContentAppropriateForChild,
+  isLegacyFiveToEight,
+} from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 export const HomeScreen: React.FC = () => {
@@ -76,9 +81,15 @@ export const HomeScreen: React.FC = () => {
   const recentActivity = activeChild.recentActivityId
     ? getActivityById(activeChild.recentActivityId)
     : undefined;
-  const ageMeta = AGE_GROUP_META[activeChild.ageGroup];
+  const ageMeta = getAgeGroupMeta(activeChild.ageGroup);
+  const internalBand = getInternalAgeBand(activeChild);
   const ageActivities = GAME_ACTIVITIES.filter((a) =>
-    a.ageEligibility.includes(activeChild.ageGroup),
+    isLegacyFiveToEight(activeChild.ageGroup)
+      ? a.ageEligibility.includes(activeChild.ageGroup)
+      : isContentAppropriateForChild(
+          { ageGroups: a.ageEligibility, recommendedAgeRange: a.recommendedAgeRange },
+          activeChild,
+        ),
   );
   const l1Done = Object.values(activeChild.level1Progress || {}).filter((p) => p.status === 'demonstrated').length;
   const l2Done = Object.values(activeChild.level2Progress || {}).filter((p) => p.status === 'demonstrated').length;
@@ -155,24 +166,19 @@ export const HomeScreen: React.FC = () => {
   // Personalized Nono greeting remembering favorite world & recent adventure
   const favWorld = activeChild.favoriteWorldId ? getWorldById(activeChild.favoriteWorldId) : null;
   const nonoGreeting = (() => {
-    if (activeChild.ageGroup === '3-4') {
+    if (internalBand === '1-2') {
       return language === 'ar'
-        ? `أهلاً يا ${activeChild.displayName}! اضغط على بالونة أو حيوان لنلعب معاً!`
-        : `Hi ${activeChild.displayName}! Tap any big picture to play and hear sounds!`;
+        ? `أهلاً يا ${activeChild.displayName}! اضغط على بالونة أو حيوان لنلعب ونستمع للأصوات معاً!`
+        : `Hi ${activeChild.displayName}! Tap any big picture to play and hear joyful sounds!`;
     }
-    if (activeChild.ageGroup === '5-6') {
+    if (internalBand === '2-3') {
       return language === 'ar'
-        ? `مرحباً يا ${activeChild.displayName}! ${favWorld ? `أعلم أنك تحب ${favWorld.name.ar}، ` : ''}هل أنت جاهز لمغامرة اليوم؟`
-        : `Welcome back, ${activeChild.displayName}! ${favWorld ? `I remember you enjoy ${favWorld.name.en}! ` : ''}Ready for today's adventure?`;
-    }
-    if (activeChild.ageGroup === '7') {
-      return language === 'ar'
-        ? `أهلاً بالمحقق ${activeChild.displayName}! لدينا مهمة ذكية بانتظارك في ${recWorld.name.ar}.`
-        : `Welcome, Detective ${activeChild.displayName}! A new logic & discovery quest awaits in ${recWorld.name.en}.`;
+        ? `مرحباً يا ${activeChild.displayName}! ${favWorld ? `أعلم أنك تحب ${favWorld.name.ar}، ` : ''}هل نطابق الألوان والأشكال والكلمات اليوم؟`
+        : `Welcome back, ${activeChild.displayName}! ${favWorld ? `I remember you enjoy ${favWorld.name.en}! ` : ''}Ready to match colors, shapes & words?`;
     }
     return language === 'ar'
-      ? `مرحباً بالقائد ${activeChild.displayName}! مستعد لمهام العلوم والرياضيات والتحديات المتقدمة؟`
-      : `Welcome, Explorer ${activeChild.displayName}! Ready for multi-stage math, science & creative missions?`;
+      ? `أهلاً بالمستكشف الصغير ${activeChild.displayName}! هيا نكتشف الحروف والأرقام والقصص التفاعلية!`
+      : `Welcome, Little Explorer ${activeChild.displayName}! Ready for letters, numbers, patterns & stories?`;
   })();
 
   const handleNonoTap = () => {
@@ -294,8 +300,8 @@ export const HomeScreen: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-[#27345C]/75">
             <span>
               {language === 'ar'
-                ? `المستوى ١: ${l1Done}/75 · المستوى ٢: ${l2Done}/52`
-                : `Level 1: ${l1Done}/75 · Level 2: ${l2Done}/52`}
+                ? `التأسيس: ${l1Done}/75 · الاستكشاف المتدرج: ${l2Done}/52`
+                : `Foundations: ${l1Done}/75 · Step-Up: ${l2Done}/52`}
             </span>
             <button
               type="button"
@@ -683,9 +689,9 @@ export const HomeScreen: React.FC = () => {
         </button>
       </section>
 
-      {/* AGE-SPECIFIC EXPERIENCE SECTION */}
-      {activeChild.ageGroup === '3-4' ? (
-        /* AGE 3-4: Large Visual Playground Tiles — Zero reading required */
+      {/* INTERNALLY ADAPTED EXPERIENCE SECTION */}
+      {internalBand === '1-2' ? (
+        /* AGES 1-2: Sensory Large Visual Playground Tiles — Zero reading required */
         <section aria-label="Playful Playground" className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-extrabold text-[#27345C]">
@@ -742,7 +748,7 @@ export const HomeScreen: React.FC = () => {
           </div>
         </section>
       ) : (
-        /* AGES 5-6, 7, 8: Adaptive Recommendation + Quick World Cards */
+        /* ADAPTIVE BANDS 2-3 & 3-4: Adaptive Recommendation + Quick World Cards */
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-5">
           {/* Adaptive Recommendation Card (7 cols) */}
           <div className="lg:col-span-7 nono-card rounded-3xl p-6 flex flex-col justify-between">
@@ -800,17 +806,13 @@ export const HomeScreen: React.FC = () => {
               <h3 className="text-lg font-extrabold text-[#27345C] flex items-center gap-2">
                 <FlaskConical className="w-5 h-5 text-[#39BDF2]" />
                 <span>
-                  {activeChild.ageGroup === '5-6'
+                  {internalBand === '2-3'
                     ? language === 'ar'
-                      ? 'تحديات القراءة والأنماط'
-                      : 'Letters & Pattern Quests'
-                    : activeChild.ageGroup === '7'
-                      ? language === 'ar'
-                        ? 'مهام المحقق والعلوم'
-                        : 'Detective & Science Missions'
-                      : language === 'ar'
-                        ? 'تحديات القائد المتقدمة'
-                        : 'Master Explorer Challenges'}
+                      ? 'ألعاب الكلمات والأشكال والعد'
+                      : 'Words, Sorting & Shapes Quests'
+                    : language === 'ar'
+                      ? 'الحروف والأرقام والقصص التفاعلية'
+                      : 'Letters, Patterns & Story Quests'}
                 </span>
               </h3>
               <p className="text-sm text-[#27345C]/75 mt-1">

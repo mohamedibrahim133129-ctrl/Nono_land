@@ -88,7 +88,7 @@ function solveSmartQuestionForTest(q: Record<string, unknown>): unknown {
     'sa-listen-en-b': 'opt-ball',
     'sa-phonics-cat': 'opt-c',
     'sa-math-apples': 'n5',
-    'sa-challenge-pattern': 'n8',
+    'sa-challenge-pattern': 'n4',
   };
   if (answerById[id]) return answerById[id];
   const options = q.options as Array<{ id: string }> | undefined;
@@ -112,9 +112,9 @@ async function main() {
 
   const childRes = await parentA.req('POST', '/api/children', {
     displayName: 'Noor',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'ar',
-    birthYear: 2020,
+    birthYear: 2023,
     birthMonth: 4,
     interests: ['science', 'reading'],
     companionId: 'nono',

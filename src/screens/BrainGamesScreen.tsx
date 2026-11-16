@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Brain, CheckCircle2, RotateCcw, Sparkles, Star } from 'lucide-react';
 import { useNonoLand } from '../context/NonoLandContext';
 import { Language, LocalizedText } from '../types/nonoland';
+import { getInternalAgeBand } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 type BrainModeId =
@@ -39,7 +40,7 @@ export const BrainGamesScreen: React.FC = () => {
   const [selectedId, setSelectedId] = useState<BrainModeId>('memory');
   const [wonMsg, setWonMsg] = useState<string>('');
 
-  const isYoung = activeChild.ageGroup === '3-4';
+  const isYoung = getInternalAgeBand(activeChild) !== '3-4';
   const curMode = BRAIN_MODES.find((m) => m.id === selectedId) || BRAIN_MODES[0];
 
   const handleWin = (mode: BrainModeId, score: number, maxScore: number) => {

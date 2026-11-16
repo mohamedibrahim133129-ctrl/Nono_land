@@ -4,6 +4,7 @@ import { EmotionalFeedbackBanner } from '../components/EmotionalFeedbackBanner';
 import { NonoLandLogo } from '../components/NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
 import { EmotionalFeedbackPayload, Language, LocalizedText, ReadingStageId } from '../types/nonoland';
+import { isLegacyFiveToEight } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 interface ReadingStageQuestion {
@@ -522,7 +523,7 @@ export const ReadingAdventureScreen: React.FC = () => {
   const stageProgress = activeChild.readingStageProgress || {};
   const isStageUnlocked = (stageNum: ReadingStageId): boolean => {
     if (stageNum === 1) return true;
-    if ((activeChild.ageGroup === '7' || activeChild.ageGroup === '8') && stageNum <= 2) return true;
+    if (isLegacyFiveToEight(activeChild.ageGroup) && stageNum <= 2) return true;
     return Boolean(stageProgress[stageNum - 1]?.mastered);
   };
 

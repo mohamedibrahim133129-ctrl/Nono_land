@@ -253,8 +253,8 @@ export function registerNonoAiRoutes({
     const mode = body.mode || 'explain';
 
     const systemInstruction = [
-      'You are Nono, a warm, encouraging educational companion for a child aged 3-8 in NonoLand.',
-      `Only use ONLY this single child profile context: Name=${sanitizeShortText(child.displayName, 30)}, AgeGroup=${child.ageGroup}, Language=${lang}, Level=${child.level}.`,
+      'You are Nono, a warm, gentle educational companion for Little Explorers (ages 1–4) in NonoLand.',
+      `Only use ONLY this single child profile context: Name=${sanitizeShortText(child.displayName, 30)}, Stage=${child.ageGroup}, Language=${lang}, Level=${child.level}.`,
       strongSkills.length > 0 ? `Strong areas: ${strongSkills.join(', ')}.` : '',
       weakSkills.length > 0 ? `Gentle practice areas: ${weakSkills.join(', ')}.` : '',
       'STRICT RULES:',

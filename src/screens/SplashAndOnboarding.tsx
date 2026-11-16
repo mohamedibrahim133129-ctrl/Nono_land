@@ -15,8 +15,9 @@ import { NonoCharacter } from '../components/NonoCharacter';
 import { NonoLandLogo } from '../components/NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
 import { CHARACTER_COMPANIONS } from '../data/rewardsAndRoom';
-import { AGE_GROUP_META, t, UI_COPY } from '../i18n/translations';
+import { getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
 import { AgeGroupId, Language } from '../types/nonoland';
+import { UNIFIED_STAGE_ID } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 import {
   POLICY_VERSION,
@@ -38,10 +39,10 @@ export const OnboardingScreen: React.FC = () => {
     {
       emoji: '✨',
       isBrandSlide: true,
-      title: { ar: 'أربع تجارب تعلم مختلفة حسب العمر', en: 'Four Distinct Age-Tailored Worlds' },
+      title: { ar: 'عالم موحد للمستكشفين الصغار (١–٤ سنوات)', en: 'One Unified World: Little Explorers (1–4 Years)' },
       body: {
-        ar: 'طفل الـ ٣ سنوات يلعب بالصوت واللمس بدون قراءة، وطفل الـ ٥–٦ يتعلم الحروف والأرقام، بينما يحل أبطال ٧–٨ سنوات ألغاز المنطق والعلوم والكسور.',
-        en: 'Ages 3–4 explore via voice & touch, 5–6 master letters & patterns, 7-year-olds become detectives, and 8-year-olds tackle fractions, grammar & science.',
+        ar: 'تجربة واحدة دافئة تتكيف داخلياً مع عمر الطفل: استكشاف حسي وأصوات لعمر ١–٢ سنة، مفردات وفرز لعمر ٢–٣ سنوات، وحروف وأرقام وقصص لعمر ٣–٤ سنوات.',
+        en: 'One unified world that gently adapts inside: sensory play & sounds for 1–2 yrs, vocabulary & sorting for 2–3 yrs, and early letters, patterns & stories for 3–4 yrs.',
       },
       color: 'from-[#8054D9]/15 to-[#FF78B7]/15',
     },
@@ -800,10 +801,13 @@ export const ParentAuthScreen: React.FC = () => {
 
 export const CreateChildScreen: React.FC = () => {
   const { navigate, language, createChildProfile } = useNonoLand();
+  const currentYear = new Date().getFullYear();
+  const minBirthYear = currentYear - 4;
+  const maxBirthYear = currentYear - 1;
   const [displayName, setDisplayName] = useState('');
-  const [ageGroup, setAgeGroup] = useState<AgeGroupId>('5-6');
+  const [ageGroup] = useState<AgeGroupId>(UNIFIED_STAGE_ID);
   const [childLang, setChildLang] = useState<Language>(language);
-  const [birthYear, setBirthYear] = useState(2021);
+  const [birthYear, setBirthYear] = useState(currentYear - 3);
   const [birthMonth, setBirthMonth] = useState(5);
   const [interests, setInterests] = useState<string[]>(['animals', 'space']);
   const [companionId, setCompanionId] = useState('nono');
@@ -926,54 +930,39 @@ export const CreateChildScreen: React.FC = () => {
             </div>
           </div>
 
-          {/* Age Band Selection */}
+          {/* Unified Educational Stage Display */}
           <div>
             <label className="block text-sm font-bold mb-2">
-              {language === 'ar' ? 'اختر الفئة العمرية (تغيّر التجربة بالكامل)' : 'Select Age Band (Tailors Entire Experience)'}
+              {language === 'ar' ? 'المرحلة التعليمية المعتمدة' : 'Educational Stage'}
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {(['3-4', '5-6', '7', '8'] as AgeGroupId[]).map((band) => {
-                const meta = AGE_GROUP_META[band];
-                const selected = ageGroup === band;
-                return (
-                  <button
-                    key={band}
-                    type="button"
-                    onClick={() => {
-                      soundEngine.playPop();
-                      setAgeGroup(band);
-                      setBirthYear(band === '3-4' ? 2023 : band === '5-6' ? 2021 : band === '7' ? 2019 : 2018);
-                    }}
-                    className={`p-4 rounded-2xl border-2 text-start transition-all cursor-pointer ${
-                      selected
-                        ? 'bg-white border-[#8054D9] shadow-md'
-                        : 'bg-[#FFF8E9]/60 border-[#27345C]/10 hover:border-[#27345C]/25'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-extrabold text-base" style={{ color: meta.color }}>
-                        {t(meta.label, language)}
-                      </span>
-                      {selected && <Check className="w-5 h-5 text-[#8054D9]" />}
-                    </div>
-                    <p className="font-bold text-sm text-[#27345C] mt-1">{t(meta.badgeTitle, language)}</p>
-                    <p className="text-xs text-[#27345C]/70 mt-1">{t(meta.description, language)}</p>
-                  </button>
-                );
-              })}
-            </div>
+            {(() => {
+              const meta = getAgeGroupMeta(UNIFIED_STAGE_ID);
+              return (
+                <div className="p-4 rounded-2xl border-2 bg-white border-[#8054D9] shadow-md">
+                  <div className="flex items-center justify-between">
+                    <span className="font-extrabold text-base" style={{ color: meta.color }}>
+                      {t(meta.badgeTitle, language)} · {t(meta.label, language)}
+                    </span>
+                    <Check className="w-5 h-5 text-[#8054D9]" />
+                  </div>
+                  <p className="text-xs text-[#27345C]/75 mt-1.5">{t(meta.description, language)}</p>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Birth Month/Year */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold mb-1 text-[#27345C]/70">
-                {language === 'ar' ? 'سنة الميلاد' : 'Birth Year'}
+                {language === 'ar'
+                  ? `سنة الميلاد (١–٤ سنوات: ${minBirthYear}–${maxBirthYear})`
+                  : `Birth Year (Ages 1–4: ${minBirthYear}–${maxBirthYear})`}
               </label>
               <input
                 type="number"
-                min={2017}
-                max={2024}
+                min={minBirthYear}
+                max={maxBirthYear}
                 value={birthYear}
                 onChange={(e) => setBirthYear(Number(e.target.value))}
                 className="w-full h-11 px-3 rounded-xl bg-[#FFF8E9] border border-[#27345C]/15 font-mono-num font-bold"
@@ -1116,7 +1105,7 @@ export const ChildWelcomeScreen: React.FC = () => {
             {language === 'ar' ? `مرحباً ${activeChild.displayName} في نونو لاند!` : `Welcome to NonoLand, ${activeChild.displayName}!`}
           </h1>
           <p className="text-[#27345C]/75 mt-2">
-            {t(AGE_GROUP_META[activeChild.ageGroup].badgeTitle, language)} · {t(AGE_GROUP_META[activeChild.ageGroup].label, language)}
+            {t(getAgeGroupMeta(activeChild.ageGroup).badgeTitle, language)} · {t(getAgeGroupMeta(activeChild.ageGroup).label, language)}
           </p>
         </div>
 

@@ -14,7 +14,7 @@ import {
 import { CharacterActor } from './CharacterCast';
 import { NonoLandLogo } from './NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
-import { AGE_GROUP_META, t, UI_COPY } from '../i18n/translations';
+import { getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
 import { OfficialCharacterId } from '../types/nonoland';
 import { soundEngine } from '../utils/soundEngine';
 
@@ -461,8 +461,8 @@ export const CinematicWelcomeIntro: React.FC = () => {
                 </div>
                 <p className="text-sm font-extrabold text-[#FFD84D]">
                   {language === 'ar'
-                    ? 'عالم تعليمي تفاعلي للأعمار ٣ – ٨ سنوات'
-                    : 'Interactive Educational World · Ages 3 to 8'}
+                    ? 'عالم تعليمي تفاعلي للأعمار ١ – ٤ سنوات'
+                    : 'Interactive Educational World · Ages 1 to 4'}
                 </p>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-balance">
                   {language === 'ar'
@@ -500,8 +500,8 @@ export const CinematicWelcomeIntro: React.FC = () => {
                 <div className="pt-3">
                   <p className="text-xs font-bold text-white/75 mb-2">
                     {language === 'ar'
-                      ? 'أو معاينة فورية بتجربة عمرية جاهزة:'
-                      : 'Or preview any age-band adventure right away:'}
+                      ? 'أو معاينة فورية مع أصدقاء المستكشفون الصغار (١–٤ سنوات):'
+                      : 'Or jump right in with a Little Explorers (1–4 Years) preview:'}
                   </p>
                   <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                     {childrenList.map((child) => (
@@ -515,7 +515,7 @@ export const CinematicWelcomeIntro: React.FC = () => {
                         className="min-h-[44px] px-3.5 py-2 rounded-xl bg-white/12 hover:bg-white/25 border border-white/20 text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer transition-colors"
                       >
                         <span>{child.displayName}</span>
-                        <span className="text-[#FFD84D]">· {t(AGE_GROUP_META[child.ageGroup].label, language)}</span>
+                        <span className="text-[#FFD84D]">· {t(getAgeGroupMeta(child.ageGroup).label, language)}</span>
                       </button>
                     ))}
                   </div>

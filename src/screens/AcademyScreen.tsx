@@ -44,7 +44,7 @@ import {
   getLevel2LessonsBySubject,
   LEVEL2_SUBJECT_META,
 } from '../data/level2Curriculum';
-import { AGE_GROUP_META, formatNumber, t } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t } from '../i18n/translations';
 import {
   CmsLessonRecord,
   Level1LessonDefinition,
@@ -53,14 +53,20 @@ import {
   Level2Subject,
   NonoMood,
 } from '../types/nonoland';
+import {
+  getInternalAgeBand,
+  isContentAppropriateForChild,
+  isLegacyFiveToEight,
+} from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 type AcademyTab = 'level1' | 'level2' | 'daily' | 'arabic' | 'english' | 'numbers' | 'colors-shapes';
 
 export const AcademyScreen: React.FC = () => {
   const { activeChild, language, recordConceptInteraction, navigate } = useNonoLand();
+  const internalBand = getInternalAgeBand(activeChild);
   const [tab, setTab] = useState<AcademyTab>(
-    activeChild.ageGroup === '3-4' ? 'level1' : activeChild.ageGroup === '5-6' ? 'level2' : 'daily',
+    internalBand === '1-2' ? 'level1' : isLegacyFiveToEight(activeChild.ageGroup) ? 'daily' : 'level2',
   );
   const [nonoMood, setNonoMood] = useState<NonoMood>('idle');
   const [deepTarget, setDeepTarget] = useState<DeepLessonTarget | null>(null);
@@ -79,7 +85,7 @@ export const AcademyScreen: React.FC = () => {
           setCmsLessons(
             data.lessons.filter(
               (ls: CmsLessonRecord) =>
-                ls.published && ls.ageGroups.includes(activeChild.ageGroup),
+                ls.published && isContentAppropriateForChild(ls, activeChild),
             ),
           );
         }
@@ -88,7 +94,7 @@ export const AcademyScreen: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [activeChild.ageGroup]);
+  }, [activeChild]);
 
   // Arabic Alphabet state
   const [arIndex, setArIndex] = useState(0);
@@ -118,16 +124,10 @@ export const AcademyScreen: React.FC = () => {
   const [fractionParts, setFractionParts] = useState(4);
   const [fractionShaded, setFractionShaded] = useState(1);
 
-  // Numbers Academy state
-  const defaultTierId =
-    activeChild.ageGroup === '3-4'
-      ? '1-10'
-      : activeChild.ageGroup === '5-6'
-        ? '1-20'
-        : activeChild.ageGroup === '7'
-          ? '1-50'
-          : '1-100';
-  const [numTierId, setNumTierId] = useState<'1-10' | '1-20' | '1-50' | '1-100'>(defaultTierId);
+  // Numbers Academy state (internally adapted 1-5 / 1-10 / 1-20 within Little Explorers)
+  const defaultTierId: '1-5' | '1-10' | '1-20' =
+    internalBand === '1-2' ? '1-5' : internalBand === '2-3' ? '1-10' : '1-20';
+  const [numTierId, setNumTierId] = useState<'1-5' | '1-10' | '1-20'>(defaultTierId);
   const currentTier = NUMBER_TIERS.find((nt) => nt.id === numTierId) || NUMBER_TIERS[0];
   const [selectedNumber, setSelectedNumber] = useState<number>(currentTier.numbers[0]);
   const [compareLeft, setCompareLeft] = useState(4);
@@ -224,7 +224,7 @@ export const AcademyScreen: React.FC = () => {
     }
   };
 
-  const ageCurriculum = AGE_CURRICULUM_OUTCOMES[activeChild.ageGroup];
+  const ageCurriculum = AGE_CURRICULUM_OUTCOMES['1-4'];
   const completedDeepCount = (activeChild.completedDeepLessons || []).length;
 
   const l1ProgressMap = activeChild.level1Progress || {};
@@ -289,7 +289,7 @@ export const AcademyScreen: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs font-extrabold text-[#FFD84D]">
               <NonoLandLogo variant="badge" size="xs" tone="dark" language={language} />
               <span>
-                {t(AGE_GROUP_META[activeChild.ageGroup].label, language)} ·{' '}
+                {t(getAgeGroupMeta(activeChild.ageGroup).label, language)} ·{' '}
                 {language === 'ar' ? 'تعلّم متعدد الحواس' : 'Multi-Sensory Learning'}
               </span>
             </div>
@@ -315,9 +315,9 @@ export const AcademyScreen: React.FC = () => {
       {/* Academy Section Tabs */}
       <div className="flex flex-wrap gap-2 bg-white p-2 rounded-2xl border border-[#27345C]/12">
         {[
-          { id: 'level1' as const, icon: <GraduationCap className="w-4 h-4" />, ar: 'المستوى الأول (٧٥ درساً)', en: 'Level 1 (75 Lessons)' },
-          { id: 'level2' as const, icon: <Sparkles className="w-4 h-4" />, ar: 'المستوى ٢: المستكشفون (٥٢ درساً)', en: 'Level 2: Explorers (52)' },
-          { id: 'daily' as const, icon: <Sparkles className="w-4 h-4" />, ar: 'رحلة اليوم والمستويات', en: 'Daily & Level 3+' },
+          { id: 'level1' as const, icon: <GraduationCap className="w-4 h-4" />, ar: 'المسار التأسيسي (٧٥ درساً)', en: 'Foundations Track (75)' },
+          { id: 'level2' as const, icon: <Sparkles className="w-4 h-4" />, ar: 'مسار المستكشفين المتقدم (٥٢ درساً)', en: 'Step-Up Explorers (52)' },
+          { id: 'daily' as const, icon: <Sparkles className="w-4 h-4" />, ar: 'رحلة اليوم والدليل', en: 'Daily Path & Guide' },
           { id: 'arabic' as const, icon: <BookOpen className="w-4 h-4" />, ar: 'الحروف العربية (٢٨)', en: 'Arabic (28)' },
           { id: 'english' as const, icon: <Ear className="w-4 h-4" />, ar: 'الحروف الإنجليزية (A-Z)', en: 'English (A-Z)' },
           { id: 'numbers' as const, icon: <Calculator className="w-4 h-4" />, ar: 'الأرقام والرياضيات', en: 'Numbers & Math' },
@@ -349,7 +349,7 @@ export const AcademyScreen: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-extrabold text-[#8054D9]">
-                  {language === 'ar' ? 'المستوى الأول · المكتشفون الصغار (٣–٤ سنوات)' : 'Level 1 · Little Discoverers (Ages 3–4)'}
+                  {language === 'ar' ? 'المستكشفون الصغار · المسار التأسيسي (١–٤ سنوات)' : 'Little Explorers · Foundations Track (Ages 1–4)'}
                 </span>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#27345C] mt-1">
                   {language === 'ar'
@@ -507,8 +507,8 @@ export const AcademyScreen: React.FC = () => {
               <div>
                 <span className="text-xs font-extrabold text-[#8054D9]">
                   {language === 'ar'
-                    ? 'المستوى الثاني · المستكشفون الصغار (٥–٦ سنوات) — بناءً وتطويراً بعد المستوى الأول'
-                    : 'Level 2 · Little Explorers (Ages 5–6) — Expanding on Level 1'}
+                    ? 'المستكشفون الصغار · مسار التوسّع والاستكشاف (١–٤ سنوات)'
+                    : 'Little Explorers · Step-Up Track (Ages 1–4)'}
                 </span>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#27345C] mt-1">
                   {language === 'ar'
@@ -794,7 +794,7 @@ export const AcademyScreen: React.FC = () => {
                 type="button"
                 onClick={() => {
                   const unit =
-                    MATH_DEEP_UNITS.find((u) => u.ageGroups.includes(activeChild.ageGroup)) ||
+                    MATH_DEEP_UNITS.find((u) => isContentAppropriateForChild(u, activeChild)) ||
                     MATH_DEEP_UNITS[0];
                   setDeepTarget({ type: 'math', unitId: unit.id });
                 }}
@@ -1476,8 +1476,10 @@ export const AcademyScreen: React.FC = () => {
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {MATH_DEEP_UNITS.map((unit) => {
-                const ageMatch = unit.ageGroups.includes(activeChild.ageGroup);
+              {MATH_DEEP_UNITS.filter((u) =>
+                isLegacyFiveToEight(activeChild.ageGroup) || isContentAppropriateForChild(u, activeChild),
+              ).map((unit) => {
+                const ageMatch = isContentAppropriateForChild(unit, activeChild);
                 const done = (activeChild.completedDeepLessons || []).includes(unit.id);
                 return (
                   <button
@@ -1658,109 +1660,165 @@ export const AcademyScreen: React.FC = () => {
             </div>
           </div>
 
-          {/* Multiplication Groups & Introductory Fractions Visual Lab */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {/* Visual Math Play: Gentle Counting & Sharing for Ages 1-4; Multiplication/Fractions strictly gated for legacy 5-8 */}
+          {isLegacyFiveToEight(activeChild.ageGroup) ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              <div className="nono-card rounded-3xl p-6 space-y-4">
+                <h3 className="text-xl font-extrabold text-[#27345C]">
+                  {language === 'ar' ? 'مجموعات الضرب البصرية' : 'Visual Multiplication Groups'}
+                </h3>
+                <div className="flex flex-wrap items-center gap-3 text-sm font-bold" dir="ltr">
+                  <label className="flex items-center gap-2">
+                    <span>Groups:</span>
+                    <input
+                      type="range"
+                      min={1}
+                      max={4}
+                      value={groupRows}
+                      onChange={(e) => setGroupRows(Number(e.target.value))}
+                      className="accent-[#8054D9]"
+                    />
+                    <span className="font-mono-num">{groupRows}</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <span>Each:</span>
+                    <input
+                      type="range"
+                      min={1}
+                      max={5}
+                      value={groupCols}
+                      onChange={(e) => setGroupCols(Number(e.target.value))}
+                      className="accent-[#FF9360]"
+                    />
+                    <span className="font-mono-num">{groupCols}</span>
+                  </label>
+                </div>
+                <div className="space-y-2 p-4 rounded-2xl bg-[#FFF8E9]">
+                  {Array.from({ length: groupRows }).map((_, r) => (
+                    <div key={r} className="flex items-center gap-2">
+                      <span className="text-xs font-extrabold text-[#8054D9] w-6">#{r + 1}</span>
+                      <div className="flex gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#27345C]/10">
+                        {Array.from({ length: groupCols }).map((__, c) => (
+                          <span key={c} className="text-xl">⭐</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <p className="text-base font-extrabold text-[#27345C] pt-2 font-mono-num" dir="ltr">
+                    {groupRows} × {groupCols} = {groupRows * groupCols}
+                  </p>
+                </div>
+              </div>
+
+              <div className="nono-card rounded-3xl p-6 space-y-4">
+                <h3 className="text-xl font-extrabold text-[#27345C]">
+                  {language === 'ar' ? 'مقدمة الكسور (أجزاء من الكل)' : 'Introductory Fractions Explorer'}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {[2, 3, 4].map((parts) => (
+                    <button
+                      key={parts}
+                      type="button"
+                      onClick={() => {
+                        setFractionParts(parts);
+                        setFractionShaded(1);
+                        soundEngine.playPop();
+                      }}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-extrabold cursor-pointer ${
+                        fractionParts === parts ? 'bg-[#55D98B] text-[#27345C]' : 'bg-[#FFF8E9]'
+                      }`}
+                    >
+                      {parts} {language === 'ar' ? 'أجزاء متساوية' : 'equal parts'}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex gap-2 p-4 rounded-2xl bg-[#FFF8E9]" dir="ltr">
+                  {Array.from({ length: fractionParts }).map((_, idx) => {
+                    const shaded = idx < fractionShaded;
+                    return (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setFractionShaded(idx + 1);
+                          soundEngine.playPop();
+                          recordConceptInteraction({
+                            conceptId: `fraction-${idx + 1}-of-${fractionParts}`,
+                            domain: 'numbers',
+                            label: { ar: `الكسر ${idx + 1}/${fractionParts}`, en: `Fraction ${idx + 1}/${fractionParts}` },
+                            stage: 'applied',
+                            isCorrect: true,
+                          });
+                        }}
+                        className={`flex-1 h-16 rounded-xl border-2 font-extrabold cursor-pointer transition-colors ${
+                          shaded ? 'bg-[#8054D9] border-[#8054D9] text-white' : 'bg-white border-[#27345C]/15 text-[#27345C]/50'
+                        }`}
+                      >
+                        1/{fractionParts}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="text-center font-extrabold text-lg font-mono-num text-[#8054D9]" dir="ltr">
+                  {fractionShaded} / {fractionParts}
+                </p>
+              </div>
+            </div>
+          ) : (
             <div className="nono-card rounded-3xl p-6 space-y-4">
-              <h3 className="text-xl font-extrabold text-[#27345C]">
-                {language === 'ar' ? 'مجموعات الضرب البصرية' : 'Visual Multiplication Groups'}
-              </h3>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-xl font-extrabold text-[#27345C]">
+                  {language === 'ar' ? 'سلة العد والجمع البسيط (١–٥)' : 'Little Explorers Basket Counting (1–5)'}
+                </h3>
+                <span className="text-xs font-extrabold text-[#8054D9]">
+                  {language === 'ar' ? 'عدّ وأضف واحدة تلو الأخرى' : 'Count & add apples step by step'}
+                </span>
+              </div>
               <div className="flex flex-wrap items-center gap-3 text-sm font-bold" dir="ltr">
                 <label className="flex items-center gap-2">
-                  <span>Groups:</span>
-                  <input
-                    type="range"
-                    min={1}
-                    max={4}
-                    value={groupRows}
-                    onChange={(e) => setGroupRows(Number(e.target.value))}
-                    className="accent-[#8054D9]"
-                  />
-                  <span className="font-mono-num">{groupRows}</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <span>Each:</span>
+                  <span>{language === 'ar' ? 'السلة الأولى:' : 'Basket 1:'}</span>
                   <input
                     type="range"
                     min={1}
                     max={5}
-                    value={groupCols}
+                    value={Math.min(5, groupRows)}
+                    onChange={(e) => setGroupRows(Number(e.target.value))}
+                    className="accent-[#8054D9]"
+                  />
+                  <span className="font-mono-num">{Math.min(5, groupRows)}</span>
+                </label>
+                <label className="flex items-center gap-2">
+                  <span>{language === 'ar' ? 'السلة الثانية:' : 'Basket 2:'}</span>
+                  <input
+                    type="range"
+                    min={1}
+                    max={5}
+                    value={Math.min(5, groupCols)}
                     onChange={(e) => setGroupCols(Number(e.target.value))}
                     className="accent-[#FF9360]"
                   />
-                  <span className="font-mono-num">{groupCols}</span>
+                  <span className="font-mono-num">{Math.min(5, groupCols)}</span>
                 </label>
               </div>
-              <div className="space-y-2 p-4 rounded-2xl bg-[#FFF8E9]">
-                {Array.from({ length: groupRows }).map((_, r) => (
-                  <div key={r} className="flex items-center gap-2">
-                    <span className="text-xs font-extrabold text-[#8054D9] w-6">#{r + 1}</span>
-                    <div className="flex gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#27345C]/10">
-                      {Array.from({ length: groupCols }).map((__, c) => (
-                        <span key={c} className="text-xl">⭐</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <p className="text-base font-extrabold text-[#27345C] pt-2 font-mono-num" dir="ltr">
-                  {groupRows} × {groupCols} = {groupRows * groupCols}
-                </p>
+              <div className="flex flex-wrap items-center gap-4 p-4 rounded-2xl bg-[#FFF8E9]">
+                <div className="flex gap-1.5 px-3 py-2 rounded-xl bg-white border border-[#27345C]/10">
+                  {Array.from({ length: Math.min(5, groupRows) }).map((_, idx) => (
+                    <span key={idx} className="text-2xl">🍎</span>
+                  ))}
+                </div>
+                <span className="text-xl font-extrabold text-[#8054D9]">+</span>
+                <div className="flex gap-1.5 px-3 py-2 rounded-xl bg-white border border-[#27345C]/10">
+                  {Array.from({ length: Math.min(5, groupCols) }).map((_, idx) => (
+                    <span key={idx} className="text-2xl">🍐</span>
+                  ))}
+                </div>
+                <span className="text-xl font-extrabold text-[#27345C]">=</span>
+                <span className="px-4 py-2 rounded-xl bg-[#55D98B]/25 font-extrabold text-xl text-[#27345C] font-mono-num">
+                  {formatNumber(Math.min(5, groupRows) + Math.min(5, groupCols), language)}
+                </span>
               </div>
             </div>
-
-            <div className="nono-card rounded-3xl p-6 space-y-4">
-              <h3 className="text-xl font-extrabold text-[#27345C]">
-                {language === 'ar' ? 'مقدمة الكسور (أجزاء من الكل)' : 'Introductory Fractions Explorer'}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[2, 3, 4].map((parts) => (
-                  <button
-                    key={parts}
-                    type="button"
-                    onClick={() => {
-                      setFractionParts(parts);
-                      setFractionShaded(1);
-                      soundEngine.playPop();
-                    }}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-extrabold cursor-pointer ${
-                      fractionParts === parts ? 'bg-[#55D98B] text-[#27345C]' : 'bg-[#FFF8E9]'
-                    }`}
-                  >
-                    {parts} {language === 'ar' ? 'أجزاء متساوية' : 'equal parts'}
-                  </button>
-                ))}
-              </div>
-              <div className="flex gap-2 p-4 rounded-2xl bg-[#FFF8E9]" dir="ltr">
-                {Array.from({ length: fractionParts }).map((_, idx) => {
-                  const shaded = idx < fractionShaded;
-                  return (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => {
-                        setFractionShaded(idx + 1);
-                        soundEngine.playPop();
-                        recordConceptInteraction({
-                          conceptId: `fraction-${idx + 1}-of-${fractionParts}`,
-                          domain: 'numbers',
-                          label: { ar: `الكسر ${idx + 1}/${fractionParts}`, en: `Fraction ${idx + 1}/${fractionParts}` },
-                          stage: 'applied',
-                          isCorrect: true,
-                        });
-                      }}
-                      className={`flex-1 h-16 rounded-xl border-2 font-extrabold cursor-pointer transition-colors ${
-                        shaded ? 'bg-[#8054D9] border-[#8054D9] text-white' : 'bg-white border-[#27345C]/15 text-[#27345C]/50'
-                      }`}
-                    >
-                      1/{fractionParts}
-                    </button>
-                  );
-                })}
-              </div>
-              <p className="text-center font-extrabold text-lg font-mono-num text-[#8054D9]" dir="ltr">
-                {fractionShaded} / {fractionParts}
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       )}
 

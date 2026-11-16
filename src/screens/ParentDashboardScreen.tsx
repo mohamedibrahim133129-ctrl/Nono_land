@@ -45,7 +45,7 @@ import { OFFICIAL_YOUTUBE_CHANNEL } from '../data/funZoneData';
 import { LEARNING_WORLDS } from '../data/worlds';
 import { generateParentInsights } from '../engine/adaptiveEngine';
 import { calculateStreakDays, computeChildSubjectMetrics } from '../engine/monthlyReportEngine';
-import { AGE_GROUP_META, formatDate, formatNumber, SKILL_LABELS, t, UI_COPY } from '../i18n/translations';
+import { formatDate, formatNumber, getAgeGroupMeta, SKILL_LABELS, t, UI_COPY } from '../i18n/translations';
 import {
   ActivityTimelineEvent,
   Certificate,
@@ -56,6 +56,7 @@ import {
   SkillId,
   YouTubeCategory,
 } from '../types/nonoland';
+import { isLegacyFiveToEight, UNIFIED_STAGE_ID } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 function extractYouTubeId(input: string): string | null {
@@ -770,8 +771,8 @@ export const ParentDashboardScreen: React.FC = () => {
                   <div>
                     <h2 className="text-lg font-extrabold text-[#27345C]">
                       {language === 'ar'
-                        ? 'تقرير المستوى الثاني: المستكشفون (٥٢ درساً · ٥-٦ سنوات)'
-                        : 'Level 2 Report: Little Explorers (52 Lessons · Ages 5–6)'}
+                        ? 'تقرير مسار المستكشفين المتقدم (٥٢ درساً تفاعلياً)'
+                        : 'Step-Up Explorers Track Report (52 Lessons)'}
                     </h2>
                     <p className="text-xs text-[#27345C]/70">
                       {language === 'ar'
@@ -1026,10 +1027,10 @@ export const ParentDashboardScreen: React.FC = () => {
               {/* Age-Based Curriculum Focus */}
               <div className="p-3.5 rounded-2xl bg-[#F3E8FF]/60 border border-[#8054D9]/15 text-xs space-y-1">
                 <p className="font-extrabold text-[#8054D9]">
-                  {t(AGE_CURRICULUM_OUTCOMES[activeChild.ageGroup].title, language)}
+                  {t(AGE_CURRICULUM_OUTCOMES['1-4'].title, language)}
                 </p>
                 <p className="text-[#27345C]/80">
-                  {t(AGE_CURRICULUM_OUTCOMES[activeChild.ageGroup].expectedOutcome, language)}
+                  {t(AGE_CURRICULUM_OUTCOMES['1-4'].expectedOutcome, language)}
                 </p>
               </div>
 
@@ -1245,7 +1246,7 @@ export const ParentDashboardScreen: React.FC = () => {
                     <div>
                       <h3 className="text-xl font-extrabold text-[#27345C]">{child.displayName}</h3>
                       <p className="text-xs font-bold text-[#8054D9]">
-                        {t(AGE_GROUP_META[child.ageGroup].label, language)} ·{' '}
+                        {t(getAgeGroupMeta(child.ageGroup).label, language)} ·{' '}
                         {child.language === 'ar' ? 'العربية' : 'English'}
                       </p>
                     </div>
@@ -1266,21 +1267,17 @@ export const ParentDashboardScreen: React.FC = () => {
                     </button>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-[#27345C]/10">
-                    {(['3-4', '5-6', '7', '8'] as const).map((band) => (
-                      <button
-                        key={band}
-                        type="button"
-                        onClick={() => updateChildProfile(child.id, { ageGroup: band })}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-bold border cursor-pointer ${
-                          child.ageGroup === band
-                            ? 'bg-[#8054D9] text-white border-[#8054D9]'
-                            : 'bg-white border-[#27345C]/15'
-                        }`}
-                      >
-                        {t(AGE_GROUP_META[band].label, language)}
-                      </button>
-                    ))}
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#27345C]/10">
+                    {isLegacyFiveToEight(child.ageGroup) ? (
+                      <span className="px-3 py-1 rounded-xl bg-[#FFF3D1] border border-[#FFD84D] text-xs font-bold text-[#27345C]">
+                        {t(getAgeGroupMeta(child.ageGroup).label, language)} ·{' '}
+                        {language === 'ar' ? 'سجل تاريخي محفوظ' : 'Historical Progress Preserved'}
+                      </span>
+                    ) : (
+                      <span className="px-3 py-1 rounded-xl bg-[#8054D9]/12 border border-[#8054D9]/30 text-xs font-extrabold text-[#8054D9]">
+                        🌟 {t(getAgeGroupMeta(UNIFIED_STAGE_ID).label, language)}
+                      </span>
+                    )}
                   </div>
 
                   {/* Direct Student Login Setup by Parent */}
@@ -1973,7 +1970,7 @@ export const ParentDashboardScreen: React.FC = () => {
                     en: ytTitleEn.trim() || ytTitleAr.trim() || 'NonoLand Video',
                   },
                   category: ytCategory,
-                  ageGroups: ['3-4', '5-6', '7', '8'],
+                  ageGroups: ['1-4'],
                   approvedByParent: true,
                   featured: false,
                 });

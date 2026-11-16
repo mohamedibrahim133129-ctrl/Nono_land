@@ -55,6 +55,7 @@ import {
   SubscriptionState,
   WorldId,
 } from '../types/nonoland';
+import { migrateChildProfileSafely } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 import { DEFAULT_FEATURE_FLAGS } from '../utils/validation';
 
@@ -96,7 +97,10 @@ function getInitialPersistedState(): PersistedState {
     if (raw) {
       const parsed = JSON.parse(raw) as PersistedState;
       if (parsed && Array.isArray(parsed.children) && parsed.children.length > 0) {
-        return parsed;
+        return {
+          ...parsed,
+          children: parsed.children.map(migrateChildProfileSafely),
+        };
       }
     }
   } catch {
@@ -114,7 +118,7 @@ function getInitialPersistedState(): PersistedState {
     parentSettings: DEFAULT_SETTINGS,
     subscription: { tier: 'free', status: 'preview' },
     children: sampleChildren,
-    activeChildId: sampleChildren[1].id, // Omar (5-6) default or switchable anytime
+    activeChildId: sampleChildren[0].id, // Little Explorers (1-4 Years) default
     simulatedOffline: false,
     curatedVideos: INITIAL_CURATED_VIDEOS,
   };
@@ -306,16 +310,17 @@ export const NonoLandProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         if (chRes.ok) {
           const chData = (await chRes.json()) as { children?: ChildProfile[] };
           if (Array.isArray(chData.children) && chData.children.length > 0) {
+            const migratedServer = chData.children.map(migrateChildProfileSafely);
             setPersisted((prev) => {
-              const serverIds = new Set(chData.children!.map((c) => c.id));
+              const serverIds = new Set(migratedServer.map((c) => c.id));
               const keptSamples = prev.children.filter((c) => !serverIds.has(c.id) && c.id.startsWith('demo-'));
-              const merged = [...chData.children!, ...keptSamples];
+              const merged = [...migratedServer, ...keptSamples];
               return {
                 ...prev,
                 children: merged,
                 activeChildId: merged.some((c) => c.id === prev.activeChildId)
                   ? prev.activeChildId
-                  : chData.children![0].id,
+                  : migratedServer[0].id,
               };
             });
           }
@@ -487,7 +492,7 @@ export const NonoLandProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       displayName: input.displayName.trim() || (input.language === 'ar' ? 'بطل نونو' : 'Explorer'),
       birthYear: input.birthYear,
       birthMonth: input.birthMonth,
-      ageGroup: input.ageGroup,
+      ageGroup: input.ageGroup || '1-4',
       language: input.language,
       interests: input.interests,
       companionId: input.companionId || 'nono',

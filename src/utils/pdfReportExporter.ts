@@ -1,5 +1,6 @@
 import { formatNumber } from '../i18n/translations';
 import { Language, MonthlyReportData } from '../types/nonoland';
+import { getSafeStageDisplay } from './ageAdaptation';
 
 function dataUrlToUint8Array(dataUrl: string): Uint8Array {
   const base64 = dataUrl.split(',')[1] || '';
@@ -232,10 +233,11 @@ export async function exportMonthlyReportPdf(
 
     ctx.fillStyle = 'rgba(255,255,255,0.9)';
     ctx.font = `600 22px ${fontFamily}`;
+    const stageLabel = getSafeStageDisplay(report.ageGroup, language);
     ctx.fillText(
       isAr
-        ? `الفئة العمرية: ${report.ageGroup} · النجوم: ${formatNumber(report.starsEarnedTotal, language)} · السلسلة التعليمية: ${formatNumber(report.learningStreakDays, language)} يوم`
-        : `Age Band: ${report.ageGroup} · Stars: ${report.starsEarnedTotal} · Learning Streak: ${report.learningStreakDays} day(s)`,
+        ? `المرحلة التعليمية: ${stageLabel} · النجوم: ${formatNumber(report.starsEarnedTotal, language)} · السلسلة التعليمية: ${formatNumber(report.learningStreakDays, language)} يوم`
+        : `Stage: ${stageLabel} · Stars: ${report.starsEarnedTotal} · Learning Streak: ${report.learningStreakDays} day(s)`,
       textX,
       206,
     );

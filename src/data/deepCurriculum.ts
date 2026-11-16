@@ -3,7 +3,10 @@ import {
   AgeGroupId,
   ConceptDomain,
   ExamQuestionItem,
+  InternalAgeBand,
   LocalizedText,
+  RecommendedAgeRange,
+  StoredAgeGroupId,
 } from '../types/nonoland';
 
 export interface ColorDeepJourneyData {
@@ -235,7 +238,7 @@ export interface ArabicDeepJourneyData {
   distractorChars: string[];
   missingWordPrompt: { masked: string; answerChar: string; fullWord: string; emoji: string };
   buildWordTiles: { targetWord: string; tiles: string[]; emoji: string };
-  readingSentences: Record<AgeGroupId, LocalizedText>;
+  readingSentences: Record<InternalAgeBand, LocalizedText>;
   unseenAssessmentWord: { word: string; startsWithTarget: boolean; emoji: string };
 }
 
@@ -320,21 +323,17 @@ export function buildArabicDeepJourney(letterId: string): ArabicDeepJourneyData 
       emoji: entry.emoji,
     },
     readingSentences: {
-      '3-4': {
+      '1-2': {
         ar: `${entry.emoji} ${entry.char} — ${entry.word}`,
-        en: `${entry.emoji} ${entry.char} as in ${entry.word}`,
+        en: `${entry.emoji} ${entry.char} — ${entry.word}`,
       },
-      '5-6': {
+      '2-3': {
         ar: `أنا أرى ${entry.word} ${entry.emoji}`,
-        en: `I see ${entry.word} (${entry.wordMeaningEn}) ${entry.emoji}`,
+        en: `Look! ${entry.word} (${entry.wordMeaningEn}) ${entry.emoji}`,
       },
-      '7': {
-        ar: `تبدأ كلمة "${entry.word}" بحرف (${entry.char}) ونطقه واضح ومميز.`,
-        en: `The word "${entry.word}" (${entry.wordMeaningEn}) begins clearly with ${entry.char}.`,
-      },
-      '8': {
-        ar: `استخرج حرف (${entry.char}) في جملة: قرأت قصة جميلة عن ${entry.word} في الحديقة.`,
-        en: `Spot ${entry.char} inside the sentence: I read a lovely story about ${entry.word}.`,
+      '3-4': {
+        ar: `تبدأ كلمة "${entry.word}" بحرف (${entry.char}) — هيا ننطقه معاً!`,
+        en: `"${entry.word}" (${entry.wordMeaningEn}) begins with ${entry.char}.`,
       },
     },
     unseenAssessmentWord: {
@@ -357,7 +356,7 @@ export interface EnglishDeepJourneyData {
   cvcWord: string;
   examples: Array<{ word: string; emoji: string; ar: string }>;
   distractorLowers: string[];
-  readingSentence: Record<AgeGroupId, LocalizedText>;
+  readingSentence: Record<InternalAgeBand, LocalizedText>;
 }
 
 export function buildEnglishDeepJourney(letterId: string): EnglishDeepJourneyData {
@@ -383,10 +382,9 @@ export function buildEnglishDeepJourney(letterId: string): EnglishDeepJourneyDat
     ],
     distractorLowers: [alt1.lower, alt2.lower],
     readingSentence: {
-      '3-4': { ar: `${entry.upper} مثل ${entry.wordAr}`, en: `${entry.upper} is for ${entry.word}` },
-      '5-6': { ar: `هذه ${entry.wordAr} تبدأ بحرف ${entry.upper}`, en: `Look! A ${entry.word.toLowerCase()} starts with ${entry.upper}.` },
-      '7': { ar: `اقرأ الكلمة القصيرة: ${entry.cvcExample}`, en: `Sound out the phonics word: ${entry.cvcExample}` },
-      '8': { ar: `كوّن جملة مفيدة تضم ${entry.word}`, en: `The curious ${entry.word.toLowerCase()} brings bright adventure.` },
+      '1-2': { ar: `${entry.upper} مثل ${entry.wordAr}`, en: `${entry.upper} is for ${entry.word}` },
+      '2-3': { ar: `هذه ${entry.wordAr} تبدأ بحرف ${entry.upper}`, en: `Look! A ${entry.word.toLowerCase()} starts with ${entry.upper}.` },
+      '3-4': { ar: `ننطق معاً الكلمة القصيرة: ${entry.cvcExample}`, en: `Sound out the playful word: ${entry.cvcExample}` },
     },
   };
 }
@@ -394,7 +392,8 @@ export function buildEnglishDeepJourney(letterId: string): EnglishDeepJourneyDat
 export interface MathUnitJourneyData {
   id: string;
   title: LocalizedText;
-  ageGroups: AgeGroupId[];
+  ageGroups: StoredAgeGroupId[];
+  recommendedAgeRange?: RecommendedAgeRange;
   explanation: LocalizedText;
   targetNumber: number;
   emoji: string;
@@ -410,7 +409,8 @@ export const MATH_DEEP_UNITS: MathUnitJourneyData[] = [
   {
     id: 'math-count-1-5',
     title: { ar: 'رحلة الأعداد والكميات (١ – ٥)', en: 'Quantities & Counting Journey (1–5)' },
-    ageGroups: ['3-4', '5-6'],
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '1-2',
     explanation: {
       ar: 'الرقم ليس مجرد شكل! الرقم ٣ يعني ثلاث تفاحات حقيقية يمكننا عدّها واحدة تلو الأخرى.',
       en: 'A number is not just a symbol! Number 3 means three real objects we can count one by one.',
@@ -433,77 +433,54 @@ export const MATH_DEEP_UNITS: MathUnitJourneyData[] = [
     },
   },
   {
-    id: 'math-add-sub-20',
-    title: { ar: 'رحلة الجمع والطرح الذكي (حتى ٢٠)', en: 'Smart Addition & Subtraction (Up to 20)' },
-    ageGroups: ['5-6', '7'],
+    id: 'math-count-1-10',
+    title: { ar: 'رحلة العد والمقارنة (١ – ١٠)', en: 'Counting & More/Fewer Adventure (1–10)' },
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '2-3',
     explanation: {
-      ar: 'الجمع يعني ضم مجموعتين معاً ليكبر العدد، والطرح يعني أخذ جزء ليتبقى الباقي.',
-      en: 'Addition joins groups together, while subtraction takes some away to find what remains.',
+      ar: 'نعدّ الأشياء حتى ١٠ ونلاحظ أي مجموعة فيها أكثر وأيها فيها أقل!',
+      en: 'We count objects up to 10 and spot which basket has more or fewer!',
     },
-    targetNumber: 12,
+    targetNumber: 6,
     emoji: '🌟',
-    operationPrompt: { ar: 'كم يساوي ٨ + ٧ ؟', en: 'What is 8 + 7?' },
+    operationPrompt: { ar: 'أضف نجمة واحدة إلى ٥ نجوم، كم يصبح المجموع؟', en: 'Add 1 star to 5 stars. How many now?' },
     operationChoices: [
-      { label: '14', isCorrect: false },
-      { label: '15', isCorrect: true },
-      { label: '16', isCorrect: false },
+      { label: '5', isCorrect: false },
+      { label: '6', isCorrect: true },
+      { label: '7', isCorrect: false },
     ],
     wordProblem: {
-      prompt: { ar: 'في السلة ١٤ نجمة، أهدى نونو ٥ نجوم لصديقه بوبو. كم نجمة بقيت في السلة؟', en: 'A basket held 14 stars. Nono gifted 5 to Bobo. How many stars are left?' },
+      prompt: { ar: 'في السلة ٤ نجوم، أضفنا إليها نجمتين. كم نجمة في السلة الآن؟', en: 'A basket holds 4 stars and we add 2 more. How many stars altogether?' },
       choices: [
-        { label: '9', isCorrect: true },
-        { label: '10', isCorrect: false },
+        { label: '6', isCorrect: true },
+        { label: '4', isCorrect: false },
         { label: '8', isCorrect: false },
       ],
     },
   },
   {
-    id: 'math-mult-div-7',
-    title: { ar: 'رحلة الضرب والقسمة بالمجموعات', en: 'Multiplication & Fair-Share Division' },
-    ageGroups: ['7', '8'],
+    id: 'math-add-sub-20',
+    title: { ar: 'الأرقام والأنماط الأولى (حتى ١٠)', en: 'Early Numbers & Gentle Patterns (Up to 10)' },
+    ageGroups: ['1-4'],
+    recommendedAgeRange: '3-4',
     explanation: {
-      ar: 'الضرب هو جمع متكرر لمجموعات متساوية (٣ × ٤ يعني ٣ مجموعات في كل منها ٤)، والقسمة هي التوزيع بالتساوي.',
-      en: 'Multiplication is repeated equal groups (3 × 4 = 3 groups of 4), and division shares equally.',
+      ar: 'عندما نجمع مجموعتين صغيرتين معاً يكبر العدد، وعندما نأخذ عنصراً نعرف الباقي بسهولة!',
+      en: 'Joining two small groups makes more, and taking one away shows how many remain!',
     },
-    targetNumber: 12,
+    targetNumber: 8,
     emoji: '🧁',
-    operationPrompt: { ar: 'إذا كان لدينا ٣ أطباق وفي كل طبق ٤ كعكات، فكم مجموع الكعكات؟', en: '3 plates with 4 cupcakes each makes how many cupcakes?' },
+    operationPrompt: { ar: 'إذا كان معنا ٣ كعكات وأضفنا ٣ كعكات، كم مجموعها؟', en: '3 cupcakes plus 3 more cupcakes makes how many?' },
     operationChoices: [
-      { label: '7', isCorrect: false },
-      { label: '12', isCorrect: true },
-      { label: '16', isCorrect: false },
+      { label: '5', isCorrect: false },
+      { label: '6', isCorrect: true },
+      { label: '8', isCorrect: false },
     ],
     wordProblem: {
-      prompt: { ar: 'وزعت تيتي ٢٠ جزرة بالتساوي على ٤ أصدقاء. كم جزرة يأخذ كل صديق؟', en: 'Titi shared 20 carrots equally among 4 friends. How many does each friend get?' },
+      prompt: { ar: 'مع تيتي ٥ جزرات، أعطت نونو ٢ جزرة. كم جزرة بقيت معها؟', en: 'Titi had 5 carrots and shared 2 with Nono. How many carrots remain?' },
       choices: [
-        { label: '5', isCorrect: true },
-        { label: '4', isCorrect: false },
-        { label: '6', isCorrect: false },
-      ],
-    },
-  },
-  {
-    id: 'math-fractions-8',
-    title: { ar: 'رحلة الكسور والمسائل متعددة الخطوات', en: 'Fractions & Multi-Step Reasoning' },
-    ageGroups: ['8'],
-    explanation: {
-      ar: 'الكسر يعبر عن جزء متساوٍ من الكل، مثل ١/٢ (نصف) أو ١/٤ (ربع) البيتزا المقسمة بالتساوي.',
-      en: 'A fraction represents an equal part of a whole, like 1/2 (half) or 1/4 (quarter) of a pizza.',
-    },
-    targetNumber: 4,
-    emoji: '🍕',
-    operationPrompt: { ar: 'قُسّمت بيتزا إلى ٤ شرائح متساوية وأكل ليو شريحتين. ما الكسر الذي أكله؟', en: 'A pizza has 4 equal slices and Leo ate 2. Which fraction did he eat?' },
-    operationChoices: [
-      { label: '1/4', isCorrect: false },
-      { label: '2/4 (1/2)', isCorrect: true },
-      { label: '3/4', isCorrect: false },
-    ],
-    wordProblem: {
-      prompt: { ar: 'اشترت إيلي ٤ علب ألوان في كل علبة ٦ أقلام، ثم أعطت أختها ٤ أقلام. كم قلماً بقي معها؟', en: 'Ellie bought 4 boxes of 6 crayons, then gave 4 away. How many remain?' },
-      choices: [
-        { label: '20', isCorrect: true },
-        { label: '24', isCorrect: false },
-        { label: '18', isCorrect: false },
+        { label: '3', isCorrect: true },
+        { label: '2', isCorrect: false },
+        { label: '5', isCorrect: false },
       ],
     },
   },
@@ -526,7 +503,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     bank.push({
       id: `q-ar-rec-${letter.id}`,
       subject: 'arabic',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: '1-4',
       type: idx % 2 === 0 ? 'listening' : 'recognition',
       difficulty: 1,
       lessonRefId: `deep-ar-${letter.id}`,
@@ -551,12 +529,13 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
       published: true,
     });
 
-    // Word & Picture Matching / Forms question (18 items across all ages)
+    // Word & Picture Matching / Forms question (18 items)
     if (idx < 18) {
       bank.push({
         id: `q-ar-form-${letter.id}`,
         subject: 'arabic',
-        ageGroups: ['3-4', '5-6', '7', '8'],
+        ageGroups: ['1-4'],
+        recommendedAgeRange: '3-4',
         type: idx % 2 === 0 ? 'missing-letter' : 'matching',
         difficulty: 2,
         lessonRefId: `deep-ar-${letter.id}`,
@@ -583,7 +562,7 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     }
   });
 
-  // 2. English Alphabet & Phonics Bank (42 unique questions across all age bands)
+  // 2. English Alphabet & Phonics Bank (42 unique questions for Little Explorers 1-4)
   ENGLISH_ALPHABET.forEach((en, idx) => {
     const alt1 = ENGLISH_ALPHABET[(idx + 2) % ENGLISH_ALPHABET.length];
     const alt2 = ENGLISH_ALPHABET[(idx + 8) % ENGLISH_ALPHABET.length];
@@ -591,7 +570,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     bank.push({
       id: `q-en-phon-${en.id}`,
       subject: 'english',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: '1-4',
       type: idx % 2 === 0 ? 'listening' : 'matching',
       difficulty: 1,
       lessonRefId: `deep-en-${en.id}`,
@@ -620,7 +600,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
       bank.push({
         id: `q-en-cvc-${en.id}`,
         subject: 'english',
-        ageGroups: ['3-4', '5-6', '7', '8'],
+        ageGroups: ['1-4'],
+        recommendedAgeRange: '3-4',
         type: 'reading',
         difficulty: 2,
         lessonRefId: `deep-en-${en.id}`,
@@ -646,12 +627,13 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     }
   });
 
-  // 3. Mathematics Bank (Age-adaptive: Quantities 1-10, Addition/Sub, Sequences, Multiplication/Division/Fractions)
+  // 3. Mathematics Bank (Counting 1-12, gentle comparisons & sequences for 1-4; legacy 7-8 items preserved separately)
   for (let n = 1; n <= 12; n++) {
     bank.push({
       id: `q-math-qty-${n}`,
       subject: 'math',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: n <= 5 ? '1-4' : '2-3',
       type: 'quantity',
       difficulty: 1,
       lessonRefId: 'math-count-1-5',
@@ -675,10 +657,10 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   }
 
-  // Addition, Subtraction & Comparison for Ages 5-6, 7, 8
   const mathOps: Array<{
     id: string;
-    ages: AgeGroupId[];
+    ages: StoredAgeGroupId[];
+    rec?: RecommendedAgeRange;
     type: ExamQuestionItem['type'];
     prompt: LocalizedText;
     ans: string;
@@ -686,20 +668,14 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     w2: string;
     exp: LocalizedText;
   }> = [
-    { id: 'm-add-1', ages: ['5-6', '7'], type: 'problem-solving', prompt: { ar: 'كم يساوي 4 + 5 ؟', en: 'What is 4 + 5?' }, ans: '9', w1: '8', w2: '10', exp: { ar: '4 + 5 = 9', en: '4 + 5 = 9' } },
-    { id: 'm-add-2', ages: ['5-6', '7'], type: 'problem-solving', prompt: { ar: 'كم يساوي 7 + 6 ؟', en: 'What is 7 + 6?' }, ans: '13', w1: '12', w2: '14', exp: { ar: '7 + 6 = 13', en: '7 + 6 = 13' } },
-    { id: 'm-sub-1', ages: ['5-6', '7'], type: 'problem-solving', prompt: { ar: 'معك 10 تفاحات، أكلت 3. كم بقي؟', en: 'You have 10 apples and eat 3. How many left?' }, ans: '7', w1: '6', w2: '8', exp: { ar: '10 - 3 = 7', en: '10 - 3 = 7' } },
-    { id: 'm-seq-1', ages: ['3-4', '5-6', '7'], type: 'sequence', prompt: { ar: 'ما العدد الناقص: 2 ، 4 ، __ ، 8 ؟', en: 'Find the missing number: 2, 4, __, 8' }, ans: '6', w1: '5', w2: '7', exp: { ar: 'النمط يزيد 2 في كل خطوة: 6.', en: 'Skip counting by 2s gives 6.' } },
-    { id: 'm-seq-2', ages: ['5-6', '7', '8'], type: 'sequence', prompt: { ar: 'ما العدد التالي: 10 ، 20 ، 30 ، __ ؟', en: 'What comes next: 10, 20, 30, __?' }, ans: '40', w1: '35', w2: '50', exp: { ar: 'العد بالعشرات: 40.', en: 'Counting by tens gives 40.' } },
-    { id: 'm-cmp-1', ages: ['3-4', '5-6', '7'], type: 'recognition', prompt: { ar: 'أي عدد أكبر من 9 وأصغر من 11؟', en: 'Which number is greater than 9 and less than 11?' }, ans: '10', w1: '8', w2: '12', exp: { ar: 'العدد بين 9 و 11 هو 10.', en: '10 sits right between 9 and 11.' } },
+    { id: 'm-add-1', ages: ['1-4'], rec: '3-4', type: 'problem-solving', prompt: { ar: 'تفاحتان + تفاحة واحدة = ؟ 🍎🍎 + 🍎', en: '2 apples + 1 apple = ? 🍎🍎 + 🍎' }, ans: '3', w1: '2', w2: '4', exp: { ar: '2 + 1 = 3', en: '2 + 1 = 3' } },
+    { id: 'm-add-2', ages: ['1-4'], rec: '3-4', type: 'problem-solving', prompt: { ar: '٣ نجوم + نجمتان = ؟ ⭐⭐⭐ + ⭐⭐', en: '3 stars + 2 stars = ? ⭐⭐⭐ + ⭐⭐' }, ans: '5', w1: '4', w2: '6', exp: { ar: '3 + 2 = 5', en: '3 + 2 = 5' } },
+    { id: 'm-sub-1', ages: ['1-4'], rec: '3-4', type: 'problem-solving', prompt: { ar: 'معك ٤ بالونات، طار واحد. كم بقي؟', en: 'You have 4 balloons and 1 floats away. How many left?' }, ans: '3', w1: '2', w2: '5', exp: { ar: '4 - 1 = 3', en: '4 - 1 = 3' } },
+    { id: 'm-seq-1', ages: ['1-4'], rec: '2-3', type: 'sequence', prompt: { ar: 'ما العدد الناقص: 1 ، 2 ، __ ، 4 ؟', en: 'Find the missing number: 1, 2, __, 4' }, ans: '3', w1: '5', w2: '6', exp: { ar: 'بعد 2 يأتي 3.', en: 'Counting 1, 2, 3, 4!' } },
+    { id: 'm-cmp-1', ages: ['1-4'], rec: '3-4', type: 'recognition', prompt: { ar: 'أي عدد أكبر من 4 وأصغر من 6؟', en: 'Which number is greater than 4 and less than 6?' }, ans: '5', w1: '3', w2: '7', exp: { ar: 'العدد بين 4 و 6 هو 5.', en: '5 sits right between 4 and 6.' } },
     { id: 'm-mul-1', ages: ['7', '8'], type: 'problem-solving', prompt: { ar: '3 مجموعات في كل مجموعة 5 نجوم = ؟', en: '3 groups of 5 stars equals how many?' }, ans: '15', w1: '8', w2: '12', exp: { ar: '3 × 5 = 15', en: '3 × 5 = 15' } },
-    { id: 'm-mul-2', ages: ['7', '8'], type: 'problem-solving', prompt: { ar: 'كم يساوي 4 × 4 ؟', en: 'What is 4 × 4?' }, ans: '16', w1: '12', w2: '20', exp: { ar: '4 × 4 = 16', en: '4 × 4 = 16' } },
     { id: 'm-div-1', ages: ['7', '8'], type: 'problem-solving', prompt: { ar: 'وزعنا 18 قطعة حلوى على 3 أطفال بالتساوي. كم يأخذ كل طفل؟', en: 'Share 18 candies equally among 3 kids. Each gets:' }, ans: '6', w1: '5', w2: '9', exp: { ar: '18 ÷ 3 = 6', en: '18 ÷ 3 = 6' } },
     { id: 'm-frac-1', ages: ['7', '8'], type: 'recognition', prompt: { ar: 'قسّمنا فطيرة إلى 4 أجزاء متساوية وأكلنا جزءاً واحداً. ما الكسر؟', en: 'A pie is cut into 4 equal slices and 1 is eaten. Which fraction?' }, ans: '1/4', w1: '1/2', w2: '3/4', exp: { ar: 'جزء من أربعة يساوي ربع (1/4).', en: '1 out of 4 equal parts is 1/4.' } },
-    { id: 'm-frac-2', ages: ['8'], type: 'recognition', prompt: { ar: 'أي كسر يساوي النصف؟', en: 'Which fraction equals one half?' }, ans: '2/4', w1: '1/4', w2: '3/4', exp: { ar: '2/4 يساوي 1/2.', en: '2 out of 4 equals 1/2.' } },
-    { id: 'm-multi-8', ages: ['8'], type: 'problem-solving', prompt: { ar: 'اشترى عمر 3 علب في كل منها 6 أقلام، وأعطى أخته 4. كم بقي؟', en: 'Omar bought 3 boxes of 6 pens and gave 4 away. How many left?' }, ans: '14', w1: '18', w2: '12', exp: { ar: '3 × 6 = 18، ثم 18 - 4 = 14.', en: '3 × 6 = 18, then 18 - 4 = 14.' } },
-    { id: 'm-div-8', ages: ['8'], type: 'problem-solving', prompt: { ar: 'كم يساوي 36 ÷ 6 ؟', en: 'What is 36 ÷ 6?' }, ans: '6', w1: '5', w2: '7', exp: { ar: '6 × 6 = 36، إذن الناتج 6.', en: '6 × 6 = 36, so 36 ÷ 6 = 6.' } },
-    { id: 'm-add-8', ages: ['7', '8'], type: 'problem-solving', prompt: { ar: 'كم يساوي 25 + 17 ؟', en: 'What is 25 + 17?' }, ans: '42', w1: '32', w2: '45', exp: { ar: '25 + 17 = 42', en: '25 + 17 = 42' } },
   ];
 
   mathOps.forEach((m, idx) => {
@@ -707,10 +683,11 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
       id: `q-math-${m.id}`,
       subject: 'math',
       ageGroups: m.ages,
+      recommendedAgeRange: m.rec,
       type: m.type,
-      difficulty: m.ages.includes('8') ? 3 : 2,
-      lessonRefId: 'math-add-sub-20',
-      lessonTitle: { ar: 'العمليات الحسابية والمنطق', en: 'Math Operations & Reasoning' },
+      difficulty: m.ages.includes('8') ? 3 : m.rec === '3-4' ? 2 : 1,
+      lessonRefId: m.ages.includes('1-4') ? 'math-count-1-5' : 'math-add-sub-20',
+      lessonTitle: { ar: 'العد والمنطق المبكر', en: 'Counting & Early Reasoning' },
       prompt: m.prompt,
       options: [
         { id: 'a', label: { ar: m.ans, en: m.ans }, visual: m.ans },
@@ -723,14 +700,15 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   });
 
-  // 4. Colors, Shapes & Science Bank (30+ diverse questions across all ages)
+  // 4. Colors, Shapes & Science Bank (40+ questions for Little Explorers 1-4)
   ACADEMY_COLORS.forEach((col, idx) => {
     const other1 = ACADEMY_COLORS[(idx + 2) % ACADEMY_COLORS.length];
     const other2 = ACADEMY_COLORS[(idx + 5) % ACADEMY_COLORS.length];
     bank.push({
       id: `q-col-${col.id}`,
       subject: 'colors-science',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: '1-4',
       type: idx % 2 === 0 ? 'listening' : 'matching',
       difficulty: 1,
       lessonRefId: `deep-color-${col.id}`,
@@ -757,7 +735,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
 
   const scienceAndShapes: Array<{
     id: string;
-    ages: AgeGroupId[];
+    ages: StoredAgeGroupId[];
+    rec?: RecommendedAgeRange;
     prompt: LocalizedText;
     ans: { visual: string; label: LocalizedText };
     w1: { visual: string; label: LocalizedText };
@@ -766,8 +745,9 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
   }> = [
     {
       id: 'cs-mix-1',
-      ages: ['3-4', '5-6', '7', '8'],
-      prompt: { ar: 'عند مزج الأحمر + الأصفر ينتج اللون:', en: 'Mixing Red + Yellow produces:' },
+      ages: ['1-4'],
+      rec: '2-3',
+      prompt: { ar: 'عند مزج الأحمر + الأصفر ينتج اللون:', en: 'Mixing Red + Yellow makes:' },
       ans: { visual: '🟠', label: { ar: 'برتقالي', en: 'Orange' } },
       w1: { visual: '🟢', label: { ar: 'أخضر', en: 'Green' } },
       w2: { visual: '🟣', label: { ar: 'بنفسجي', en: 'Purple' } },
@@ -775,8 +755,9 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     },
     {
       id: 'cs-mix-2',
-      ages: ['3-4', '5-6', '7', '8'],
-      prompt: { ar: 'عند مزج الأزرق + الأصفر ينتج اللون:', en: 'Mixing Blue + Yellow produces:' },
+      ages: ['1-4'],
+      rec: '2-3',
+      prompt: { ar: 'عند مزج الأزرق + الأصفر ينتج اللون:', en: 'Mixing Blue + Yellow makes:' },
       ans: { visual: '🟢', label: { ar: 'أخضر', en: 'Green' } },
       w1: { visual: '🟣', label: { ar: 'بنفسجي', en: 'Purple' } },
       w2: { visual: '🟠', label: { ar: 'برتقالي', en: 'Orange' } },
@@ -784,7 +765,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     },
     {
       id: 'cs-shape-1',
-      ages: ['3-4', '5-6'],
+      ages: ['1-4'],
+      rec: '1-4',
       prompt: { ar: 'أي شكل له ٣ أضلاع؟', en: 'Which shape has 3 sides?' },
       ans: { visual: '🔺', label: { ar: 'مثلث', en: 'Triangle' } },
       w1: { visual: '⭕', label: { ar: 'دائرة', en: 'Circle' } },
@@ -802,26 +784,29 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     },
     {
       id: 'cs-sci-1',
-      ages: ['3-4', '5-6', '7', '8'],
-      prompt: { ar: 'أي جزء في النبات يصنع الغذاء بمساعدة ضوء الشمس؟', en: 'Which plant part uses sunlight to make food?' },
-      ans: { visual: '🍃', label: { ar: 'الأوراق', en: 'Leaves' } },
+      ages: ['1-4'],
+      rec: '3-4',
+      prompt: { ar: 'ماذا تحتاج النباتات الخضراء لتكبر بسعادة؟', en: 'What helps green plants grow happily?' },
+      ans: { visual: '☀️', label: { ar: 'الماء والشمس', en: 'Water & Sun' } },
       w1: { visual: '🪨', label: { ar: 'الصخور', en: 'Rocks' } },
-      w2: { visual: '☁️', label: { ar: 'السحاب', en: 'Clouds' } },
-      exp: { ar: 'الأوراق الخضراء تصنع غذاء النبات بضوء الشمس.', en: 'Green leaves absorb sunlight to make plant food.' },
+      w2: { visual: '🍭', label: { ar: 'الحلوى', en: 'Candy' } },
+      exp: { ar: 'النباتات تحتاج للماء وضوء الشمس.', en: 'Plants love water and warm sunlight!' },
     },
     {
       id: 'cs-sci-2',
-      ages: ['5-6', '7', '8'],
-      prompt: { ar: 'أي عضو يضخ الدم إلى جميع أنحاء جسم الإنسان؟', en: 'Which organ pumps blood through our body?' },
-      ans: { visual: '❤️', label: { ar: 'القلب', en: 'Heart' } },
-      w1: { visual: '👂', label: { ar: 'الأذن', en: 'Ear' } },
-      w2: { visual: '🦷', label: { ar: 'السن', en: 'Tooth' } },
-      exp: { ar: 'القلب يضخ الدم باستمرار في أجسامنا.', en: 'The heart pumps blood throughout the body.' },
+      ages: ['1-4'],
+      rec: '2-3',
+      prompt: { ar: 'أين ينبض القلب داخل جسمنا؟ ❤️', en: 'Where is our happy beating heart? ❤️' },
+      ans: { visual: '❤️', label: { ar: 'في الصدر', en: 'Inside our chest' } },
+      w1: { visual: '👟', label: { ar: 'في الحذاء', en: 'In our shoe' } },
+      w2: { visual: '👒', label: { ar: 'فوق القبعة', en: 'On our hat' } },
+      exp: { ar: 'القلب الجميل ينبض داخل صدرنا!', en: 'Our heart beats gently inside our chest!' },
     },
     {
       id: 'cs-space-1',
-      ages: ['5-6', '7', '8'],
-      prompt: { ar: 'ما الكوكب الذي نعيش عليه؟', en: 'Which planet do we live on?' },
+      ages: ['1-4'],
+      rec: '3-4',
+      prompt: { ar: 'ما الكوكب الجميل الذي نعيش عليه؟', en: 'Which planet is our home?' },
       ans: { visual: '🌍', label: { ar: 'كوكب الأرض', en: 'Earth' } },
       w1: { visual: '🪐', label: { ar: 'زحل', en: 'Saturn' } },
       w2: { visual: '☀️', label: { ar: 'الشمس', en: 'The Sun' } },
@@ -829,12 +814,13 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     },
     {
       id: 'cs-geo-1',
-      ages: ['7', '8'],
-      prompt: { ar: 'أين تعيش الأسماك والشعاب المرجانية؟', en: 'Where do fish and coral reefs live?' },
-      ans: { visual: '🌊', label: { ar: 'المحيطات والبحار', en: 'Oceans & Seas' } },
-      w1: { visual: '🏜️', label: { ar: 'الصحراء الجافة', en: 'Dry Desert' } },
-      w2: { visual: '🏔️', label: { ar: 'قمم الجبال', en: 'Mountain Peaks' } },
-      exp: { ar: 'تعيش الأسماك في البيئة المائية كالبحار والمحيطات.', en: 'Fish live in aquatic ocean habitats.' },
+      ages: ['1-4'],
+      rec: '1-4',
+      prompt: { ar: 'أين تسبح الأسماك اللطيفة؟', en: 'Where do friendly fish swim?' },
+      ans: { visual: '🌊', label: { ar: 'في الماء والبحر', en: 'Water & Ocean' } },
+      w1: { visual: '🏜️', label: { ar: 'في الصحراء الجافة', en: 'Dry Desert' } },
+      w2: { visual: '☁️', label: { ar: 'فوق السحاب', en: 'In Clouds' } },
+      exp: { ar: 'الأسماك تعيش وتسبح في الماء.', en: 'Fish swim happily in water.' },
     },
   ];
 
@@ -843,10 +829,11 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
       id: `q-cs-${sc.id}`,
       subject: 'colors-science',
       ageGroups: sc.ages,
+      recommendedAgeRange: sc.rec,
       type: 'problem-solving',
-      difficulty: sc.ages.includes('8') ? 3 : 2,
+      difficulty: sc.ages.includes('8') ? 3 : sc.rec === '3-4' ? 2 : 1,
       lessonRefId: 'science-colors-shapes',
-      lessonTitle: { ar: 'الألوان والأشكال والعلوم', en: 'Colors, Shapes & Science' },
+      lessonTitle: { ar: 'الألوان والأشكال والطبيعة', en: 'Colors, Shapes & Nature' },
       prompt: sc.prompt,
       options: [
         { id: 'a', label: sc.ans.label, visual: sc.ans.visual },
@@ -859,27 +846,28 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   });
 
-  // Expand Math Bank so every age band (3-4, 5-6, 7, 8) has 40+ distinct non-duplicate Math questions
-  for (let a = 1; a <= 15; a++) {
-    const b = (a % 7) + 1;
+  // Expand gentle 1-4 Math Bank so Little Explorers has 40+ distinct age-appropriate Math questions
+  for (let a = 1; a <= 12; a++) {
+    const b = (a % 2) + 1;
     const sum = a + b;
     bank.push({
       id: `q-math-gen-add-${a}-${b}`,
       subject: 'math',
-      ageGroups: a <= 5 ? ['3-4', '5-6', '7', '8'] : ['5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: a <= 5 ? '2-3' : '3-4',
       type: 'problem-solving',
       difficulty: a <= 5 ? 1 : 2,
-      lessonRefId: 'math-add-sub-20',
-      lessonTitle: { ar: `الجمع (${a} + ${b})`, en: `Addition (${a} + ${b})` },
+      lessonRefId: 'math-count-1-5',
+      lessonTitle: { ar: `نعدّ معاً (${a} + ${b})`, en: `Counting Together (${a} + ${b})` },
       prompt: {
         ar: `إذا أضفنا ${b} إلى ${a} فما الناتج الصحيح؟`,
-        en: `What is ${a} + ${b}?`,
+        en: `If we add ${b} to ${a}, how many do we have?`,
       },
       visualCue: a <= 5 ? `${'🍎'.repeat(a)} + ${'🍎'.repeat(b)}` : undefined,
       options: [
         { id: 'a', label: { ar: String(sum), en: String(sum) }, visual: String(sum) },
         { id: 'b', label: { ar: String(sum + 1), en: String(sum + 1) }, visual: String(sum + 1) },
-        { id: 'c', label: { ar: String(Math.max(0, sum - 1)), en: String(Math.max(0, sum - 1)) }, visual: String(Math.max(0, sum - 1)) },
+        { id: 'c', label: { ar: String(Math.max(1, sum - 1)), en: String(Math.max(1, sum - 1)) }, visual: String(Math.max(1, sum - 1)) },
       ].sort((x, y) => (a % 2 === 0 ? x.id.localeCompare(y.id) : y.id.localeCompare(x.id))),
       correctOptionId: 'a',
       explanation: { ar: `${a} + ${b} = ${sum}`, en: `${a} + ${b} = ${sum}` },
@@ -887,21 +875,23 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   }
 
-  for (let start = 5; start <= 19; start++) {
-    const take = (start % 4) + 1;
+  for (let start = 3; start <= 11; start++) {
+    const take = (start % 2) + 1;
     const rem = start - take;
     bank.push({
       id: `q-math-gen-sub-${start}-${take}`,
       subject: 'math',
-      ageGroups: start <= 8 ? ['3-4', '5-6', '7', '8'] : ['5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: start <= 6 ? '2-3' : '3-4',
       type: 'problem-solving',
-      difficulty: start <= 8 ? 1 : 2,
-      lessonRefId: 'math-add-sub-20',
-      lessonTitle: { ar: `الطرح (${start} - ${take})`, en: `Subtraction (${start} - ${take})` },
+      difficulty: start <= 6 ? 1 : 2,
+      lessonRefId: 'math-count-1-5',
+      lessonTitle: { ar: `كم تبقى؟ (${start} - ${take})`, en: `How Many Left? (${start} - ${take})` },
       prompt: {
-        ar: `كم يتبقى إذا طرحنا ${take} من ${start}؟`,
-        en: `If you take ${take} away from ${start}, how many remain?`,
+        ar: `كان معنا ${start} وأخذنا ${take}، كم تبقى؟`,
+        en: `We had ${start} and took ${take} away. How many are left?`,
       },
+      visualCue: start <= 6 ? `${'🍓'.repeat(start)} (−${take})` : undefined,
       options: [
         { id: 'a', label: { ar: String(rem), en: String(rem) }, visual: String(rem) },
         { id: 'b', label: { ar: String(rem + 2), en: String(rem + 2) }, visual: String(rem + 2) },
@@ -913,13 +903,14 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   }
 
-  // Compare & Multiplication extra unique items for 7-8 and 3-6
+  // Compare questions for Little Explorers 1-4
   for (let m = 2; m <= 11; m++) {
     const right = m + 3;
     bank.push({
       id: `q-math-cmp-auto-${m}`,
       subject: 'math',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: m <= 5 ? '2-3' : '3-4',
       type: 'recognition',
       difficulty: 1,
       lessonRefId: 'math-count-1-5',
@@ -961,35 +952,36 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   }
 
-  // Expand Colors, Shapes, Animals, Nature & Science so single-subject exam also has 40+ unique items
+  // Expand Colors, Shapes, Animals, Nature & Science so single-subject exam has 40+ unique Little Explorers items
   const extraWorldItems: Array<{
     id: string;
+    rec: RecommendedAgeRange;
     prompt: LocalizedText;
     ans: { visual: string; label: LocalizedText };
     w1: { visual: string; label: LocalizedText };
     w2: { visual: string; label: LocalizedText };
     exp: LocalizedText;
   }> = [
-    { id: 'ew-1', prompt: { ar: 'أي حيوان يعيش في الماء ويتنفس بالخياشيم؟', en: 'Which animal lives in water and breathes with gills?' }, ans: { visual: '🐟', label: { ar: 'السمكة', en: 'Fish' } }, w1: { visual: '🦁', label: { ar: 'الأسد', en: 'Lion' } }, w2: { visual: '🦅', label: { ar: 'النسر', en: 'Eagle' } }, exp: { ar: 'السمكة تعيش في الماء.', en: 'Fish live in water.' } },
-    { id: 'ew-2', prompt: { ar: 'ما الحاسة التي نستخدمها لسماع الموسيقى؟', en: 'Which sense do we use to hear music?' }, ans: { visual: '👂', label: { ar: 'السمع بالأذن', en: 'Hearing (Ears)' } }, w1: { visual: '👃', label: { ar: 'الشم', en: 'Smell' } }, w2: { visual: '👅', label: { ar: 'التذوق', en: 'Taste' } }, exp: { ar: 'نسمع الأصوات بالأذن.', en: 'We hear sounds with our ears.' } },
-    { id: 'ew-3', prompt: { ar: 'أي شكل دائري تماماً مثل العجلة؟', en: 'Which shape is round like a wheel?' }, ans: { visual: '⭕', label: { ar: 'الدائرة', en: 'Circle' } }, w1: { visual: '🔺', label: { ar: 'المثلث', en: 'Triangle' } }, w2: { visual: '🟦', label: { ar: 'المربع', en: 'Square' } }, exp: { ar: 'الدائرة مستديرة بلا زوايا.', en: 'A circle is round with no corners.' } },
-    { id: 'ew-4', prompt: { ar: 'ما الفصل الذي تتساقط فيه أوراق الأشجار؟', en: 'In which season do many tree leaves fall?' }, ans: { visual: '🍂', label: { ar: 'الخريف', en: 'Autumn' } }, w1: { visual: '☀️', label: { ar: 'الصيف', en: 'Summer' } }, w2: { visual: '🌸', label: { ar: 'الربيع', en: 'Spring' } }, exp: { ar: 'تتساقط الأوراق في فصل الخريف.', en: 'Leaves fall in autumn.' } },
-    { id: 'ew-5', prompt: { ar: 'أين نرى القمر والنجوم بوضوح؟', en: 'When do we clearly see the Moon and stars?' }, ans: { visual: '🌙', label: { ar: 'في الليل', en: 'At Night' } }, w1: { visual: '☀️', label: { ar: 'وقت الظهيرة', en: 'Midday' } }, w2: { visual: '🌈', label: { ar: 'تحت الماء', en: 'Underwater' } }, exp: { ar: 'نرى القمر والنجوم في سماء الليل.', en: 'We see the Moon and stars in the night sky.' } },
-    { id: 'ew-6', prompt: { ar: 'ما الطعام الصحي المفيد للأسنان والعظام؟', en: 'Which food helps keep bones and teeth strong?' }, ans: { visual: '🥛', label: { ar: 'الحليب', en: 'Milk' } }, w1: { visual: '🍭', label: { ar: 'الحلوى الكثيرة', en: 'Lots of Candy' } }, w2: { visual: '🥤', label: { ar: 'المشروبات الغازية', en: 'Soda' } }, exp: { ar: 'الحليب غني بالكالسيوم المفيد للعظام.', en: 'Milk provides calcium for healthy bones.' } },
-    { id: 'ew-7', prompt: { ar: 'ما اللون الناتج عن مزج الأحمر والأبيض؟', en: 'What color comes from mixing Red + White?' }, ans: { visual: '🩷', label: { ar: 'الوردي', en: 'Pink' } }, w1: { visual: '🟢', label: { ar: 'الأخضر', en: 'Green' } }, w2: { visual: '🔵', label: { ar: 'الأزرق', en: 'Blue' } }, exp: { ar: 'الأحمر مع الأبيض يعطي اللون الوردي.', en: 'Red + White creates Pink.' } },
-    { id: 'ew-8', prompt: { ar: 'ما اللون الناتج عن مزج الأحمر والأزرق؟', en: 'What color comes from mixing Red + Blue?' }, ans: { visual: '🟣', label: { ar: 'البنفسجي', en: 'Purple' } }, w1: { visual: '🟡', label: { ar: 'الأصفر', en: 'Yellow' } }, w2: { visual: '🟠', label: { ar: 'البرتقالي', en: 'Orange' } }, exp: { ar: 'الأحمر + الأزرق = بنفسجي.', en: 'Red + Blue = Purple.' } },
-    { id: 'ew-9', prompt: { ar: 'ماذا نفعل قبل تناول الطعام للحفاظ على نظافتنا؟', en: 'What should we do before eating to stay healthy?' }, ans: { visual: '🧼', label: { ar: 'غسل اليدين بالماء والصابون', en: 'Wash hands with soap & water' } }, w1: { visual: '🎨', label: { ar: 'اللعب بالتراب', en: 'Play in mud' } }, w2: { visual: '😴', label: { ar: 'النوم فوراً', en: 'Go straight to sleep' } }, exp: { ar: 'غسل اليدين يحمينا من الجراثيم.', en: 'Washing hands keeps germs away.' } },
-    { id: 'ew-10', prompt: { ar: 'أي طائر ضخم يشتهر بصوته في الليل وعينيه الواسعتين؟', en: 'Which wise bird is famous for big eyes at night?' }, ans: { visual: '🦉', label: { ar: 'البومة', en: 'Owl' } }, w1: { visual: '🐧', label: { ar: 'البطريق', en: 'Penguin' } }, w2: { visual: '🦆', label: { ar: 'البطة', en: 'Duck' } }, exp: { ar: 'البومة طائر ليلي ذو عينين واسعتين.', en: 'Owls are nocturnal birds with wide eyes.' } },
-    { id: 'ew-11', prompt: { ar: 'كم ضلعاً للمربع؟', en: 'How many equal sides does a square have?' }, ans: { visual: '🟦', label: { ar: '4 أضلاع', en: '4 sides' } }, w1: { visual: '🔺', label: { ar: '3 أضلاع', en: '3 sides' } }, w2: { visual: '⭕', label: { ar: '0 أضلاع', en: '0 sides' } }, exp: { ar: 'المربع له 4 أضلاع متساوية.', en: 'A square has 4 equal sides.' } },
-    { id: 'ew-12', prompt: { ar: 'ماذا تحتاج البذرة لتنمو وتصبح نبتة؟', en: 'What does a seed need to sprout and grow?' }, ans: { visual: '💧', label: { ar: 'الماء وضوء الشمس', en: 'Water & Sunlight' } }, w1: { visual: '🧊', label: { ar: 'الثلج فقط', en: 'Only Ice' } }, w2: { visual: '🪨', label: { ar: 'حجارة مغلقة', en: 'Closed Rocks' } }, exp: { ar: 'تحتاج البذور للماء والهواء وضوء الشمس.', en: 'Seeds need water, air, and sunlight.' } },
+    { id: 'ew-1', rec: '1-4', prompt: { ar: 'أي حيوان يسبح في الماء؟', en: 'Which animal swims in water?' }, ans: { visual: '🐟', label: { ar: 'السمكة', en: 'Fish' } }, w1: { visual: '🦁', label: { ar: 'الأسد', en: 'Lion' } }, w2: { visual: '🦅', label: { ar: 'النسر', en: 'Eagle' } }, exp: { ar: 'السمكة تعيش وتسبح في الماء.', en: 'Fish live in water.' } },
+    { id: 'ew-2', rec: '1-4', prompt: { ar: 'بماذا نسمع الموسيقى الجميلة؟', en: 'What do we use to hear lovely music?' }, ans: { visual: '👂', label: { ar: 'الأذن', en: 'Ears' } }, w1: { visual: '👃', label: { ar: 'الأنف', en: 'Nose' } }, w2: { visual: '👅', label: { ar: 'اللسان', en: 'Tongue' } }, exp: { ar: 'نسمع الأصوات بالأذن.', en: 'We hear sounds with our ears.' } },
+    { id: 'ew-3', rec: '1-4', prompt: { ar: 'أي شكل مستدير تماماً مثل العجلة؟', en: 'Which shape is round like a wheel?' }, ans: { visual: '⭕', label: { ar: 'الدائرة', en: 'Circle' } }, w1: { visual: '🔺', label: { ar: 'المثلث', en: 'Triangle' } }, w2: { visual: '🟦', label: { ar: 'المربع', en: 'Square' } }, exp: { ar: 'الدائرة مستديرة بلا زوايا.', en: 'A circle is round with no corners.' } },
+    { id: 'ew-4', rec: '2-3', prompt: { ar: 'ما الفصل الذي تتساقط فيه أوراق الأشجار؟', en: 'In which season do many tree leaves fall?' }, ans: { visual: '🍂', label: { ar: 'الخريف', en: 'Autumn' } }, w1: { visual: '☀️', label: { ar: 'الصيف', en: 'Summer' } }, w2: { visual: '🌸', label: { ar: 'الربيع', en: 'Spring' } }, exp: { ar: 'تتساقط الأوراق في فصل الخريف.', en: 'Leaves fall in autumn.' } },
+    { id: 'ew-5', rec: '1-4', prompt: { ar: 'متى نرى القمر والنجوم بوضوح؟', en: 'When do we see the Moon and stars?' }, ans: { visual: '🌙', label: { ar: 'في الليل', en: 'At Night' } }, w1: { visual: '☀️', label: { ar: 'في الصباح', en: 'In Morning' } }, w2: { visual: '🌈', label: { ar: 'تحت الماء', en: 'Underwater' } }, exp: { ar: 'نرى القمر والنجوم في سماء الليل.', en: 'We see the Moon and stars in the night sky.' } },
+    { id: 'ew-6', rec: '2-3', prompt: { ar: 'ما المشروب المفيد للأسنان والعظام؟', en: 'Which drink keeps bones and teeth strong?' }, ans: { visual: '🥛', label: { ar: 'الحليب', en: 'Milk' } }, w1: { visual: '🍭', label: { ar: 'الحلوى الكثيرة', en: 'Candy' } }, w2: { visual: '🥤', label: { ar: 'المشروبات الغازية', en: 'Soda' } }, exp: { ar: 'الحليب مفيد جداً للعظام القوية.', en: 'Milk helps keep bones strong.' } },
+    { id: 'ew-7', rec: '2-3', prompt: { ar: 'ما اللون الناتج عن مزج الأحمر والأبيض؟', en: 'What color comes from mixing Red + White?' }, ans: { visual: '🩷', label: { ar: 'الوردي', en: 'Pink' } }, w1: { visual: '🟢', label: { ar: 'الأخضر', en: 'Green' } }, w2: { visual: '🔵', label: { ar: 'الأزرق', en: 'Blue' } }, exp: { ar: 'الأحمر مع الأبيض يعطي اللون الوردي.', en: 'Red + White creates Pink.' } },
+    { id: 'ew-8', rec: '2-3', prompt: { ar: 'ما اللون الناتج عن مزج الأحمر والأزرق؟', en: 'What color comes from mixing Red + Blue?' }, ans: { visual: '🟣', label: { ar: 'البنفسجي', en: 'Purple' } }, w1: { visual: '🟡', label: { ar: 'الأصفر', en: 'Yellow' } }, w2: { visual: '🟠', label: { ar: 'البرتقالي', en: 'Orange' } }, exp: { ar: 'الأحمر + الأزرق = بنفسجي.', en: 'Red + Blue = Purple.' } },
+    { id: 'ew-9', rec: '1-4', prompt: { ar: 'ماذا نفعل قبل تناول الطعام؟', en: 'What should we do before eating?' }, ans: { visual: '🧼', label: { ar: 'غسل اليدين بالماء والصابون', en: 'Wash hands with soap & water' } }, w1: { visual: '🎨', label: { ar: 'اللعب بالتراب', en: 'Play in mud' } }, w2: { visual: '😴', label: { ar: 'النوم فوراً', en: 'Go straight to sleep' } }, exp: { ar: 'غسل اليدين يحافظ على نظافتنا.', en: 'Washing hands keeps us clean.' } },
+    { id: 'ew-10', rec: '1-4', prompt: { ar: 'أي طائر لطيف له عينان كبيرتان في الليل؟', en: 'Which cute bird has big eyes at night?' }, ans: { visual: '🦉', label: { ar: 'البومة', en: 'Owl' } }, w1: { visual: '🐧', label: { ar: 'البطريق', en: 'Penguin' } }, w2: { visual: '🦆', label: { ar: 'البطة', en: 'Duck' } }, exp: { ar: 'البومة طائر ليلي ذو عينين واسعتين.', en: 'Owls have big night eyes.' } },
+    { id: 'ew-11', rec: '2-3', prompt: { ar: 'كم ضلعاً للمربع؟', en: 'How many sides does a square have?' }, ans: { visual: '🟦', label: { ar: '4 أضلاع', en: '4 sides' } }, w1: { visual: '🔺', label: { ar: '3 أضلاع', en: '3 sides' } }, w2: { visual: '⭕', label: { ar: '0 أضلاع', en: '0 sides' } }, exp: { ar: 'المربع له 4 أضلاع متساوية.', en: 'A square has 4 equal sides.' } },
+    { id: 'ew-12', rec: '3-4', prompt: { ar: 'ماذا تحتاج البذرة لتنمو وتصبح نبتة؟', en: 'What does a seed need to sprout and grow?' }, ans: { visual: '💧', label: { ar: 'الماء وضوء الشمس', en: 'Water & Sunlight' } }, w1: { visual: '🧊', label: { ar: 'الثلج فقط', en: 'Only Ice' } }, w2: { visual: '🪨', label: { ar: 'حجارة مغلقة', en: 'Closed Rocks' } }, exp: { ar: 'تحتاج البذور للماء وضوء الشمس.', en: 'Seeds need water and sunlight.' } },
   ];
 
-  // Add extraWorldItems plus color-object identification variants to reach 40+ colors-science items
   extraWorldItems.forEach((ew, idx) => {
     bank.push({
       id: `q-cs-extra-${ew.id}`,
       subject: 'colors-science',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: ew.rec,
       type: 'recognition',
       difficulty: 1,
       lessonRefId: 'science-colors-shapes',
@@ -1012,7 +1004,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     bank.push({
       id: `q-cs-swatch-${col.id}`,
       subject: 'colors-science',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: '1-4',
       type: 'matching',
       difficulty: 1,
       lessonRefId: `deep-color-${col.id}`,
@@ -1032,14 +1025,14 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     });
   });
 
-  // Add second round of unique color/shape visual identification questions so colors-science > 40 questions
   ACADEMY_COLORS.forEach((col, idx) => {
     const otherA = ACADEMY_COLORS[(idx + 3) % ACADEMY_COLORS.length];
     const otherB = ACADEMY_COLORS[(idx + 6) % ACADEMY_COLORS.length];
     bank.push({
       id: `q-cs-identify-${col.id}`,
       subject: 'colors-science',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: '2-3',
       type: 'recognition',
       difficulty: 1,
       lessonRefId: `deep-color-${col.id}`,
@@ -1063,7 +1056,8 @@ function buildComprehensiveExamBank(): ExamQuestionItem[] {
     bank.push({
       id: `q-math-after-${num}`,
       subject: 'math',
-      ageGroups: ['3-4', '5-6', '7', '8'],
+      ageGroups: ['1-4'],
+      recommendedAgeRange: num <= 5 ? '2-3' : '3-4',
       type: 'sequence',
       difficulty: 1,
       lessonRefId: 'math-count-1-5',
@@ -1097,73 +1091,23 @@ export const AGE_CURRICULUM_OUTCOMES: Record<
     guidanceStyle: LocalizedText;
   }
 > = {
-  '3-4': {
-    title: { ar: 'منهج الاكتشاف المبكر (٣–٤ سنوات)', en: 'Early Discovery Curriculum (Ages 3–4)' },
+  '1-4': {
+    title: { ar: 'منهج المستكشفون الصغار (١–٤ سنوات)', en: 'Little Explorers Curriculum (Ages 1–4)' },
     focusAreas: [
-      { ar: 'تمييز الألوان الأساسية والأشكال باللمس والصوت', en: 'Colors & Shapes via Touch & Voice' },
-      { ar: 'التعرف على الحروف العربية والإنجليزية بصرياً وسمعياً', en: 'Visual & Audio Letter Recognition' },
-      { ar: 'عدّ الكميات الصغيرة ١–١٠ ومطابقة الأشياء', en: 'Counting Small Quantities (1–10) & Matching' },
-      { ar: 'الفرز والأنماط البسيطة والمفردات اليومية', en: 'Sorting, Simple Patterns & Everyday Words' },
+      { ar: 'الاستكشاف الحسي والأصوات والألوان والصور التفاعلية (١–٢ سنة)', en: 'Sensory Play, Sounds, Colors & Pictures (Ages 1–2)' },
+      { ar: 'المفردات والمطابقة والفرز والعد والأشكال الأساسية (٢–٣ سنوات)', en: 'Vocabulary, Matching, Sorting, Counting & Shapes (Ages 2–3)' },
+      { ar: 'الحروف والصوتيات المبكرة والأنماط والقصص التفاعلية (٣–٤ سنوات)', en: 'Early Letters, Phonics, Patterns & Stories (Ages 3–4)' },
+      { ar: 'تكيّف تلقائي ذكي حسب عمر الطفل ومستوى تقدمه', en: 'Seamless Internal Adaptation by Age & Ability' },
     ],
     expectedOutcome: {
-      ar: 'يتعرف الطفل على الألوان، الأشكال، الحروف الأولى، والكميات الصغيرة بثقة بدون الحاجة للقراءة.',
-      en: 'Confident recognition of colors, shapes, first letters, and small quantities with zero reading required.',
+      ar: 'ينمو الطفل بخطوات لطيفة ومتدرجة من الاستكشاف الحسي واللغوي المبكر إلى الحروف والأرقام والمنطق البسيط.',
+      en: 'Children progress gently from sensory play and first words to counting, patterns, early phonics, and interactive stories.',
     },
     guidanceStyle: {
-      ar: 'تعليمات صوتية قصيرة + أزرار كبيرة + أنشطة لعب لطيفة',
-      en: 'Short voice cues + large targets + gentle playful pacing',
-    },
-  },
-  '5-6': {
-    title: { ar: 'منهج التأسيس والقراءة المبكرة (٥–٦ سنوات)', en: 'Foundations & Literacy Readiness (Ages 5–6)' },
-    focusAreas: [
-      { ar: 'الحروف العربية ٢٨ كاملة + التتبع والأشكال', en: 'All 28 Arabic Letters + Forms & Tracing' },
-      { ar: 'الحروف الإنجليزية A–Z + الأصوات الصوتية (Phonics)', en: 'English A–Z + Letter Sounds & Phonics' },
-      { ar: 'العد ١–٢٠ وبدايات الجمع والطرح بالكميات', en: 'Numbers 1–20 + Intro Addition & Subtraction' },
-      { ar: 'تكوين الكلمات البسيطة والتفكير المنطقي', en: 'Simple Word Building & Pattern Logic' },
-    ],
-    expectedOutcome: {
-      ar: 'يميز الطفل الحروف وأصواتها ويكوّن كلمات قصيرة ويحل عمليات جمع وطرح بسيطة.',
-      en: 'Recognizes full alphabets & sounds, builds short words, and solves early addition/subtraction.',
-    },
-    guidanceStyle: {
-      ar: 'توجيه تفاعلي متعدد الخطوات + تتبع الكتابة + ألعاب تطبيق',
-      en: 'Guided multi-step lessons + tracing + interactive application',
-    },
-  },
-  '7': {
-    title: { ar: 'منهج التعمق والفهم (٧ سنوات)', en: 'Reading & Reasoning Curriculum (Age 7)' },
-    focusAreas: [
-      { ar: 'قراءة الكلمات والجمل القصيرة وفهم المقروء', en: 'Words, Short Sentences & Reading Comprehension' },
-      { ar: 'الإملاء العربي والصوتيات الإنجليزية والقراءة', en: 'Arabic Spelling & English Phonics Reading' },
-      { ar: 'الجمع والطرح حتى ٥٠ ومقدمة الضرب بالمجموعات', en: 'Addition/Subtraction to 50 & Intro Multiplication' },
-      { ar: 'حل المشكلات والتفكير المنطقي والعلوم', en: 'Logical Reasoning, Science & Problem Solving' },
-    ],
-    expectedOutcome: {
-      ar: 'يقرأ جملاً قصيرة ويفهم معناها ويستخدم المجموعات المتساوية والضرب البسيط في حل المسائل.',
-      en: 'Reads short sentences with comprehension and uses equal groups & early multiplication in problems.',
-    },
-    guidanceStyle: {
-      ar: 'استكشاف مستقل + تحديات تحليلية + تقوية بالمراجعة المتباعدة',
-      en: 'Independent practice + analytical challenges + spaced revision',
-    },
-  },
-  '8': {
-    title: { ar: 'منهج الإتقان والتفكير النقدي (٨ سنوات)', en: 'Mastery & Critical Thinking Curriculum (Age 8)' },
-    focusAreas: [
-      { ar: 'فهم المقروء وتنمية المفردات وأساسيات القواعد', en: 'Reading Comprehension, Vocabulary & Grammar' },
-      { ar: 'الإملاء وبناء الجمل الصحيحة بالعربية والإنجليزية', en: 'Spelling & Sentence Construction (AR/EN)' },
-      { ar: 'الضرب والقسمة والكسور والمسائل متعددة الخطوات', en: 'Multiplication, Division, Fractions & Multi-Step Math' },
-      { ar: 'العلوم والفضاء والجغرافيا والتفكير النقدي', en: 'Science, Space, Geography & Critical Reasoning' },
-    ],
-    expectedOutcome: {
-      ar: 'يفهم النصوص ويحل مسائل متعددة الخطوات تشمل الضرب والقسمة والكسور ويطبق المعرفة في مواقف جديدة.',
-      en: 'Comprehends passages, solves multi-step problems with multiplication/division/fractions, and applies reasoning.',
-    },
-    guidanceStyle: {
-      ar: 'مشاريع تطبيقية + اختبارات تحقق مستقلة + مراجعة ذكية',
-      en: 'Applied challenges + independent verification + adaptive review',
+      ar: 'تجربة موحدة دافئة تتكيف داخلياً مع عمر كل طفل وقدراته',
+      en: 'One unified world that silently adapts complexity to each child',
     },
   },
 };
+
 

@@ -23,8 +23,9 @@ import { NonoLandLogo } from '../components/NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
 import { INTERACTIVE_STORIES } from '../data/stories';
 import { getWorldById } from '../data/worlds';
-import { t, UI_COPY } from '../i18n/translations';
+import { getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
 import { CustomStory, OfficialCharacterId, StoryCategory } from '../types/nonoland';
+import { isContentAppropriateForChild } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 const CATEGORY_TABS: Array<{ id: 'all' | StoryCategory; ar: string; en: string; emoji: string }> = [
@@ -282,7 +283,7 @@ export const StoriesScreen: React.FC = () => {
       {/* Illustrated Story Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredStories.map((story) => {
-          const isAgeFit = story.ageEligibility.includes(activeChild.ageGroup);
+          const isAgeFit = isContentAppropriateForChild(story, activeChild);
           const completed = activeChild.completedStoryIds.includes(story.id);
           const world = getWorldById(story.worldId);
 
@@ -318,7 +319,7 @@ export const StoriesScreen: React.FC = () => {
                     ? language === 'ar'
                       ? 'مناسبة لعمرك'
                       : 'Great for your age'
-                    : `${story.ageEligibility.join(', ')} ${language === 'ar' ? 'سنوات' : 'yrs'}`}
+                    : t(getAgeGroupMeta('1-4').label, language)}
                 </p>
 
                 <h2 className={`text-xl font-extrabold ${story.isBedtime ? 'text-white' : 'text-[#27345C]'}`}>

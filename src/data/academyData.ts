@@ -106,17 +106,16 @@ export const ENGLISH_ALPHABET: EnglishLetterEntry[] = RAW_EN.map(([u, nameSound,
 }));
 
 export interface NumberTier {
-  id: '1-10' | '1-20' | '1-50' | '1-100';
+  id: '1-5' | '1-10' | '1-20';
   label: LocalizedText;
   recommendedAges: AgeGroupId[];
   numbers: number[];
 }
 
 export const NUMBER_TIERS: NumberTier[] = [
-  { id: '1-10', label: { ar: '١ إلى ١٠ (أساسي)', en: '1 to 10 (Foundations)' }, recommendedAges: ['3-4', '5-6'], numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-  { id: '1-20', label: { ar: '١ إلى ٢٠ (تتابع)', en: '1 to 20 (Teens)' }, recommendedAges: ['5-6'], numbers: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
-  { id: '1-50', label: { ar: 'العشرات حتى ٥٠', en: 'Tens to 50' }, recommendedAges: ['7'], numbers: [25, 30, 35, 40, 45, 50] },
-  { id: '1-100', label: { ar: 'المئات والكسور حتى ١٠٠', en: 'Up to 100 & Fractions' }, recommendedAges: ['8'], numbers: [60, 72, 80, 90, 100] },
+  { id: '1-5', label: { ar: '١ إلى ٥ (البداية)', en: '1 to 5 (First Steps)' }, recommendedAges: ['1-4'], numbers: [1, 2, 3, 4, 5] },
+  { id: '1-10', label: { ar: '١ إلى ١٠ (أساسي)', en: '1 to 10 (Counting)' }, recommendedAges: ['1-4'], numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+  { id: '1-20', label: { ar: '١١ إلى ٢٠ (استكشاف متدرج)', en: '11 to 20 (Step-Up)' }, recommendedAges: ['1-4'], numbers: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
 ];
 
 export interface ColorEntry {

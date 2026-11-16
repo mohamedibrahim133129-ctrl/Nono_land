@@ -24,7 +24,9 @@ import {
   ExamQuestionItem,
   ExamSubject,
   Language,
+  RecommendedAgeRange,
 } from '../types/nonoland';
+import { getRecommendedAgeLabel, getSafeStageDisplay } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 import { CertificateModal } from './CertificateModal';
 
@@ -65,7 +67,7 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
   const [lsImageUrl, setLsImageUrl] = useState('');
   const [lsAudioUrl, setLsAudioUrl] = useState('');
   const [lsExamples, setLsExamples] = useState('');
-  const [lsAges, setLsAges] = useState<AgeGroupId[]>(['3-4', '5-6', '7', '8']);
+  const [lsRecommendedAge, setLsRecommendedAge] = useState<RecommendedAgeRange>('1-4');
 
   // Add Question Form
   const [qSubject, setQSubject] = useState<ExamSubject>('arabic');
@@ -77,7 +79,7 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
   const [qCorrect, setQCorrect] = useState<'a' | 'b' | 'c'>('a');
   const [qLessonAr, setQLessonAr] = useState('');
   const [qLessonEn, setQLessonEn] = useState('');
-  const [qAges, setQAges] = useState<AgeGroupId[]>(['5-6', '7', '8']);
+  const [qRecommendedAge, setQRecommendedAge] = useState<RecommendedAgeRange>('1-4');
 
   const adminHeaders = (pinVal: string, json = false): Record<string, string> => {
     const h: Record<string, string> = { 'x-admin-pin': pinVal };
@@ -163,7 +165,8 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
       title: { ar: lsTitleAr.trim(), en: lsTitleEn.trim() },
       summary: { ar: lsExplAr.trim() || lsTitleAr.trim(), en: lsExplEn.trim() || lsTitleEn.trim() },
       domain: lsDomain,
-      ageGroups: lsAges.length > 0 ? lsAges : ['5-6'],
+      ageGroups: ['1-4'] as AgeGroupId[],
+      recommendedAgeRange: lsRecommendedAge,
       targetSymbol: lsSymbol.trim() || '✨',
       imageUrl: lsImageUrl.trim() || undefined,
       audioUrl: lsAudioUrl.trim() || undefined,
@@ -224,7 +227,8 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
     if (!unlockedPin || !qPromptAr.trim() || !qOptA.trim() || !qOptB.trim()) return;
     const payload = {
       subject: qSubject === 'comprehensive' ? 'arabic' : qSubject,
-      ageGroups: qAges.length > 0 ? qAges : ['5-6', '7', '8'],
+      ageGroups: ['1-4'] as AgeGroupId[],
+      recommendedAgeRange: qRecommendedAge,
       type: 'problem-solving' as const,
       difficulty: 2 as const,
       lessonRefId: `cms-ref-${Date.now()}`,
@@ -556,23 +560,26 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
               placeholder={language === 'ar' ? 'أمثلة مفصولة بفاصلة (تفاحة, وردة)' : 'Comma-separated examples (Apple, Rose)'}
               className="w-full h-10 px-3 rounded-xl bg-white border border-[#27345C]/15 text-xs"
             />
-            <div className="flex flex-wrap gap-1.5">
-              {(['3-4', '5-6', '7', '8'] as const).map((ag) => (
-                <button
-                  key={ag}
-                  type="button"
-                  onClick={() =>
-                    setLsAges((prev) =>
-                      prev.includes(ag) ? prev.filter((x) => x !== ag) : [...prev, ag],
-                    )
-                  }
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold border cursor-pointer ${
-                    lsAges.includes(ag) ? 'bg-[#8054D9] text-white border-[#8054D9]' : 'bg-white border-[#27345C]/15'
-                  }`}
-                >
-                  {ag}
-                </button>
-              ))}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-bold text-[#27345C]/75">
+                {language === 'ar'
+                  ? 'المرحلة الموحدة: المستكشفون الصغار (١–٤ سنوات) · التدرج الداخلي الموصى به:'
+                  : 'Unified Stage: Little Explorers (1–4 Years) · Internal Recommended Age Range:'}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {(['1-4', '1-2', '2-3', '3-4'] as const).map((band) => (
+                  <button
+                    key={band}
+                    type="button"
+                    onClick={() => setLsRecommendedAge(band)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border cursor-pointer ${
+                      lsRecommendedAge === band ? 'bg-[#8054D9] text-white border-[#8054D9]' : 'bg-white border-[#27345C]/15'
+                    }`}
+                  >
+                    {getRecommendedAgeLabel(band, language)}
+                  </button>
+                ))}
+              </div>
             </div>
             <button
               type="submit"
@@ -605,7 +612,7 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
                         {ls.targetSymbol ? `${ls.targetSymbol} · ` : ''}{t(ls.title, language)}
                       </p>
                       <p className="text-[11px] text-[#27345C]/65">
-                        {ls.domain} · {ls.ageGroups.join(', ')}
+                        {ls.domain} · {getSafeStageDisplay(ls.ageGroups[0] || '1-4', language)} ({getRecommendedAgeLabel(ls.recommendedAgeRange || '1-4', language)})
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -722,23 +729,26 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
                 className="h-10 px-2.5 rounded-xl bg-white border border-[#27345C]/15 text-xs"
               />
             </div>
-            <div className="flex flex-wrap gap-1.5">
-              {(['3-4', '5-6', '7', '8'] as const).map((ag) => (
-                <button
-                  key={ag}
-                  type="button"
-                  onClick={() =>
-                    setQAges((prev) =>
-                      prev.includes(ag) ? prev.filter((x) => x !== ag) : [...prev, ag],
-                    )
-                  }
-                  className={`px-2.5 py-1 rounded-lg text-xs font-bold border cursor-pointer ${
-                    qAges.includes(ag) ? 'bg-[#8054D9] text-white border-[#8054D9]' : 'bg-white border-[#27345C]/15'
-                  }`}
-                >
-                  {ag}
-                </button>
-              ))}
+            <div className="space-y-1.5">
+              <div className="text-[11px] font-bold text-[#27345C]/75">
+                {language === 'ar'
+                  ? 'النطاق العمري الموصى به (ضمن المستكشفون الصغار ١–٤ سنوات):'
+                  : 'Recommended Age Range (inside Little Explorers 1–4):'}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {(['1-4', '1-2', '2-3', '3-4'] as const).map((band) => (
+                  <button
+                    key={band}
+                    type="button"
+                    onClick={() => setQRecommendedAge(band)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border cursor-pointer ${
+                      qRecommendedAge === band ? 'bg-[#8054D9] text-white border-[#8054D9]' : 'bg-white border-[#27345C]/15'
+                    }`}
+                  >
+                    {getRecommendedAgeLabel(band, language)}
+                  </button>
+                ))}
+              </div>
             </div>
             <button
               type="submit"
@@ -758,8 +768,8 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
             {overview.customQuestions.length === 0 ? (
               <p className="text-sm text-[#27345C]/70">
                 {language === 'ar'
-                  ? 'يحتوي النظام بالفعل على أكثر من ١٨٠ سؤالاً معتمداً بدون تكرار، ويمكنك إضافة أي أسئلة مخصصة من النموذج.'
-                  : 'Over 180 validated questions are already active across all 4 subjects and ages. Add extra questions on the left.'}
+                  ? 'يحتوي النظام بالفعل على أسئلة معتمدة ومصممة لمرحلة المستكشفون الصغار (١–٤ سنوات)، ويمكنك إضافة أسئلة مخصصة من النموذج.'
+                  : 'Validated Little Explorers (1–4 Years) questions are already active across all 4 subjects. Add extra questions on the left.'}
               </p>
             ) : (
               <div className="space-y-2.5">
@@ -771,7 +781,7 @@ export const AdminCmsPanel: React.FC<{ language: Language }> = ({ language }) =>
                     <div className="max-w-md">
                       <p className="font-bold text-sm text-[#27345C]">{t(q.prompt, language)}</p>
                       <p className="text-[11px] text-[#27345C]/65">
-                        {q.subject} · {q.ageGroups.join(', ')} · Correct: {q.correctOptionId.toUpperCase()}
+                        {q.subject} · {getSafeStageDisplay(q.ageGroups[0] || '1-4', language)} ({getRecommendedAgeLabel(q.recommendedAgeRange || '1-4', language)}) · Correct: {q.correctOptionId.toUpperCase()}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">

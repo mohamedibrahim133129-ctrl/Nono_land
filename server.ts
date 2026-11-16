@@ -12,12 +12,19 @@ import {
   DEFAULT_FEATURE_FLAGS,
   normalizeEmail,
   POLICY_VERSION,
+  sanitizeRecommendedAgeRange,
   sanitizeShortText,
   validateChildProfileInput,
   validateEmail,
   validateParentName,
   validatePassword,
 } from './src/utils/validation';
+import {
+  isContentAppropriateForChild,
+  isLegacyFiveToEight,
+  migrateChildProfileSafely,
+  UNIFIED_STAGE_ID,
+} from './src/utils/ageAdaptation';
 import {
   appendSecurityLog,
   checkRateLimit,
@@ -67,6 +74,7 @@ import type {
   Language,
   Level1LessonProgress,
   LocalizedText,
+  StoredAgeGroupId,
   UserRole,
   WorldId,
 } from './src/types/nonoland';
@@ -135,6 +143,11 @@ function loadDb(): ServerDb {
     if (fs.existsSync(DB_FILE)) {
       const parsed = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8')) as Partial<ServerDb>;
       const def = getDefaultDb();
+      const rawChildren = parsed.children || {};
+      const migratedChildren: Record<string, StoredChildRecord> = {};
+      for (const [cid, cRec] of Object.entries(rawChildren)) {
+        migratedChildren[cid] = migrateChildProfileSafely(cRec) as StoredChildRecord;
+      }
       return {
         ...def,
         ...parsed,
@@ -150,9 +163,23 @@ function loadDb(): ServerDb {
         emailIndex: parsed.emailIndex || {},
         sessions: parsed.sessions || {},
         actionTokens: parsed.actionTokens || {},
-        children: parsed.children || {},
-        customLessons: parsed.customLessons || [],
-        customQuestions: parsed.customQuestions || [],
+        children: migratedChildren,
+        customLessons: (parsed.customLessons || []).map((ls) => ({
+          ...ls,
+          ageGroups: ls.ageGroups?.some((a) => (a as string) === '3-4')
+            ? ['1-4']
+            : ls.ageGroups?.length
+              ? ls.ageGroups
+              : ['1-4'],
+        })),
+        customQuestions: (parsed.customQuestions || []).map((q) => ({
+          ...q,
+          ageGroups: q.ageGroups?.some((a) => (a as string) === '3-4')
+            ? ['1-4']
+            : q.ageGroups?.length
+              ? q.ageGroups
+              : ['1-4'],
+        })),
         checkoutSessions: parsed.checkoutSessions || {},
         examAttempts: parsed.examAttempts || {},
         level1Attempts: parsed.level1Attempts || {},
@@ -882,9 +909,10 @@ async function startServer() {
       companionScarfColor?: string;
     };
 
+    const requestedAge = body.ageGroup ?? UNIFIED_STAGE_ID;
     const check = validateChildProfileInput({
       displayName: body.displayName || '',
-      ageGroup: body.ageGroup || '3-4',
+      ageGroup: requestedAge,
       language: body.language || 'ar',
       birthYear: Number(body.birthYear),
       birthMonth: Number(body.birthMonth),
@@ -898,9 +926,9 @@ async function startServer() {
       id: childId,
       parentId: user.id,
       displayName: check.clean.displayName,
-      birthYear: Number(body.birthYear),
-      birthMonth: Number(body.birthMonth),
-      ageGroup: body.ageGroup!,
+      birthYear: check.clean.birthYear,
+      birthMonth: check.clean.birthMonth,
+      ageGroup: check.clean.ageGroup,
       language: body.language === 'en' ? 'en' : 'ar',
       interests: Array.isArray(body.interests)
         ? body.interests.slice(0, 6).map((x) => sanitizeShortText(String(x), 24))
@@ -998,15 +1026,33 @@ async function startServer() {
     const nextYear = patch.birthYear !== undefined ? Number(patch.birthYear) : child.birthYear;
     const nextMonth = patch.birthMonth !== undefined ? Number(patch.birthMonth) : child.birthMonth;
 
-    const check = validateChildProfileInput({
-      displayName: nextName,
-      ageGroup: nextAge,
-      language: nextLang,
-      birthYear: nextYear,
-      birthMonth: nextMonth,
-    });
-    if (!check.ok || !check.clean) {
-      return res.status(400).json({ error: check.error });
+    // Preserve legacy 5-8 accounts safely when updating name/language/prefs without re-assigning stage
+    const preservingLegacyStage = isLegacyFiveToEight(child.ageGroup) && nextAge === child.ageGroup;
+    if (preservingLegacyStage) {
+      const cleanName = sanitizeShortText(nextName, 50);
+      if (!cleanName) {
+        return res.status(400).json({ error: 'Child display name is required' });
+      }
+      child.displayName = cleanName;
+      child.language = nextLang === 'en' ? 'en' : 'ar';
+      if (Number.isInteger(nextYear)) child.birthYear = nextYear;
+      if (Number.isInteger(nextMonth) && nextMonth >= 1 && nextMonth <= 12) child.birthMonth = nextMonth;
+    } else {
+      const check = validateChildProfileInput({
+        displayName: nextName,
+        ageGroup: nextAge,
+        language: nextLang,
+        birthYear: nextYear,
+        birthMonth: nextMonth,
+      });
+      if (!check.ok || !check.clean) {
+        return res.status(400).json({ error: check.error });
+      }
+      child.displayName = check.clean.displayName;
+      child.ageGroup = check.clean.ageGroup;
+      child.language = check.clean.language;
+      child.birthYear = check.clean.birthYear;
+      child.birthMonth = check.clean.birthMonth;
     }
 
     const prevSnapshot = {
@@ -1015,12 +1061,6 @@ async function startServer() {
       language: child.language,
       aiAssistantEnabled: child.aiAssistantEnabled !== false,
     };
-
-    child.displayName = check.clean.displayName;
-    child.ageGroup = nextAge;
-    child.language = nextLang;
-    child.birthYear = nextYear;
-    child.birthMonth = nextMonth;
     if (patch.companionScarfColor && /^#[0-9A-Fa-f]{6}$/.test(patch.companionScarfColor)) {
       child.companionScarfColor = patch.companionScarfColor;
     }
@@ -1340,7 +1380,7 @@ async function startServer() {
     const {
       childId,
       childName,
-      ageGroup,
+      ageGroup: rawAgeGroup,
       subject = 'comprehensive',
       mode = 'practice',
       questionCount,
@@ -1349,7 +1389,7 @@ async function startServer() {
     } = req.body as {
       childId?: string;
       childName?: string;
-      ageGroup?: AgeGroupId;
+      ageGroup?: StoredAgeGroupId;
       subject?: ExamSubject;
       mode?: 'practice' | 'official';
       questionCount?: number;
@@ -1357,12 +1397,18 @@ async function startServer() {
       studiedConceptIds?: string[];
     };
 
-    if (!childId || !ageGroup) {
-      return res.status(400).json({ error: 'childId and ageGroup are required' });
+    if (!childId) {
+      return res.status(400).json({ error: 'childId is required' });
     }
 
     const access = assertChildAccess(req, res, childId);
     if (!access) return;
+
+    const childRecord = access !== 'untracked-sample' ? access : undefined;
+    const resolvedAge: StoredAgeGroupId =
+      rawAgeGroup === '3-4'
+        ? UNIFIED_STAGE_ID
+        : rawAgeGroup || childRecord?.ageGroup || UNIFIED_STAGE_ID;
 
     let paidAmount = 0;
     let paymentVerified = false;
@@ -1392,7 +1438,7 @@ async function startServer() {
 
     const ageFiltered = fullBank.filter(
       (q) =>
-        q.ageGroups.includes(ageGroup) &&
+        q.ageGroups.includes(resolvedAge) &&
         (subject === 'comprehensive' ? true : q.subject === subject),
     );
 
@@ -1407,6 +1453,11 @@ async function startServer() {
 
     const safeStudied = Array.isArray(studiedConceptIds) ? studiedConceptIds : [];
     const prioritized = uniquePool.sort((a, b) => {
+      if (childRecord) {
+        const aFit = isContentAppropriateForChild(a, childRecord) ? -1 : 0;
+        const bFit = isContentAppropriateForChild(b, childRecord) ? -1 : 0;
+        if (aFit !== bFit) return aFit - bFit;
+      }
       const aStudied = safeStudied.some((id) => a.lessonRefId.includes(id)) ? -1 : 0;
       const bStudied = safeStudied.some((id) => b.lessonRefId.includes(id)) ? -1 : 0;
       if (aStudied !== bStudied) return aStudied - bStudied;
@@ -1426,7 +1477,7 @@ async function startServer() {
       childId,
       parentId: req.authSession?.user.id,
       childName: sanitizeShortText(childName || 'Explorer', 60) || 'Explorer',
-      ageGroup,
+      ageGroup: resolvedAge,
       subject,
       mode,
       questionIds: selected.map((q) => q.id),
@@ -1444,7 +1495,7 @@ async function startServer() {
       attemptId,
       mode,
       subject,
-      ageGroup,
+      ageGroup: resolvedAge,
       totalQuestions: sanitizedQuestions.length,
       passingPercentage: db.examConfig.passingPercentage,
       questions: sanitizedQuestions,
@@ -1694,6 +1745,8 @@ async function startServer() {
     }
     const lesson: CmsLessonRecord = {
       ...body,
+      ageGroups: ['1-4'],
+      recommendedAgeRange: sanitizeRecommendedAgeRange(body.recommendedAgeRange),
       title: {
         ar: sanitizeShortText(body.title.ar, 120),
         en: sanitizeShortText(body.title.en, 120),
@@ -1713,9 +1766,14 @@ async function startServer() {
   app.patch('/api/admin/lessons/:id', requireAdminPermission('manage_lessons'), (req, res) => {
     const idx = db.customLessons.findIndex((l) => l.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Lesson not found' });
+    const nextRecRange = req.body?.recommendedAgeRange
+      ? sanitizeRecommendedAgeRange(req.body.recommendedAgeRange)
+      : db.customLessons[idx].recommendedAgeRange || '1-4';
     db.customLessons[idx] = {
       ...db.customLessons[idx],
       ...req.body,
+      ageGroups: ['1-4'],
+      recommendedAgeRange: nextRecRange,
       updatedAt: new Date().toISOString(),
     };
     saveDb(db);
@@ -1735,6 +1793,8 @@ async function startServer() {
     }
     const question: ExamQuestionItem = {
       ...body,
+      ageGroups: ['1-4'],
+      recommendedAgeRange: sanitizeRecommendedAgeRange(body.recommendedAgeRange),
       id: `cms-q-${crypto.randomBytes(4).toString('hex')}`,
       published: body.published ?? true,
     };
@@ -1746,7 +1806,15 @@ async function startServer() {
   app.patch('/api/admin/questions/:id', requireAdminPermission('manage_questions'), (req, res) => {
     const idx = db.customQuestions.findIndex((q) => q.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Question not found' });
-    db.customQuestions[idx] = { ...db.customQuestions[idx], ...req.body };
+    const nextRecRange = req.body?.recommendedAgeRange
+      ? sanitizeRecommendedAgeRange(req.body.recommendedAgeRange)
+      : db.customQuestions[idx].recommendedAgeRange || '1-4';
+    db.customQuestions[idx] = {
+      ...db.customQuestions[idx],
+      ...req.body,
+      ageGroups: ['1-4'],
+      recommendedAgeRange: nextRecRange,
+    };
     saveDb(db);
     res.json(db.customQuestions[idx]);
   });
@@ -1845,7 +1913,7 @@ async function startServer() {
             videoId: vid,
             title: { ar: rawTitle, en: rawTitle },
             category: 'adventures',
-            ageGroups: ['3-4', '5-6', '7', '8'],
+            ageGroups: ['1-4'],
             approvedByParent: true,
             featured: false,
             addedAt: item.snippet!.publishedAt || new Date().toISOString(),

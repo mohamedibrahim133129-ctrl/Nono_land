@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import type express from 'express';
+import { isLegacyFiveToEight } from '../src/utils/ageAdaptation';
 import { evaluateSkillUpdate } from '../src/engine/adaptiveEngine';
 import { sanitizeShortText } from '../src/utils/validation';
 import type {
@@ -63,7 +64,7 @@ export function registerReadingAndFamilyRoutes({
     // Enforce sequential prerequisite gating (Stage N requires Stage N-1 mastered unless older placement Stage <= 2)
     if (stageNum > 1) {
       const prevStage = progressMap[stageNum - 1];
-      const allowPlacementSkip = (child.ageGroup === '7' || child.ageGroup === '8') && stageNum <= 2;
+      const allowPlacementSkip = isLegacyFiveToEight(child.ageGroup) && stageNum <= 2;
       if (!prevStage?.mastered && !allowPlacementSkip) {
         return res.status(400).json({
           error: `Please master Reading Stage ${stageNum - 1} before unlocking Stage ${stageNum}.`,

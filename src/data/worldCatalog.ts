@@ -20,9 +20,9 @@ export interface LabExperimentSpec {
   objective: LocalizedText;
   nonoIntro: LocalizedText;
   explanationByAge: {
-    young: LocalizedText; // 3-4
-    mid: LocalizedText; // 5-6
-    older: LocalizedText; // 7-8
+    young: LocalizedText; // internal band 1-2
+    mid: LocalizedText; // internal band 2-3
+    older: LocalizedText; // internal band 3-4
   };
   starsReward: number;
 }
@@ -53,8 +53,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Red, blue, and yellow are primary colors! Mixing two of them creates secondary colors: green, purple, and orange.',
       },
       older: {
-        ar: 'في نظرية الألوان، الألوان الأساسية تعطي ألواناً ثانوية عند الدمج، وتغيير النسب يغيّر درجة التشبع والسطوع.',
-        en: 'In color theory, combining primary pigments produces secondary hues, while adjusting proportions shifts tint and brightness.',
+        ar: 'عند مزج لونين أساسيين نحصل على لون جديد جميل: الأحمر مع الأصفر يصنع برتقالياً، والأزرق مع الأصفر يصنع أخضر!',
+        en: 'Mixing two primary colors makes a brand-new shade: red + yellow = orange, and blue + yellow = green!',
       },
     },
     starsReward: 4,
@@ -84,8 +84,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'When baking soda meets vinegar, they react to release carbon dioxide gas bubbles that lift colorful foam upward!',
       },
       older: {
-        ar: 'هذا تفاعل حمض وقاعدة آمن ينتج غاز ثاني أكسيد الكربون (CO₂) مما يرفع الضغط داخل فوهة البركان فتندفع الحمم الرغوية.',
-        en: 'This safe acid-base reaction produces carbon dioxide (CO₂) gas; trapped gas expands inside the chamber and pushes foam out.',
+        ar: 'تجمع المسحوق مع الخل اللطيف يصنع فقاعات غاز سريعة ترتفع للأعلى وتدفع الرغوة الملونة مثل البركان الصغير!',
+        en: 'Mixing baking soda and vinegar makes bubbly gas that rises up fast and pushes colorful foam out!',
       },
     },
     starsReward: 4,
@@ -115,8 +115,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Objects that are light for their size or hold air float on water, while dense heavy objects sink to the bottom.',
       },
       older: {
-        ar: 'يعتمد الطفو على الكثافة وقوة دفع الماء (مبدأ أرخميدس): إذا كانت كثافة الجسم أقل من كثافة الماء يطفو، وإلا يغوص.',
-        en: 'Floating depends on density and buoyancy (Archimedes principle): objects less dense than water displace enough water to float.',
+        ar: 'الأشياء الخفيفة أو التي تحتوي على هواء يرفعها الماء فتطفو على السطح، بينما الأشياء الثقيلة المتماسكة تغوص للقاع.',
+        en: 'Light things or items filled with air stay on top of the water, while heavy dense objects sink down.',
       },
     },
     starsReward: 4,
@@ -146,8 +146,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Magnets attract metals containing iron or steel, while wood, plastic, and paper are non-magnetic.',
       },
       older: {
-        ar: 'يولّد المغناطيس مجالاً مغناطيسياً غير مرئي يصطف مع ذرات الحديد والنيكل، لذلك تنجذب المواد المغناطيسية عبر الهواء.',
-        en: 'Magnets generate an invisible magnetic field that aligns atoms inside ferromagnetic metals like iron, steel, and nickel.',
+        ar: 'المغناطيس يمتلك قوة جذب خفية تلتقط المعادن مثل الحديد، بينما لا تجذب الخشب أو الورق أو البلاستيك.',
+        en: 'A magnet has an invisible pull that sticks to iron metals, while wood, paper, and plastic stay still.',
       },
     },
     starsReward: 4,
@@ -177,8 +177,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Seeds need soil, water, air, and sunlight to sprout roots, stems, leaves, and blooming flowers.',
       },
       older: {
-        ar: 'الإنبات يبدأ بالماء الذي يوقظ الجنين داخل البذرة، ثم تستخدم الأوراق ضوء الشمس والماء وثاني أكسيد الكربون في البناء الضوئي.',
-        en: 'Germination starts when water activates the seed embryo; later, leaves combine sunlight, water, and CO₂ for photosynthesis.',
+        ar: 'تشرب البذرة الماء فتستيقظ وتمد جذورها في التربة، ثم تفتح أوراقها الخضراء لتستقبل ضوء الشمس وتكبر!',
+        en: 'Water wakes the little seed so its roots grow into the soil, and green leaves open to enjoy warm sunlight!',
       },
     },
     starsReward: 4,
@@ -208,8 +208,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Eight planets orbit the Sun! Earth supports life with liquid water and air, while Saturn has icy rings.',
       },
       older: {
-        ar: 'المجموعة الشمسية تحكمها جاذبية الشمس؛ الكواكب الصخرية الداخلية قريبة وحارة/معتدلة، والعمالقة الغازية مثل المشتري وزحل أبعد وأكبر حجماً.',
-        en: 'Solar gravity keeps rocky inner planets (Mercury–Mars) and giant outer planets (Jupiter–Neptune) in stable elliptical orbits.',
+        ar: 'تدور الكواكب حول الشمس الدافئة! كوكب الأرض يضم الماء والهواء لنعيش عليه، وزحل يتزين بحلقات لامعة جميلة.',
+        en: 'Planets travel around our bright Sun! Earth gives us water and air to live, and Saturn wears sparkling rings.',
       },
     },
     starsReward: 4,
@@ -239,8 +239,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Every animal fits its habitat: polar bears have thick fur for ice, and fish use gills underwater.',
       },
       older: {
-        ar: 'التكيّف الحيوي يساعد الكائنات على البقاء؛ مثل سنام الجمل لتخزين الدهون وخياشيم الأسماك واستشعار البومة ليلاً.',
-        en: 'Biological adaptations—like gills, insulating blubber, or desert water conservation—help animals thrive in specific biomes.',
+        ar: 'لكل حيوان صفات رائعة تساعده في بيته: السمكة تسبح بالزعانف، والجمل يتحمل حرارة الصحراء، والدب القطبي يدفئه فراؤه.',
+        en: 'Every animal fits its home: fish swim with fins, camels love warm deserts, and polar bears stay cozy in thick fur.',
       },
     },
     starsReward: 4,
@@ -270,8 +270,8 @@ export const LAB_EXPERIMENTS: LabExperimentSpec[] = [
         en: 'Real scientists observe carefully and ask why—and you just used scientific thinking!',
       },
       older: {
-        ar: 'تطبيق المنهج العلمي: الملاحظة، الفرضية، التجربة، ثم الاستنتاج المنطقي لحل المشكلات!',
-        en: 'You applied the scientific method: observe, hypothesize, test, and verify conclusions!',
+        ar: 'أحسنت! لاحظت الصور والألوان واستنتجت الحل بتركيز مثل المستكشفين الصغار الأذكياء!',
+        en: 'Great observing! You looked closely at the clues and figured out the answer like a bright little explorer!',
       },
     },
     starsReward: 5,

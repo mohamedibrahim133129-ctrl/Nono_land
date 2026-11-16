@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { formatDate, t, UI_COPY } from '../i18n/translations';
 import { Certificate, Language } from '../types/nonoland';
+import { getSafeStageShortLabel } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 import { NonoLandLogo } from './NonoLandLogo';
 
@@ -195,7 +196,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             <p className="text-sm text-[#27345C]/75">
               {t(certificate.worldName, language)} ·{' '}
               {language === 'ar' ? `المستوى ${certificate.levelCompleted}` : `Level ${certificate.levelCompleted}`}
-              {certificate.ageGroup && ` · ${certificate.ageGroup} yrs`}
+              {certificate.ageGroup && ` · ${getSafeStageShortLabel(certificate.ageGroup, language)}`}
             </p>
           </div>
 

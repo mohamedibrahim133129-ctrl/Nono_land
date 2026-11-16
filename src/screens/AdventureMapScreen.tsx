@@ -8,7 +8,8 @@ import { useNonoLand } from '../context/NonoLandContext';
 import { GAME_ACTIVITIES, getActivitiesForWorldAndAge } from '../data/activities';
 import { getWorldById, LEARNING_WORLDS } from '../data/worlds';
 import { getAdventureMapProgress } from '../engine/adaptiveEngine';
-import { AGE_GROUP_META, formatNumber, t, UI_COPY } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
+import { isLegacyFiveToEight } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 export const AdventureMapScreen: React.FC = () => {
@@ -77,7 +78,7 @@ export const AdventureMapScreen: React.FC = () => {
             </button>
           </div>
           <span className="text-xs sm:text-sm font-bold text-[#8054D9]">
-            {t(AGE_GROUP_META[activeChild.ageGroup].label, language)} ·{' '}
+            {t(getAgeGroupMeta(activeChild.ageGroup).label, language)} ·{' '}
             {formatNumber(LEARNING_WORLDS.length, language)} {language === 'ar' ? 'عوالم' : 'Worlds'}
           </span>
         </div>
@@ -295,10 +296,17 @@ export const AdventureMapScreen: React.FC = () => {
 export const WorldDetailScreen: React.FC = () => {
   const { selectedWorldId, activeChild, language, navigate } = useNonoLand();
   const world = getWorldById(selectedWorldId);
-  const ageActivities = getActivitiesForWorldAndAge(world.id, activeChild.ageGroup);
-  const otherAgeActivities = GAME_ACTIVITIES.filter(
-    (a) => a.worldId === world.id && !a.ageEligibility.includes(activeChild.ageGroup),
+  const ageActivities = getActivitiesForWorldAndAge(
+    world.id,
+    activeChild.ageGroup,
+    activeChild.birthYear,
+    activeChild.birthMonth,
   );
+  const otherAgeActivities = isLegacyFiveToEight(activeChild.ageGroup)
+    ? GAME_ACTIVITIES.filter(
+        (a) => a.worldId === world.id && !a.ageEligibility.includes(activeChild.ageGroup),
+      )
+    : [];
   const BackIcon = language === 'ar' ? ArrowRight : ArrowLeft;
 
   return (
@@ -321,7 +329,7 @@ export const WorldDetailScreen: React.FC = () => {
             <div className="flex items-center gap-2 text-xs font-extrabold" style={{ color: world.primaryColor }}>
               <span>{world.guardianEmoji} {t(world.guardianName, language)}</span>
               <span>·</span>
-              <span>{t(AGE_GROUP_META[activeChild.ageGroup].label, language)}</span>
+              <span>{t(getAgeGroupMeta(activeChild.ageGroup).label, language)}</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#27345C]">
               {t(world.name, language)}
@@ -352,8 +360,8 @@ export const WorldDetailScreen: React.FC = () => {
           <Sparkles className="w-5 h-5" style={{ color: world.primaryColor }} />
           <span>
             {language === 'ar'
-              ? `مهام ومستويات مناسبة لعمر ${t(AGE_GROUP_META[activeChild.ageGroup].label, language)}`
-              : `Missions Tailored for Ages ${t(AGE_GROUP_META[activeChild.ageGroup].label, language)}`}
+              ? `مهام ومستويات مناسبة لـ ${t(getAgeGroupMeta(activeChild.ageGroup).label, language)}`
+              : `Missions Tailored for ${t(getAgeGroupMeta(activeChild.ageGroup).label, language)}`}
           </span>
         </h2>
 
@@ -421,7 +429,7 @@ export const WorldDetailScreen: React.FC = () => {
               >
                 <div>
                   <p className="text-[11px] font-bold text-[#27345C]/60">
-                    {act.ageEligibility.join(', ')} {language === 'ar' ? 'سنوات' : 'yrs'}
+                    {t(getAgeGroupMeta(activeChild.ageGroup).label, language)}
                   </p>
                   <p className="font-bold text-sm text-[#27345C] mt-0.5">{t(act.title, language)}</p>
                 </div>

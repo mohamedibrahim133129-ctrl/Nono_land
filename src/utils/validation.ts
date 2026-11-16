@@ -4,6 +4,7 @@ import {
   HomeworkType,
   Language,
   QuestionQualityFlag,
+  RecommendedAgeRange,
   TeacherPermission,
   TeacherQuestion,
   TeacherQuestionDifficulty,
@@ -11,6 +12,14 @@ import {
   TeacherQuestionType,
   TeacherSubject,
 } from '../types/nonoland';
+
+export const ALLOWED_RECOMMENDED_AGE_RANGES: RecommendedAgeRange[] = ['1-4', '1-2', '2-3', '3-4'];
+
+export function sanitizeRecommendedAgeRange(raw: unknown, fallback: RecommendedAgeRange = '1-4'): RecommendedAgeRange {
+  return ALLOWED_RECOMMENDED_AGE_RANGES.includes(raw as RecommendedAgeRange)
+    ? (raw as RecommendedAgeRange)
+    : fallback;
+}
 
 export const DEFAULT_TEACHER_PERMISSIONS: TeacherPermission[] = [
   'manage_classes',
@@ -210,22 +219,26 @@ export function validateChildProfileInput(input: {
     return { ok: false, error: 'Child name contains invalid characters' };
   }
 
-  const validAges: AgeGroupId[] = ['3-4', '5-6', '7', '8'];
-  if (!validAges.includes(input.ageGroup as AgeGroupId)) {
-    return { ok: false, error: 'Invalid age group selection' };
+  const validAges: AgeGroupId[] = ['1-4'];
+  const requestedAge = input.ageGroup ?? '1-4';
+  if (!validAges.includes(requestedAge as AgeGroupId)) {
+    return {
+      ok: false,
+      error: 'Only the unified Little Explorers (1–4 Years) stage is available',
+    };
   }
 
   const lang: Language = input.language === 'en' ? 'en' : 'ar';
 
   const nowYear = new Date().getFullYear();
-  const birthYear = Number(input.birthYear ?? nowYear - 4);
+  const birthYear = Number(input.birthYear ?? nowYear - 3);
   const birthMonth = Number(input.birthMonth ?? 1);
   if (
     !Number.isInteger(birthYear) ||
-    birthYear < nowYear - 10 ||
-    birthYear > nowYear - 2
+    birthYear < nowYear - 4 ||
+    birthYear > nowYear - 1
   ) {
-    return { ok: false, error: 'Invalid birth year for child ages 3–8' };
+    return { ok: false, error: 'Invalid birth year for Little Explorers (ages 1–4)' };
   }
   if (!Number.isInteger(birthMonth) || birthMonth < 1 || birthMonth > 12) {
     return { ok: false, error: 'Invalid birth month (1–12)' };
@@ -235,7 +248,7 @@ export function validateChildProfileInput(input: {
     ok: true,
     clean: {
       displayName,
-      ageGroup: input.ageGroup as AgeGroupId,
+      ageGroup: '1-4',
       language: lang,
       birthYear,
       birthMonth,

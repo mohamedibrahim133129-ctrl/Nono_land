@@ -21,7 +21,7 @@ import { NonoLandLogo } from '../components/NonoLandLogo';
 import { StudentHomeworkSection } from '../components/StudentHomeworkSection';
 import { useNonoLand } from '../context/NonoLandContext';
 import { AGE_CURRICULUM_OUTCOMES } from '../data/deepCurriculum';
-import { AGE_GROUP_META, formatNumber, t } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t } from '../i18n/translations';
 import {
   Certificate,
   ExamAttemptSummary,
@@ -29,6 +29,7 @@ import {
   ExamQuestionItem,
   ExamSubject,
 } from '../types/nonoland';
+import { isLegacyFiveToEight, UNIFIED_STAGE_ID } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 type ClientExamQuestion = Omit<ExamQuestionItem, 'correctOptionId' | 'explanation'>;
@@ -140,7 +141,7 @@ export const ExamsScreen: React.FC = () => {
         body: JSON.stringify({
           childId: activeChild.id,
           childName: activeChild.displayName,
-          ageGroup: activeChild.ageGroup,
+          ageGroup: isLegacyFiveToEight(activeChild.ageGroup) ? activeChild.ageGroup : UNIFIED_STAGE_ID,
           subject,
           mode,
           questionCount,
@@ -253,7 +254,7 @@ export const ExamsScreen: React.FC = () => {
     }
   };
 
-  const ageOutcome = AGE_CURRICULUM_OUTCOMES[activeChild.ageGroup];
+  const ageOutcome = AGE_CURRICULUM_OUTCOMES['1-4'];
 
   // ---------------------------------------------------------------
   // VIEW 1: EXAM RESULTS SCREEN (PASS / REVISION PLAN / REVIEW)
@@ -539,7 +540,7 @@ export const ExamsScreen: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs font-extrabold text-[#FFD84D]">
               <NonoLandLogo variant="badge" size="xs" tone="dark" language={language} />
               <span>
-                {t(AGE_GROUP_META[activeChild.ageGroup].label, language)} ·{' '}
+                {t(getAgeGroupMeta(activeChild.ageGroup).label, language)} ·{' '}
                 {formatNumber(examConfig.questionsPerExam, language)} {language === 'ar' ? 'سؤالاً' : 'Questions'} ·{' '}
                 {language === 'ar' ? `النجاح ≥ ${examConfig.passingPercentage}%` : `Pass ≥ ${examConfig.passingPercentage}%`}
               </span>

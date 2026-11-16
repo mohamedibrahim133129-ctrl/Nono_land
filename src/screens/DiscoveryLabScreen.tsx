@@ -18,7 +18,7 @@ import { NonoLandLogo } from '../components/NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
 import { LAB_EXPERIMENTS } from '../data/worldCatalog';
 import { getWorldById } from '../data/worlds';
-import { AGE_GROUP_META, formatNumber, SKILL_LABELS, t, UI_COPY } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, SKILL_LABELS, t, UI_COPY } from '../i18n/translations';
 import { SkillId } from '../types/nonoland';
 import { soundEngine } from '../utils/soundEngine';
 
@@ -66,7 +66,7 @@ export const DiscoveryLabScreen: React.FC<{ isBaseline?: boolean }> = ({ isBasel
               <div className="flex flex-wrap items-center gap-2 text-xs font-extrabold text-[#FFD84D]">
                 <NonoLandLogo variant="badge" size="xs" tone="dark" language={language} />
                 <span>
-                  {t(AGE_GROUP_META[activeChild.ageGroup].label, language)} ·{' '}
+                  {t(getAgeGroupMeta(activeChild.ageGroup).label, language)} ·{' '}
                   {language === 'ar'
                     ? `${formatNumber(completedLabIds.length, language)} / ${formatNumber(LAB_EXPERIMENTS.length, language)} تجارب علمية مكتشفة`
                     : `${completedLabIds.length} / ${LAB_EXPERIMENTS.length} Science Labs Explored`}
@@ -203,6 +203,8 @@ export const DiscoveryLabScreen: React.FC<{ isBaseline?: boolean }> = ({ isBasel
               key={activeExperiment.id}
               experiment={activeExperiment}
               ageGroup={activeChild.ageGroup}
+              birthYear={activeChild.birthYear}
+              birthMonth={activeChild.birthMonth}
               language={language}
               alreadyDone={completedLabIds.includes(activeExperiment.id)}
               onComplete={() => void handleCompleteExperiment()}

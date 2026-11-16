@@ -231,16 +231,16 @@ async function main() {
   // Parent creates Child 1 (for Teacher 1 class) & Child 2 (for Teacher 2 class)
   const c1Res = await parentClient.req('POST', '/api/children', {
     displayName: 'Ziad Explorer',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'ar',
-    birthYear: 2021,
+    birthYear: 2023,
     birthMonth: 5,
   });
   const c2Res = await parentClient.req('POST', '/api/children', {
     displayName: 'Hana Learner',
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'en',
-    birthYear: 2021,
+    birthYear: 2023,
     birthMonth: 8,
   });
   assert.strictEqual(c1Res.status, 201);
@@ -522,7 +522,7 @@ async function main() {
     titleEn: 'Invalid Schedule Exam',
     subject: 'comprehensive',
     level: 2,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     questionIds: createdQIds,
     passingPercentage: 70,
     durationMinutes: 15,
@@ -539,7 +539,7 @@ async function main() {
     descriptionEn: 'Comprehensive teacher evaluation',
     subject: 'comprehensive',
     level: 2,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     questionIds: createdQIds,
     passingPercentage: 70,
     durationMinutes: 20,
@@ -563,7 +563,7 @@ async function main() {
     titleEn: 'Future Scheduled Exam',
     subject: 'math',
     level: 2,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     questionIds: [createdQIds[1]],
     passingPercentage: 70,
     durationMinutes: 10,

@@ -22,6 +22,7 @@ import type {
   SecurityEventLog,
   SkillId,
   SmartAssessmentFormat,
+  StoredAgeGroupId,
   TeacherExam,
   TeacherQuestion,
 } from '../src/types/nonoland';
@@ -31,7 +32,7 @@ export interface StoredSmartAssessmentSession {
   id: string;
   childId: string;
   parentId?: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   difficultyTier: AdaptiveDifficultyTier;
   totalQuestions: number;
   askedQuestionIds: string[];
@@ -68,7 +69,7 @@ export interface StoredExamAttempt {
   childId: string;
   parentId?: string;
   childName: string;
-  ageGroup: AgeGroupId;
+  ageGroup: StoredAgeGroupId;
   subject: ExamSubject;
   mode: 'practice' | 'official';
   questionIds: string[];

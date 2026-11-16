@@ -214,8 +214,8 @@ export const NonoAiScreen: React.FC = () => {
             </h1>
             <p className="text-xs sm:text-sm font-bold text-[#27345C]/75">
               {language === 'ar'
-                ? `مخصّص لـ ${activeChild.displayName} (${activeChild.ageGroup} سنوات) · تلميحات متدرجة بدون كشف الإجابة فوراً`
-                : `Tailored for ${activeChild.displayName} (Ages ${activeChild.ageGroup}) · Progressive hints without spoiling answers`}
+                ? `مخصّص لـ ${activeChild.displayName} (المستكشفون الصغار · ١–٤ سنوات) · تلميحات متدرجة بدون كشف الإجابة فوراً`
+                : `Tailored for ${activeChild.displayName} (Little Explorers · 1–4 Years) · Progressive hints without spoiling answers`}
             </p>
           </div>
         </div>

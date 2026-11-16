@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { useNonoLand } from '../context/NonoLandContext';
 import { DEFAULT_AVATAR_CONFIG } from '../data/worldCatalog';
-import { AGE_GROUP_META, formatNumber, t, UI_COPY } from '../i18n/translations';
+import { formatNumber, getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
 import { AppScreen } from '../types/nonoland';
 import { soundEngine } from '../utils/soundEngine';
 import { ChildAvatarPreview } from './CharacterCast';
@@ -148,7 +148,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
               >
                 {childrenList.map((c) => (
                   <option key={c.id} value={c.id}>
-                    {c.displayName} · {t(AGE_GROUP_META[c.ageGroup].label, language)}
+                    {c.displayName} · {t(getAgeGroupMeta(c.ageGroup).label, language)}
                   </option>
                 ))}
               </select>

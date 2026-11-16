@@ -63,7 +63,7 @@ export const LEVEL1_ARABIC_LESSONS: Level1LessonDefinition[] = ARABIC_SPEC.map((
   id: item.id,
   subject: 'arabic',
   level: 1,
-  ageRange: '3-4',
+  ageRange: '1-4',
   unit:
     idx < 7
       ? 'ar-unit-1'
@@ -150,7 +150,7 @@ export const LEVEL1_ENGLISH_LESSONS: Level1LessonDefinition[] = ENGLISH_SPEC.map
   id: item.id,
   subject: 'english',
   level: 1,
-  ageRange: '3-4',
+  ageRange: '1-4',
   unit:
     idx < 6
       ? 'en-unit-1'
@@ -223,7 +223,7 @@ export const LEVEL1_NUMBER_LESSONS: Level1LessonDefinition[] = NUMBERS_SPEC.map(
   id: item.id,
   subject: 'numbers',
   level: 1,
-  ageRange: '3-4',
+  ageRange: '1-4',
   unit: item.num <= 5 ? 'num-unit-1' : 'num-unit-2',
   order: idx + 1,
   title: {
@@ -298,7 +298,7 @@ export const LEVEL1_COLOR_LESSONS: Level1LessonDefinition[] = COLORS_SPEC.map((i
   id: item.id,
   subject: 'colors',
   level: 1,
-  ageRange: '3-4',
+  ageRange: '1-4',
   unit: idx < 4 ? 'col-unit-1' : 'col-unit-2',
   order: idx + 1,
   title: {

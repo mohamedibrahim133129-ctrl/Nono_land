@@ -21,6 +21,7 @@ import {
 } from '../../data/deepCurriculum';
 import { t } from '../../i18n/translations';
 import { ConceptDomain, LocalizedText, NonoMood } from '../../types/nonoland';
+import { getInternalAgeBand } from '../../utils/ageAdaptation';
 import { soundEngine } from '../../utils/soundEngine';
 import { NonoCharacter } from '../NonoCharacter';
 import { TracingPad } from './TracingPad';
@@ -967,12 +968,12 @@ export const DeepLessonEngine: React.FC<DeepLessonEngineProps> = ({ target, onEx
                 {language === 'ar' ? 'المرحلة ١٠: تدريب القراءة المناسب لعمرك' : 'Stage 10: Age-Adapted Reading Practice'}
               </span>
               <div className="p-6 rounded-3xl bg-[#FFF8E9] border border-[#27345C]/10 text-xl sm:text-2xl font-extrabold text-[#27345C]">
-                {t(arabicData.readingSentences[activeChild.ageGroup], language)}
+                {t(arabicData.readingSentences[getInternalAgeBand(activeChild)], language)}
               </div>
               <button
                 type="button"
                 onClick={() => {
-                  soundEngine.speak(arabicData.readingSentences[activeChild.ageGroup].ar, 'ar', { slow: true });
+                  soundEngine.speak(arabicData.readingSentences[getInternalAgeBand(activeChild)].ar, 'ar', { slow: true });
                   markSuccess('applied', 'قراءة رائعة!', 'Wonderful reading practice!');
                 }}
                 className="nono-btn-tactile px-6 py-3 rounded-2xl bg-[#8054D9] text-white font-bold inline-flex items-center gap-2 cursor-pointer"
@@ -1093,14 +1094,14 @@ export const DeepLessonEngine: React.FC<DeepLessonEngineProps> = ({ target, onEx
                 {stageIdx === 6 && `Find ${englishData.upper} inside "${englishData.word.toUpperCase()}"`}
                 {stageIdx === 7 && `Missing letter: _${englishData.word.slice(1)}`}
                 {stageIdx === 8 && `CVC Word: ${englishData.cvcWord}`}
-                {stageIdx === 9 && t(englishData.readingSentence[activeChild.ageGroup], language)}
+                {stageIdx === 9 && t(englishData.readingSentence[getInternalAgeBand(activeChild)], language)}
               </p>
               <button
                 type="button"
                 onClick={() => {
                   soundEngine.speak(
                     stageIdx === 9
-                      ? englishData.readingSentence[activeChild.ageGroup].en
+                      ? englishData.readingSentence[getInternalAgeBand(activeChild)].en
                       : englishData.word,
                     'en',
                     { slow: true },

@@ -133,7 +133,7 @@ async function main() {
   const noCsrf = await parentA.req(
     'POST',
     '/api/children',
-    { displayName: 'Omar', ageGroup: '3-4', language: 'ar', birthYear: 2023, birthMonth: 3 },
+    { displayName: 'Omar', ageGroup: '1-4', language: 'ar', birthYear: 2023, birthMonth: 3 },
     { 'x-csrf-token': 'invalid-csrf' },
   );
   assert.strictEqual(noCsrf.status, 403, 'CSRF mismatch must block mutation with 403');
@@ -145,17 +145,29 @@ async function main() {
   // Invalid child birthYear rejected -> 400
   const badChild = await parentA.req('POST', '/api/children', {
     displayName: '<b>Bad</b>',
-    ageGroup: '3-4',
+    ageGroup: '1-4',
     language: 'ar',
     birthYear: 1990,
     birthMonth: 5,
   });
   assert.strictEqual(badChild.status, 400);
 
-  // Valid child created by Parent A
+  // Deprecated age stages (5-6, 7, 8) rejected for new child profiles -> 400
+  for (const deprecatedStage of ['5-6', '7', '8']) {
+    const oldStageRes = await parentA.req('POST', '/api/children', {
+      displayName: 'OldStageKid',
+      ageGroup: deprecatedStage,
+      language: 'en',
+      birthYear: 2023,
+      birthMonth: 2,
+    });
+    assert.strictEqual(oldStageRes.status, 400, `Stage ${deprecatedStage} must be rejected`);
+  }
+
+  // Valid child created by Parent A under Little Explorers (1-4 Years)
   const chRes = await parentA.req('POST', '/api/children', {
     displayName: 'ليلى الصغيرة',
-    ageGroup: '3-4',
+    ageGroup: '1-4',
     language: 'ar',
     birthYear: 2023,
     birthMonth: 4,
@@ -242,7 +254,7 @@ async function main() {
   const unpaidOfficial = await parentA.req('POST', '/api/exams/start', {
     childId: childA.id,
     childName: childA.displayName,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     subject: 'comprehensive',
     mode: 'official',
   });
@@ -268,7 +280,7 @@ async function main() {
   const ex1Start = await parentA.req('POST', '/api/exams/start', {
     childId: childA.id,
     childName: childA.displayName,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     subject: 'comprehensive',
     mode: 'official',
     paymentVerificationToken: payTok1,
@@ -280,7 +292,7 @@ async function main() {
   // Reusing same payment token blocked
   const reusePay = await parentA.req('POST', '/api/exams/start', {
     childId: childA.id,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     mode: 'official',
     paymentVerificationToken: payTok1,
   });
@@ -311,7 +323,7 @@ async function main() {
   const ex2Start = await parentA.req('POST', '/api/exams/start', {
     childId: childA.id,
     childName: childA.displayName,
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     subject: 'comprehensive',
     mode: 'official',
     paymentVerificationToken: verPay2.data.paymentVerificationToken,
@@ -362,7 +374,7 @@ async function main() {
   const bigStr = 'x'.repeat(600 * 1024);
   const bigRes = await parentA.req('POST', '/api/children', {
     displayName: bigStr,
-    ageGroup: '3-4',
+    ageGroup: '1-4',
     language: 'ar',
     birthYear: 2023,
     birthMonth: 1,
@@ -415,9 +427,9 @@ async function main() {
   // SQLi/XSS string in child name rejected cleanly
   const xssRes = await parentB.req('POST', '/api/children', {
     displayName: "<script>alert('xss')</script>",
-    ageGroup: '5-6',
+    ageGroup: '1-4',
     language: 'en',
-    birthYear: 2021,
+    birthYear: 2023,
     birthMonth: 2,
   });
   assert.strictEqual(xssRes.status, 400, 'Angle-bracket XSS payload rejected in displayName');
