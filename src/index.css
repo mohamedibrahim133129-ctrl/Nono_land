@@ -81,6 +81,18 @@
   50% { transform: translate3d(0, -6px, 0) rotate(1.5deg); }
 }
 
+@keyframes magicalGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.65; }
+  50% { transform: scale(1.06); opacity: 0.92; }
+}
+
+@keyframes floatParticleUp {
+  0% { transform: translate3d(0, 12px, 0) scale(0.75); opacity: 0; }
+  25% { opacity: 0.9; }
+  80% { opacity: 0.7; }
+  100% { transform: translate3d(0, -48px, 0) scale(1.1); opacity: 0; }
+}
+
 .animate-float-slow {
   animation: floatSlow 5.5s ease-in-out infinite;
 }
@@ -97,12 +109,22 @@
   animation: gentleBob 4s ease-in-out infinite;
 }
 
+.animate-magical-glow {
+  animation: magicalGlowPulse 4.5s ease-in-out infinite;
+}
+
+.animate-float-particle {
+  animation: floatParticleUp 4.8s ease-in-out infinite;
+}
+
 /* Respect reduced motion preferences (OS + Parent Accessibility Setting) */
 @media (prefers-reduced-motion: reduce) {
   .animate-float-slow,
   .animate-drift-cloud,
   .animate-twinkle,
-  .animate-gentle-bob {
+  .animate-gentle-bob,
+  .animate-magical-glow,
+  .animate-float-particle {
     animation: none !important;
   }
   * {
@@ -113,7 +135,9 @@
 html.reduced-motion .animate-float-slow,
 html.reduced-motion .animate-drift-cloud,
 html.reduced-motion .animate-twinkle,
-html.reduced-motion .animate-gentle-bob {
+html.reduced-motion .animate-gentle-bob,
+html.reduced-motion .animate-magical-glow,
+html.reduced-motion .animate-float-particle {
   animation: none !important;
 }
 html.reduced-motion * {

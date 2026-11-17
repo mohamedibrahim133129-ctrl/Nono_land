@@ -1003,6 +1003,332 @@
       "failedLoginAttempts": 0,
       "createdAt": "2026-11-16T22:55:42.851Z",
       "updatedAt": "2026-11-16T22:55:42.944Z"
+    },
+    "usr_d9ec3c49aa9a": {
+      "id": "usr_d9ec3c49aa9a",
+      "email": "Parent.Alpha.1794909227166@example.com",
+      "normalizedEmail": "parent.alpha.1794909227166@example.com",
+      "displayName": "أم عمر — Sarah",
+      "passwordHash": "scrypt$e36ba2969ff636e1507c36e4be12e316$30e3e0bc4c2a11532cf86ff8f9bb58ddb39ec0d31d777dff4aa82f385f535e3a7a76e475fac41e911532bf3780cfbc0b09b7e9cd394ecdf077b89cbbf14a67d8",
+      "role": "parent",
+      "emailVerified": true,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:47.298Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:47.298Z",
+      "updatedAt": "2026-11-17T09:53:48.247Z"
+    },
+    "usr_5525970da179": {
+      "id": "usr_5525970da179",
+      "email": "beta.1794909227166@example.com",
+      "normalizedEmail": "beta.1794909227166@example.com",
+      "displayName": "Parent Beta",
+      "passwordHash": "scrypt$32cdcb6a6e94f4fb40f9835b0ecf7bf1$f794f72caa3d3239a2e37717933e0ac3b803254255fc0aeb97255b6186faf9c322767200de9439f17317efc85c260bdf9acdd0e03f693d8fe42e78e7a00f0e01",
+      "role": "content_admin",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:47.486Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:47.486Z",
+      "updatedAt": "2026-11-17T09:53:47.755Z"
+    },
+    "usr_8eb164eafc6e": {
+      "id": "usr_8eb164eafc6e",
+      "email": "lock.1794909227166@example.com",
+      "normalizedEmail": "lock.1794909227166@example.com",
+      "displayName": "Lock Test",
+      "passwordHash": "scrypt$8adb11f65d31230073cd910ec0f269e0$983cdae49e514ca2e922f2e949ed5be77fa615520c2907959e5f213d38b4e6b3a0ee74f08f18bdf9bcbfe86de64b918f20b5de8da6c28084e701e22fa8434799",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:47.792Z",
+      "failedLoginAttempts": 5,
+      "createdAt": "2026-11-17T09:53:47.792Z",
+      "updatedAt": "2026-11-17T09:53:48.168Z",
+      "lockedUntil": "2026-11-17T09:58:48.168Z"
+    },
+    "usr_34d3158ba8e8": {
+      "id": "usr_34d3158ba8e8",
+      "email": "parent.smart.a.1794909229747@example.com",
+      "normalizedEmail": "parent.smart.a.1794909229747@example.com",
+      "displayName": "Parent Smart A",
+      "passwordHash": "scrypt$4532cd98573a43df10cd1e01ac4b3e41$23e304902ec52c97e2499457e7223b9843ee90b7073009ee0776525017717992f57d19465018abb6b95c73df446da1b741a4999335e772759788375100e8f405",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:49.854Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:49.854Z",
+      "updatedAt": "2026-11-17T09:53:49.854Z"
+    },
+    "stu_7c009612353b": {
+      "id": "stu_7c009612353b",
+      "email": "student.smart.1794909229747@example.com",
+      "normalizedEmail": "student.smart.1794909229747@example.com",
+      "displayName": "Noor",
+      "passwordHash": "scrypt$065976fec7a74083392ecfe17a9d355d$5683bdbfec89713ebea4f9cd8822624e482b16304b2699befa915295c03a7fcb671020cda1121f2615ba7219a250a8edddc71e71aabf9b767b38a4e381cec175",
+      "role": "student",
+      "emailVerified": true,
+      "status": "active",
+      "linkedChildId": "ch_1c68caf725a9",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:49.970Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:49.970Z",
+      "updatedAt": "2026-11-17T09:53:50.102Z"
+    },
+    "usr_365e07e7e111": {
+      "id": "usr_365e07e7e111",
+      "email": "parent.smart.b.1794909229747@example.com",
+      "normalizedEmail": "parent.smart.b.1794909229747@example.com",
+      "displayName": "Parent Intruder B",
+      "passwordHash": "scrypt$ceaa575c7858b278a2919364d5757cd2$37525312bc8862367c88eb8da6e43e75ee1e16ecd4e6a0291f1d5f03714ab39b4ceedf0eaa06da5aa99a6809e3be5e50bb4f898fc27ef3a8c508990fe71d1c61",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:50.121Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:50.121Z",
+      "updatedAt": "2026-11-17T09:53:50.121Z"
+    },
+    "tch_d5aa975bc5b0": {
+      "id": "tch_d5aa975bc5b0",
+      "email": "teacher.smart.1794909229747@example.com",
+      "normalizedEmail": "teacher.smart.1794909229747@example.com",
+      "displayName": "Teacher Audit",
+      "passwordHash": "scrypt$4267b242ae82181150ae2a61392451e1$abebf84b91d7c0935f6f10464aad82cb327e55decec0aada049c0985c0c8b98c042b1fa33a0cc924cca4927f997912738d49a53760b1b93713329dbc06a01510",
+      "role": "teacher",
+      "emailVerified": true,
+      "status": "active",
+      "teacherProfile": {
+        "userId": "tch_d5aa975bc5b0",
+        "displayName": "Teacher Audit",
+        "email": "teacher.smart.1794909229747@example.com",
+        "subjects": [
+          "arabic",
+          "math"
+        ],
+        "permissions": [
+          "manage_classes",
+          "manage_questions",
+          "manage_exams",
+          "assign_exams",
+          "view_results",
+          "bulk_import"
+        ],
+        "approvedBy": "admin-pin",
+        "approvedAt": "2026-11-17T09:53:50.193Z",
+        "status": "active"
+      },
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:50.193Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:50.193Z",
+      "updatedAt": "2026-11-17T09:53:50.325Z"
+    },
+    "tch_c2bab9d3fd44": {
+      "id": "tch_c2bab9d3fd44",
+      "email": "hw.teacher.1794909237178@example.com",
+      "normalizedEmail": "hw.teacher.1794909237178@example.com",
+      "displayName": "Prof. Salma",
+      "passwordHash": "scrypt$00bdd36f5e8ecb5737384062046e57fa$0184b8eb6880b493a1adcc2b0d70e9ac317cb9f163ec894c247b74822a9a2ee524d8b720eb668184c1101f1869dfeb7911ff73eaef9c44d2a15a5b67362ab871",
+      "role": "teacher",
+      "emailVerified": true,
+      "status": "active",
+      "teacherProfile": {
+        "userId": "tch_c2bab9d3fd44",
+        "displayName": "Prof. Salma",
+        "email": "hw.teacher.1794909237178@example.com",
+        "subjects": [
+          "arabic",
+          "math"
+        ],
+        "permissions": [
+          "manage_classes",
+          "manage_questions",
+          "manage_exams",
+          "assign_exams",
+          "view_results",
+          "bulk_import"
+        ],
+        "status": "active",
+        "approvedBy": "admin",
+        "approvedAt": "2026-11-17T09:53:57.386Z"
+      },
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:57.291Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:57.291Z",
+      "updatedAt": "2026-11-17T09:53:57.479Z"
+    },
+    "usr_4c67841a3daf": {
+      "id": "usr_4c67841a3daf",
+      "email": "hw.parent.1794909237178@example.com",
+      "normalizedEmail": "hw.parent.1794909237178@example.com",
+      "displayName": "Parent Hoda",
+      "passwordHash": "scrypt$2dde53b4cc57c48567ba50a1e2093299$db91ca23f134d8521a5aa18d763c0ce0990306f2c12e906a35e77767aaa848ba78fe63fb95f3e328fdf30b3d2b37aa49b29224b313ec04b3da88d1065850df5c",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:57.497Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:57.497Z",
+      "updatedAt": "2026-11-17T09:53:57.497Z"
+    },
+    "stu_175fa9f0d99c": {
+      "id": "stu_175fa9f0d99c",
+      "email": "zain.1794909237178@example.com",
+      "normalizedEmail": "zain.1794909237178@example.com",
+      "displayName": "Zain",
+      "passwordHash": "scrypt$6ec71b41d273e5081f9841c9669ea364$46f570ac713bd8e6b11330c0bb1cd1e344bc984c1db6ef7dc0d23535ee35b131e2385af0ee2192f3e29450715996baba706cf6de0b7f4d88fc00b9cd4f586a48",
+      "role": "student",
+      "emailVerified": true,
+      "status": "active",
+      "linkedChildId": "ch_29e2fdf9370a",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:57.585Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:57.585Z",
+      "updatedAt": "2026-11-17T09:53:57.712Z"
+    },
+    "usr_bdfed2b4be08": {
+      "id": "usr_bdfed2b4be08",
+      "email": "other.parent.1794909237178@example.com",
+      "normalizedEmail": "other.parent.1794909237178@example.com",
+      "displayName": "Other Parent",
+      "passwordHash": "scrypt$6fea2a8e142cfffd5b638f14f6120916$d2960fd338c965b5a4983566e7764676eb2e81009b9fa9ef65a3fc11a149cbb07e155e4cddc0c66a99e9913d82814ca0e062e22aac2c1690e443b5de94af8db9",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:57.729Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:57.729Z",
+      "updatedAt": "2026-11-17T09:53:57.729Z"
+    },
+    "stu_8ca35d1dc4d3": {
+      "id": "stu_8ca35d1dc4d3",
+      "email": "other.stu.1794909237178@example.com",
+      "normalizedEmail": "other.stu.1794909237178@example.com",
+      "displayName": "Unassigned Kid",
+      "passwordHash": "scrypt$70839a9b61cff0a38797c245e73c052f$893187dd19b68df6af11f84c0af7477078ec8d5b28b1c833d008fb09aeaf7369c249e933a76beaebdbced2189e7365b2391975a1e963cd279d15a6315c6492c0",
+      "role": "student",
+      "emailVerified": true,
+      "status": "active",
+      "linkedChildId": "ch_cad7daf02380",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:53:57.821Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:53:57.821Z",
+      "updatedAt": "2026-11-17T09:53:57.940Z"
+    },
+    "tch_f1f093afb943": {
+      "id": "tch_f1f093afb943",
+      "email": "teacher.one.1794909242353@example.com",
+      "normalizedEmail": "teacher.one.1794909242353@example.com",
+      "displayName": "Ms. Nadia Hassan",
+      "passwordHash": "scrypt$6d7c038db18be24a8858a9fbfcdaded8$9659aead583e86fe1ab832677eeffb2b12111afa539058e27097df41314f51d68055eae330a7e2152fe6bdb249fa734d187d9cf02807231c569b0b51e4e82f51",
+      "role": "teacher",
+      "emailVerified": true,
+      "status": "suspended",
+      "phone": "+201001234567",
+      "teacherProfile": {
+        "userId": "tch_f1f093afb943",
+        "displayName": "Ms. Nadia Hassan",
+        "email": "teacher.one.1794909242353@example.com",
+        "phone": "+201001234567",
+        "subjects": [
+          "arabic",
+          "math"
+        ],
+        "permissions": [
+          "manage_classes",
+          "manage_questions",
+          "manage_exams",
+          "assign_exams",
+          "view_results",
+          "bulk_import"
+        ],
+        "status": "suspended",
+        "approvedBy": "admin",
+        "approvedAt": "2026-11-17T09:54:02.580Z"
+      },
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:54:02.504Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:54:02.504Z",
+      "updatedAt": "2026-11-17T09:54:03.645Z"
+    },
+    "tch_b51d5493be54": {
+      "id": "tch_b51d5493be54",
+      "email": "teacher.two.1794909242353@example.com",
+      "normalizedEmail": "teacher.two.1794909242353@example.com",
+      "displayName": "Mr. Karim Adel",
+      "passwordHash": "scrypt$7b2fc9f36c54fde35163e6a7a63adea1$7c77b85749508eb645fa1ba06b5e5a92056e735530f0ec90f641bc602631d24182a29568cd8e00f6dab7ae34b68208b9f180d3fbca02ca29b8eca528a0a161b0",
+      "role": "teacher",
+      "emailVerified": true,
+      "status": "active",
+      "teacherProfile": {
+        "userId": "tch_b51d5493be54",
+        "displayName": "Mr. Karim Adel",
+        "email": "teacher.two.1794909242353@example.com",
+        "subjects": [
+          "english"
+        ],
+        "permissions": [
+          "manage_classes",
+          "manage_questions",
+          "manage_exams",
+          "assign_exams",
+          "view_results",
+          "bulk_import"
+        ],
+        "approvedBy": "admin-pin",
+        "approvedAt": "2026-11-17T09:54:02.668Z",
+        "status": "active"
+      },
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:54:02.668Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:54:02.668Z",
+      "updatedAt": "2026-11-17T09:54:02.773Z"
+    },
+    "usr_56eb99ddacc4": {
+      "id": "usr_56eb99ddacc4",
+      "email": "mona.parent.1794909242353@example.com",
+      "normalizedEmail": "mona.parent.1794909242353@example.com",
+      "displayName": "Parent Mona",
+      "passwordHash": "scrypt$1bcfa8bf7c36135250d20c728619f350$f13338afcf96012558c9e5fa5c940bbd64e32f481e51b9455556a6caca39a68abe264c5de9f93954428ebcd6f7280de1f1081144b8d9123b990cfc33f808f29a",
+      "role": "parent",
+      "emailVerified": false,
+      "status": "active",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:54:02.786Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:54:02.786Z",
+      "updatedAt": "2026-11-17T09:54:02.786Z"
+    },
+    "stu_8017d96107e5": {
+      "id": "stu_8017d96107e5",
+      "email": "ziad.student.1794909242353@example.com",
+      "normalizedEmail": "ziad.student.1794909242353@example.com",
+      "displayName": "Ziad Explorer",
+      "passwordHash": "scrypt$4fd366bad49a7696b16ce0d716a72b44$efe1a30349b6e6642bcd8d8b5a8c621de7c6fbcd1f76fc6c507a5b1636a2504cdefbb6ebbd8125aabc98d14c5ced6cd679479ccf715becdbeb9769d067d00838",
+      "role": "student",
+      "emailVerified": true,
+      "status": "active",
+      "linkedChildId": "ch_d8534f0787b0",
+      "policyVersion": "2026.1",
+      "termsAcceptedAt": "2026-11-17T09:54:02.867Z",
+      "failedLoginAttempts": 0,
+      "createdAt": "2026-11-17T09:54:02.867Z",
+      "updatedAt": "2026-11-17T09:54:02.969Z"
     }
   },
   "emailIndex": {
@@ -1055,7 +1381,23 @@
     "teacher.one.1794869742422@example.com": "tch_6b474a83596a",
     "teacher.two.1794869742422@example.com": "tch_c6e79119c65a",
     "mona.parent.1794869742422@example.com": "usr_9b0474dbc55b",
-    "ziad.student.1794869742422@example.com": "stu_0602a098a180"
+    "ziad.student.1794869742422@example.com": "stu_0602a098a180",
+    "parent.alpha.1794909227166@example.com": "usr_d9ec3c49aa9a",
+    "beta.1794909227166@example.com": "usr_5525970da179",
+    "lock.1794909227166@example.com": "usr_8eb164eafc6e",
+    "parent.smart.a.1794909229747@example.com": "usr_34d3158ba8e8",
+    "student.smart.1794909229747@example.com": "stu_7c009612353b",
+    "parent.smart.b.1794909229747@example.com": "usr_365e07e7e111",
+    "teacher.smart.1794909229747@example.com": "tch_d5aa975bc5b0",
+    "hw.teacher.1794909237178@example.com": "tch_c2bab9d3fd44",
+    "hw.parent.1794909237178@example.com": "usr_4c67841a3daf",
+    "zain.1794909237178@example.com": "stu_175fa9f0d99c",
+    "other.parent.1794909237178@example.com": "usr_bdfed2b4be08",
+    "other.stu.1794909237178@example.com": "stu_8ca35d1dc4d3",
+    "teacher.one.1794909242353@example.com": "tch_f1f093afb943",
+    "teacher.two.1794909242353@example.com": "tch_b51d5493be54",
+    "mona.parent.1794909242353@example.com": "usr_56eb99ddacc4",
+    "ziad.student.1794909242353@example.com": "stu_8017d96107e5"
   },
   "sessions": {
     "5aa16ed0bf2850d629d38c15593a2471176cd80946a2a77ad01ce3b9d5acfd88": {
@@ -1517,6 +1859,146 @@
       "expiresAt": 1795474542944,
       "ip": "127.0.0.1",
       "userAgent": "node"
+    },
+    "924b6d87b817f4eeeb559b114fefc4f75d58effa94c6712f9c6f3ad4ce11be2b": {
+      "tokenHash": "924b6d87b817f4eeeb559b114fefc4f75d58effa94c6712f9c6f3ad4ce11be2b",
+      "userId": "usr_5525970da179",
+      "csrfToken": "037ddd1bd5611ca23cce874a4043188ed8fd32d071d1d2de",
+      "createdAt": 1794909227548,
+      "lastActiveAt": 1794909227548,
+      "expiresAt": 1795514027548,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "d970b4718004c352289d942296e40c2fb20cbf7212e58af01a37239e80b1ef41": {
+      "tokenHash": "d970b4718004c352289d942296e40c2fb20cbf7212e58af01a37239e80b1ef41",
+      "userId": "usr_8eb164eafc6e",
+      "csrfToken": "c5e17c9aafc63469dd126a03637d968bf0a1a14808927dab",
+      "createdAt": 1794909227839,
+      "lastActiveAt": 1794909227839,
+      "expiresAt": 1795514027839,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "91e4824b6031158288a96988aad2092ead8097ca74012b4fb65b7c99a6080335": {
+      "tokenHash": "91e4824b6031158288a96988aad2092ead8097ca74012b4fb65b7c99a6080335",
+      "userId": "usr_34d3158ba8e8",
+      "csrfToken": "a81754fb0996576772363ddeab39b47f56c5bb87861d9573",
+      "createdAt": 1794909229920,
+      "lastActiveAt": 1794909229920,
+      "expiresAt": 1795514029920,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "f3ed011d7412a2de9083f6887613fbd07a6127cf0f0128768f5bb4696bf5fd28": {
+      "tokenHash": "f3ed011d7412a2de9083f6887613fbd07a6127cf0f0128768f5bb4696bf5fd28",
+      "userId": "stu_7c009612353b",
+      "csrfToken": "c0a39382ab1bfbca868efe5785515498558348e0ac4cfb25",
+      "createdAt": 1794909230103,
+      "lastActiveAt": 1794909230103,
+      "expiresAt": 1795514030103,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "75b2365cf21aee7502db9755409fa6269ae62befe3de80fa70b98699925ad063": {
+      "tokenHash": "75b2365cf21aee7502db9755409fa6269ae62befe3de80fa70b98699925ad063",
+      "userId": "usr_365e07e7e111",
+      "csrfToken": "52e069101fd9f8bdefe776beaddb9dd999efafff7445be95",
+      "createdAt": 1794909230176,
+      "lastActiveAt": 1794909230176,
+      "expiresAt": 1795514030176,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "12f506a5b39249846448589e99de6cc74a62160a6babfff991d21de71a8b0c9b": {
+      "tokenHash": "12f506a5b39249846448589e99de6cc74a62160a6babfff991d21de71a8b0c9b",
+      "userId": "tch_d5aa975bc5b0",
+      "csrfToken": "8532b6506a4b677f3b48ebb802c058275697123dfda1d939",
+      "createdAt": 1794909230326,
+      "lastActiveAt": 1794909230326,
+      "expiresAt": 1795514030326,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "ef6a142f428f7d36995270b88d0f5b371f202dc626e084808841551c65af56be": {
+      "tokenHash": "ef6a142f428f7d36995270b88d0f5b371f202dc626e084808841551c65af56be",
+      "userId": "tch_c2bab9d3fd44",
+      "csrfToken": "79871802e10e34c7e2a2ae4b975e8b4ff8c9cb12036e6c82",
+      "createdAt": 1794909237479,
+      "lastActiveAt": 1794909237479,
+      "expiresAt": 1795514037479,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "7418d91700e40503d0fab1f1156d86feaa592fc40b1a240a3c8d01a0399a56cf": {
+      "tokenHash": "7418d91700e40503d0fab1f1156d86feaa592fc40b1a240a3c8d01a0399a56cf",
+      "userId": "usr_4c67841a3daf",
+      "csrfToken": "b486094ad90a407107c6cdb503740c68cf8b00a3294af872",
+      "createdAt": 1794909237556,
+      "lastActiveAt": 1794909237556,
+      "expiresAt": 1795514037556,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "6585fd83e97bf81ade2e193c404b4d570d71b34abece8dc910bf5b62045a3c70": {
+      "tokenHash": "6585fd83e97bf81ade2e193c404b4d570d71b34abece8dc910bf5b62045a3c70",
+      "userId": "stu_175fa9f0d99c",
+      "csrfToken": "25608c2b4829ef8cd2e232341c7d9a01d46a0185a03ba8a8",
+      "createdAt": 1794909237713,
+      "lastActiveAt": 1794909237713,
+      "expiresAt": 1795514037713,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "2c201f7dab7c569ff4250074328b4f2924ea05ff983030488dd76e7fab3894b0": {
+      "tokenHash": "2c201f7dab7c569ff4250074328b4f2924ea05ff983030488dd76e7fab3894b0",
+      "userId": "usr_bdfed2b4be08",
+      "csrfToken": "8158dc664b82a36ebb4934bfbe698c14488a7e67839c5ced",
+      "createdAt": 1794909237786,
+      "lastActiveAt": 1794909237786,
+      "expiresAt": 1795514037786,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "59560b1b829f8920bc6ff67fe1a274acbed275829e4b9593bf7ec73cda7494b9": {
+      "tokenHash": "59560b1b829f8920bc6ff67fe1a274acbed275829e4b9593bf7ec73cda7494b9",
+      "userId": "stu_8ca35d1dc4d3",
+      "csrfToken": "50398b25a62874f2c3432b7ec45ceb5a8c1a0ce9fb05d7b2",
+      "createdAt": 1794909237941,
+      "lastActiveAt": 1794909237941,
+      "expiresAt": 1795514037941,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "4ea84d9a5b7b7ae5be7308c77bd4954e56ede161e47786a53a5bc78e8b058d82": {
+      "tokenHash": "4ea84d9a5b7b7ae5be7308c77bd4954e56ede161e47786a53a5bc78e8b058d82",
+      "userId": "tch_b51d5493be54",
+      "csrfToken": "ae13a786a3186b72077f91b39f614fb34200716f954d435b",
+      "createdAt": 1794909242773,
+      "lastActiveAt": 1794909242773,
+      "expiresAt": 1795514042773,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "0ff95b586c25da4dfac9a7015f7db78e1bef62fd6c1d2a4cbfdd69d4e6085169": {
+      "tokenHash": "0ff95b586c25da4dfac9a7015f7db78e1bef62fd6c1d2a4cbfdd69d4e6085169",
+      "userId": "usr_56eb99ddacc4",
+      "csrfToken": "fbb6d2f66e9f53beebd29319406c2d4bb7951fd3a8166a6f",
+      "createdAt": 1794909242832,
+      "lastActiveAt": 1794909242832,
+      "expiresAt": 1795514042832,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
+    },
+    "5888be25b2860b87d140451cce343485a033abaae63adb6b54d71ec21a8034dc": {
+      "tokenHash": "5888be25b2860b87d140451cce343485a033abaae63adb6b54d71ec21a8034dc",
+      "userId": "stu_8017d96107e5",
+      "csrfToken": "538def999168a2ca585b0e74178fa797d1fbdbeeb0d5b2d2",
+      "createdAt": 1794909242969,
+      "lastActiveAt": 1794909242969,
+      "expiresAt": 1795514042969,
+      "ip": "127.0.0.1",
+      "userAgent": "node"
     }
   },
   "actionTokens": {
@@ -1714,6 +2196,69 @@
       "userId": "usr_9b0474dbc55b",
       "type": "email-verify",
       "expiresAt": 1794956142828,
+      "used": false
+    },
+    "ddf1a3ee8f27c7e266fef851042a2336a18cd2397e5067786e234a798f298d18": {
+      "tokenHash": "ddf1a3ee8f27c7e266fef851042a2336a18cd2397e5067786e234a798f298d18",
+      "userId": "usr_d9ec3c49aa9a",
+      "type": "email-verify",
+      "expiresAt": 1794995627369,
+      "used": true
+    },
+    "e0948acb8e3c4decd2d5a998ee112dedc511cf9f63e46b6b87915d65173c769d": {
+      "tokenHash": "e0948acb8e3c4decd2d5a998ee112dedc511cf9f63e46b6b87915d65173c769d",
+      "userId": "usr_5525970da179",
+      "type": "email-verify",
+      "expiresAt": 1794995627547,
+      "used": false
+    },
+    "f4a1382da23f1cfcf312e37aa3f345744355fe13456fad8c71cec0ad1425c871": {
+      "tokenHash": "f4a1382da23f1cfcf312e37aa3f345744355fe13456fad8c71cec0ad1425c871",
+      "userId": "usr_8eb164eafc6e",
+      "type": "email-verify",
+      "expiresAt": 1794995627839,
+      "used": false
+    },
+    "6fecb2d88cc8cc7264fd917b6143ffc751e04d0002eb1c8abc5faadbce7831b3": {
+      "tokenHash": "6fecb2d88cc8cc7264fd917b6143ffc751e04d0002eb1c8abc5faadbce7831b3",
+      "userId": "usr_d9ec3c49aa9a",
+      "type": "password-reset",
+      "expiresAt": 1794911028185,
+      "used": true
+    },
+    "ef1c7439872d0486b7720c28895be58be9d0e46c257ab08a98f58ce54c1d43c1": {
+      "tokenHash": "ef1c7439872d0486b7720c28895be58be9d0e46c257ab08a98f58ce54c1d43c1",
+      "userId": "usr_34d3158ba8e8",
+      "type": "email-verify",
+      "expiresAt": 1794995629920,
+      "used": false
+    },
+    "78aeca79cf0a9b3c3d336fb66916f5c7289b936c74722b81c20e10483d442c08": {
+      "tokenHash": "78aeca79cf0a9b3c3d336fb66916f5c7289b936c74722b81c20e10483d442c08",
+      "userId": "usr_365e07e7e111",
+      "type": "email-verify",
+      "expiresAt": 1794995630176,
+      "used": false
+    },
+    "6f27efceb5b42376784dc324271bca0f18d60f75906a79d821f7602c658fcf7a": {
+      "tokenHash": "6f27efceb5b42376784dc324271bca0f18d60f75906a79d821f7602c658fcf7a",
+      "userId": "usr_4c67841a3daf",
+      "type": "email-verify",
+      "expiresAt": 1794995637556,
+      "used": false
+    },
+    "39ca6adf691194310ad719873bd9597a7fe3069f001707e227c7ae0cb75ca3b7": {
+      "tokenHash": "39ca6adf691194310ad719873bd9597a7fe3069f001707e227c7ae0cb75ca3b7",
+      "userId": "usr_bdfed2b4be08",
+      "type": "email-verify",
+      "expiresAt": 1794995637786,
+      "used": false
+    },
+    "1f448a80d1bb2cb2aca9f986a7698051570dff45b26e35a8b020ab6d71c528e2": {
+      "tokenHash": "1f448a80d1bb2cb2aca9f986a7698051570dff45b26e35a8b020ab6d71c528e2",
+      "userId": "usr_56eb99ddacc4",
+      "type": "email-verify",
+      "expiresAt": 1794995642832,
       "used": false
     }
   },
@@ -8552,6 +9097,1882 @@
       "familyActivitiesCompleted": [],
       "musicCompositions": [],
       "buildConstructions": []
+    },
+    "ch_6b111768e928": {
+      "id": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "displayName": "ليلى الصغيرة",
+      "birthYear": 2023,
+      "birthMonth": 4,
+      "ageGroup": "1-4",
+      "language": "ar",
+      "interests": [],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 9,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909227472",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909227472",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 0,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {
+        "AR01": {
+          "lessonId": "AR01",
+          "subject": "arabic",
+          "startedAt": "2026-11-17T09:53:47.603Z",
+          "explanationViewed": true,
+          "completedActivityIds": [
+            "tap-select",
+            "listen-select",
+            "match-picture",
+            "find-hidden",
+            "memory-challenge",
+            "independent-challenge"
+          ],
+          "correctCount": 6,
+          "mistakesCount": 0,
+          "lastScore": 6,
+          "lastTotal": 6,
+          "attemptsCount": 1,
+          "status": "demonstrated",
+          "lastPracticedAt": "2026-11-17T09:53:47.614Z",
+          "revisionDueAt": "2026-11-19T09:53:47.613Z"
+        },
+        "NM01": {
+          "lessonId": "NM01",
+          "subject": "numbers",
+          "startedAt": "2026-11-17T09:53:47.626Z",
+          "explanationViewed": true,
+          "completedActivityIds": [
+            "tap-select",
+            "listen-select",
+            "count-collect",
+            "match-picture",
+            "find-hidden",
+            "independent-challenge"
+          ],
+          "correctCount": 0,
+          "mistakesCount": 5,
+          "lastScore": 0,
+          "lastTotal": 5,
+          "attemptsCount": 1,
+          "status": "needs-revision",
+          "lastPracticedAt": "2026-11-17T09:53:47.638Z",
+          "revisionDueAt": "2026-11-17T21:53:47.638Z"
+        }
+      },
+      "level2Progress": {},
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": []
+    },
+    "ch_1c68caf725a9": {
+      "id": "ch_1c68caf725a9",
+      "parentId": "usr_34d3158ba8e8",
+      "displayName": "Noor",
+      "birthYear": 2023,
+      "birthMonth": 4,
+      "ageGroup": "1-4",
+      "language": "ar",
+      "interests": [
+        "science",
+        "reading"
+      ],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 3,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909229951",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909229951",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 0,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {},
+      "level2Progress": {},
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": [],
+      "studentUserId": "stu_7c009612353b"
+    },
+    "ch_29e2fdf9370a": {
+      "id": "ch_29e2fdf9370a",
+      "parentId": "usr_4c67841a3daf",
+      "displayName": "Zain",
+      "birthYear": 2023,
+      "birthMonth": 4,
+      "ageGroup": "1-4",
+      "language": "ar",
+      "interests": [],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 8,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [
+        "act-1"
+      ],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909237571",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909237571",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 7,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {},
+      "level2Progress": {},
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": [],
+      "studentUserId": "stu_175fa9f0d99c"
+    },
+    "ch_cad7daf02380": {
+      "id": "ch_cad7daf02380",
+      "parentId": "usr_bdfed2b4be08",
+      "displayName": "Unassigned Kid",
+      "birthYear": 2023,
+      "birthMonth": 6,
+      "ageGroup": "1-4",
+      "language": "en",
+      "interests": [],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 3,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909237802",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909237802",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 0,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {},
+      "level2Progress": {},
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": [],
+      "studentUserId": "stu_8ca35d1dc4d3"
+    },
+    "ch_d8534f0787b0": {
+      "id": "ch_d8534f0787b0",
+      "parentId": "usr_56eb99ddacc4",
+      "displayName": "Ziad Explorer",
+      "birthYear": 2023,
+      "birthMonth": 5,
+      "ageGroup": "1-4",
+      "language": "ar",
+      "interests": [],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 11,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909242844",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909242844",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 0,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {},
+      "level2Progress": {
+        "L2-AR01": {
+          "lessonId": "L2-AR01",
+          "subject": "arabic",
+          "startedAt": "2026-11-17T09:54:03.491Z",
+          "completedSteps": [
+            0,
+            1,
+            2
+          ],
+          "completedActivityIds": [
+            "act1",
+            "act2"
+          ],
+          "correctCount": 6,
+          "mistakesCount": 0,
+          "timeSpentSeconds": 95,
+          "lastScore": 4,
+          "lastTotal": 4,
+          "attemptsCount": 1,
+          "status": "demonstrated",
+          "skillsDemonstrated": [
+            "Distinguish between an Arabic letter name and its spoken sound in familiar words."
+          ],
+          "lastPracticedAt": "2026-11-17T09:54:03.520Z",
+          "revisionDueAt": "2026-11-18T09:54:03.520Z",
+          "reviewIntervalStep": 1
+        }
+      },
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": [],
+      "studentUserId": "stu_8017d96107e5"
+    },
+    "ch_0fd1eec66d09": {
+      "id": "ch_0fd1eec66d09",
+      "parentId": "usr_56eb99ddacc4",
+      "displayName": "Hana Learner",
+      "birthYear": 2023,
+      "birthMonth": 8,
+      "ageGroup": "1-4",
+      "language": "en",
+      "interests": [],
+      "companionId": "nono",
+      "companionScarfColor": "#8054D9",
+      "stars": 3,
+      "level": 1,
+      "completedBaseline": false,
+      "unlockedWorlds": [
+        "arabic-letters",
+        "english-letters",
+        "numbers-kingdom",
+        "animal-jungle",
+        "colors-shapes",
+        "intelligence-castle",
+        "science-galaxy",
+        "healthy-body",
+        "life-skills",
+        "creativity-island"
+      ],
+      "completedActivityIds": [],
+      "unlockedCharacters": [
+        "nono",
+        "nono"
+      ],
+      "unlockedBadges": [],
+      "unlockedRoomItems": [
+        "cloud-bed",
+        "sun-plant"
+      ],
+      "placedRoomItems": [
+        {
+          "instanceId": "init-1-1794909242857",
+          "itemId": "cloud-bed",
+          "x": 28,
+          "y": 68
+        },
+        {
+          "instanceId": "init-2-1794909242857",
+          "itemId": "sun-plant",
+          "x": 72,
+          "y": 65
+        }
+      ],
+      "savedDrawings": [],
+      "certificates": [],
+      "skillProgress": {
+        "early-recognition": {
+          "skillId": "early-recognition",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "arabic-literacy": {
+          "skillId": "arabic-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "english-literacy": {
+          "skillId": "english-literacy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "numeracy": {
+          "skillId": "numeracy",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "math-reasoning": {
+          "skillId": "math-reasoning",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "logic-patterns": {
+          "skillId": "logic-patterns",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "science-discovery": {
+          "skillId": "science-discovery",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "memory-focus": {
+          "skillId": "memory-focus",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "life-health": {
+          "skillId": "life-health",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        },
+        "creativity-expression": {
+          "skillId": "creativity-expression",
+          "attempts": 0,
+          "correctCount": 0,
+          "accuracy": 0,
+          "streak": 0,
+          "masteryLevel": "exploring"
+        }
+      },
+      "attempts": [],
+      "assessmentHistory": [],
+      "completedStoryIds": [],
+      "completedMissionsToday": [],
+      "totalLearningMinutes": 0,
+      "downloadedWorldIds": [
+        "arabic-letters",
+        "colors-shapes"
+      ],
+      "level1Progress": {},
+      "level2Progress": {},
+      "avatarConfig": {
+        "hairStyle": "classic",
+        "hairColor": "#27345C",
+        "skinTone": "#F6C7A3",
+        "outfit": "explorer",
+        "outfitColor": "#8054D9",
+        "accessory": "none",
+        "expression": "happy",
+        "unlockedCosmetics": [
+          "explorer",
+          "classic",
+          "happy"
+        ]
+      },
+      "roomConfig": {
+        "theme": "sunny",
+        "wallColor": "#FFF3D1",
+        "wallpaper": "clouds",
+        "floorStyle": "wood",
+        "curtains": "violet",
+        "rug": "cloud",
+        "lighting": "daylight",
+        "gardenPlants": [
+          {
+            "id": "gp-1",
+            "slotIndex": 0,
+            "speciesId": "sunflower",
+            "stage": 1,
+            "waterCount": 1
+          },
+          {
+            "id": "gp-2",
+            "slotIndex": 1,
+            "speciesId": "lavender",
+            "stage": 0,
+            "waterCount": 0
+          }
+        ],
+        "toyTapsCount": 0
+      },
+      "petState": {
+        "adopted": false,
+        "speciesId": "star-puppy",
+        "presetNameId": "coco-star",
+        "mood": "happy",
+        "accessories": [],
+        "habitatDecor": [],
+        "careCount": 0,
+        "playCount": 0
+      },
+      "completedLabIds": [],
+      "labHistory": [],
+      "customStories": [],
+      "creativeProjects": [],
+      "ownedShopItemIds": [],
+      "rewardTransactions": [],
+      "parentSchedule": {
+        "preferredDays": [
+          "sun",
+          "mon",
+          "tue",
+          "wed",
+          "thu"
+        ],
+        "dailyGoalMinutes": 25,
+        "reminderTime": "17:00",
+        "weeklySummaryEmail": true,
+        "achievementAlerts": true,
+        "focusAreas": [
+          "arabic",
+          "math",
+          "logic"
+        ]
+      },
+      "nextMonthPlan": [
+        {
+          "id": "plan-arabic",
+          "subject": "arabic",
+          "title": {
+            "ar": "تعزيز القراءة والحروف العربية",
+            "en": "Strengthen Arabic Letters & Reading"
+          },
+          "targetCount": 6,
+          "focusNote": {
+            "ar": "٤ دروس تفاعلية + قصتين عربيتين",
+            "en": "4 interactive lessons + 2 Arabic stories"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-english",
+          "subject": "english",
+          "title": {
+            "ar": "تنمية مفردات اللغة الإنجليزية",
+            "en": "Grow English Phonics & Vocabulary"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "التركيز على الاستماع والنطق البسيط",
+            "en": "Focus on listening and sound matching"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-math",
+          "subject": "math",
+          "title": {
+            "ar": "ممارسة الأرقام والعمليات الذهنية",
+            "en": "Numbers & Math Reasoning Practice"
+          },
+          "targetCount": 5,
+          "focusNote": {
+            "ar": "أنشطة عد ومقارنة وأنماط عددية",
+            "en": "Counting, comparisons, and number patterns"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-logic",
+          "subject": "logic",
+          "title": {
+            "ar": "تحديات الذكاء والمنطق والتركيز",
+            "en": "Brain Games & Logical Observation"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "ألعاب الذاكرة والمتاهات والتسلسل المنطقي",
+            "en": "Memory matching, mazes & sequencing"
+          },
+          "enabled": true
+        },
+        {
+          "id": "plan-creative",
+          "subject": "creative",
+          "title": {
+            "ar": "إبداعات فنية وتجارب مختبر نونو",
+            "en": "Creative Studio & Science Discovery"
+          },
+          "targetCount": 4,
+          "focusNote": {
+            "ar": "تجربتان في المختبر + مشروع رسم أو قصة",
+            "en": "2 Lab experiments + drawing or story project"
+          },
+          "enabled": true
+        }
+      ],
+      "activeDaysHistory": [],
+      "activityTimeline": [],
+      "aiAssistantEnabled": true,
+      "readingStageProgress": {},
+      "familyActivitiesCompleted": [],
+      "musicCompositions": [],
+      "buildConstructions": []
     }
   },
   "customLessons": [],
@@ -8603,6 +11024,30 @@
       "createdAt": "2026-11-16T22:55:08.519Z",
       "verifiedAt": "2026-11-16T22:55:08.525Z",
       "paymentToken": "paytok_47acd4396b8afa267ff45412",
+      "tokenConsumed": true
+    },
+    "chk_e483e8c1fa51": {
+      "id": "chk_e483e8c1fa51",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "subject": "comprehensive",
+      "amountEgp": 50,
+      "status": "verified",
+      "createdAt": "2026-11-17T09:53:47.650Z",
+      "verifiedAt": "2026-11-17T09:53:47.659Z",
+      "paymentToken": "paytok_8d6fe9c6179860e4e1f8cc63",
+      "tokenConsumed": true
+    },
+    "chk_a0c53ede639d": {
+      "id": "chk_a0c53ede639d",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "subject": "comprehensive",
+      "amountEgp": 50,
+      "status": "verified",
+      "createdAt": "2026-11-17T09:53:47.697Z",
+      "verifiedAt": "2026-11-17T09:53:47.706Z",
+      "paymentToken": "paytok_aa419fdff8c653052ec79b3b",
       "tokenConsumed": true
     }
   },
@@ -9002,6 +11447,204 @@
         "paymentVerified": true,
         "amountPaidEgp": 50
       }
+    },
+    "ex_fddad039157a": {
+      "id": "ex_fddad039157a",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "childName": "ليلى الصغيرة",
+      "ageGroup": "1-4",
+      "subject": "comprehensive",
+      "mode": "official",
+      "questionIds": [
+        "q-cs-cs-shape-1",
+        "q-ar-rec-ar-waaw",
+        "q-ar-rec-ar-dhaal",
+        "q-ar-rec-ar-sheen",
+        "q-ar-rec-ar-daal",
+        "q-ar-form-ar-thaa",
+        "q-ar-rec-ar-alif",
+        "q-ar-rec-ar-taa2",
+        "q-ar-rec-ar-dhaa2",
+        "q-ar-rec-ar-qaaf",
+        "q-ar-rec-ar-thaa",
+        "q-ar-form-ar-saad",
+        "q-ar-form-ar-daad",
+        "q-ar-rec-ar-zaay",
+        "q-ar-form-ar-jeem",
+        "q-en-cvc-en-a",
+        "q-ar-form-ar-alif",
+        "q-ar-form-ar-ayn",
+        "q-ar-rec-ar-jeem",
+        "q-ar-rec-ar-yaa",
+        "q-ar-rec-ar-saad",
+        "q-ar-form-ar-taa",
+        "q-en-cvc-en-e",
+        "q-ar-rec-ar-ayn",
+        "q-math-qty-12",
+        "q-col-white",
+        "q-cs-extra-ew-3",
+        "q-en-phon-en-o",
+        "q-math-gen-add-12-1",
+        "q-math-qty-2",
+        "q-math-m-add-1",
+        "q-math-gen-sub-11-2",
+        "q-math-qty-11",
+        "q-math-cmp-auto-4",
+        "q-cs-extra-ew-6",
+        "q-ar-rec-ar-meem",
+        "q-col-purple",
+        "q-cs-extra-ew-9",
+        "q-ar-rec-ar-noon",
+        "q-ar-form-ar-haa"
+      ],
+      "paymentVerified": true,
+      "amountPaidEgp": 50,
+      "passingPercentage": 70,
+      "submitted": true,
+      "createdAt": "2026-11-17T09:53:47.671Z",
+      "summary": {
+        "id": "ex_fddad039157a",
+        "childId": "ch_6b111768e928",
+        "childName": "ليلى الصغيرة",
+        "ageGroup": "1-4",
+        "subject": "comprehensive",
+        "mode": "official",
+        "score": 27,
+        "totalQuestions": 40,
+        "percentage": 68,
+        "passed": false,
+        "passingPercentage": 70,
+        "weakLessonTitles": [
+          {
+            "ar": "حرف O بالإنجليزية",
+            "en": "English Letter O"
+          },
+          {
+            "ar": "مقارنة الأعداد",
+            "en": "Comparing Numbers"
+          },
+          {
+            "ar": "العلوم والطبيعة والأشكال",
+            "en": "Science, Nature & Shapes"
+          },
+          {
+            "ar": "حرف مِيم (م)",
+            "en": "Arabic Letter Meem"
+          },
+          {
+            "ar": "اللون البنفسجي",
+            "en": "Color Purple"
+          },
+          {
+            "ar": "حرف نُون (ن)",
+            "en": "Arabic Letter Noon"
+          }
+        ],
+        "completedAt": "2026-11-17T09:53:47.687Z",
+        "paymentVerified": true,
+        "amountPaidEgp": 50
+      }
+    },
+    "ex_76629e858840": {
+      "id": "ex_76629e858840",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "childName": "ليلى الصغيرة",
+      "ageGroup": "1-4",
+      "subject": "comprehensive",
+      "mode": "official",
+      "questionIds": [
+        "q-ar-form-ar-jeem",
+        "q-math-gen-sub-10-1",
+        "q-math-qty-5",
+        "q-en-phon-en-c",
+        "q-ar-form-ar-daal",
+        "q-ar-rec-ar-ayn",
+        "q-ar-rec-ar-baa",
+        "q-ar-rec-ar-dhaa2",
+        "q-en-phon-en-l",
+        "q-en-phon-en-m",
+        "q-en-phon-en-u",
+        "q-ar-rec-ar-zaay",
+        "q-math-cmp-auto-6",
+        "q-ar-form-ar-alif",
+        "q-math-gen-sub-11-2",
+        "q-en-cvc-en-l",
+        "q-math-m-cmp-1",
+        "q-ar-rec-ar-taa",
+        "q-en-phon-en-s",
+        "q-ar-rec-ar-jeem",
+        "q-en-phon-en-g",
+        "q-math-m-add-1",
+        "q-math-qty-12",
+        "q-math-cmp-auto-3",
+        "q-cs-cs-mix-2",
+        "q-en-phon-en-j",
+        "q-math-m-seq-1",
+        "q-math-gen-sub-9-2",
+        "q-math-cmp-auto-8",
+        "q-math-gen-sub-7-2",
+        "q-cs-extra-ew-11",
+        "q-ar-form-ar-haa",
+        "q-ar-form-ar-taa",
+        "q-cs-cs-geo-1",
+        "q-math-gen-add-7-2",
+        "q-en-phon-en-h",
+        "q-cs-cs-shape-1",
+        "q-cs-swatch-white",
+        "q-en-phon-en-z",
+        "q-ar-rec-ar-seen"
+      ],
+      "paymentVerified": true,
+      "amountPaidEgp": 50,
+      "passingPercentage": 70,
+      "submitted": true,
+      "createdAt": "2026-11-17T09:53:47.719Z",
+      "certificateCode": "NLC-2026-807831",
+      "summary": {
+        "id": "ex_76629e858840",
+        "childId": "ch_6b111768e928",
+        "childName": "ليلى الصغيرة",
+        "ageGroup": "1-4",
+        "subject": "comprehensive",
+        "mode": "official",
+        "score": 28,
+        "totalQuestions": 40,
+        "percentage": 70,
+        "passed": true,
+        "passingPercentage": 70,
+        "weakLessonTitles": [
+          {
+            "ar": "نعدّ معاً (7 + 2)",
+            "en": "Counting Together (7 + 2)"
+          },
+          {
+            "ar": "الألوان والأشكال والطبيعة",
+            "en": "Colors, Shapes & Nature"
+          },
+          {
+            "ar": "أشكال وموقع حرف ح",
+            "en": "Forms of Haa"
+          },
+          {
+            "ar": "أشكال وموقع حرف ت",
+            "en": "Forms of Taa"
+          },
+          {
+            "ar": "حرف H بالإنجليزية",
+            "en": "English Letter H"
+          },
+          {
+            "ar": "تطبيق اللون أبيض",
+            "en": "Applying White"
+          }
+        ],
+        "certificateCode": "NLC-2026-807831",
+        "completedAt": "2026-11-17T09:53:47.731Z",
+        "paymentVerified": true,
+        "amountPaidEgp": 50
+      }
     }
   },
   "level1Attempts": {
@@ -9098,6 +11741,53 @@
         "status": "needs-revision",
         "revisionDueAt": "2026-11-17T10:55:08.474Z"
       }
+    },
+    "l1_0c651ee16c85": {
+      "id": "l1_0c651ee16c85",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "lessonId": "AR01",
+      "questionIds": [
+        "AR01-Q04",
+        "AR01-Q08",
+        "AR01-Q06",
+        "AR01-Q01",
+        "AR01-Q09",
+        "AR01-Q10"
+      ],
+      "submitted": true,
+      "createdAt": "2026-11-17T09:53:47.603Z",
+      "result": {
+        "score": 6,
+        "totalQuestions": 6,
+        "percentage": 100,
+        "demonstrated": true,
+        "status": "demonstrated",
+        "revisionDueAt": "2026-11-19T09:53:47.613Z"
+      }
+    },
+    "l1_ff1def11493c": {
+      "id": "l1_ff1def11493c",
+      "childId": "ch_6b111768e928",
+      "parentId": "usr_d9ec3c49aa9a",
+      "lessonId": "NM01",
+      "questionIds": [
+        "NM01-Q03",
+        "NM01-Q02",
+        "NM01-Q06",
+        "NM01-Q09",
+        "NM01-Q10"
+      ],
+      "submitted": true,
+      "createdAt": "2026-11-17T09:53:47.626Z",
+      "result": {
+        "score": 0,
+        "totalQuestions": 5,
+        "percentage": 0,
+        "demonstrated": false,
+        "status": "needs-revision",
+        "revisionDueAt": "2026-11-17T21:53:47.638Z"
+      }
     }
   },
   "level2Attempts": {
@@ -9144,6 +11834,29 @@
         "demonstrated": true,
         "status": "demonstrated",
         "revisionDueAt": "2026-11-17T22:55:43.383Z",
+        "reviewIntervalStep": 1
+      }
+    },
+    "l2_ca1906e7d536": {
+      "id": "l2_ca1906e7d536",
+      "childId": "ch_d8534f0787b0",
+      "parentId": "usr_56eb99ddacc4",
+      "lessonId": "L2-AR01",
+      "questionIds": [
+        "L2-AR01-Q5",
+        "L2-AR01-Q6",
+        "L2-AR01-Q7",
+        "L2-AR01-Q1"
+      ],
+      "submitted": true,
+      "createdAt": "2026-11-17T09:54:03.506Z",
+      "result": {
+        "score": 4,
+        "totalQuestions": 4,
+        "percentage": 100,
+        "demonstrated": true,
+        "status": "demonstrated",
+        "revisionDueAt": "2026-11-18T09:54:03.520Z",
         "reviewIntervalStep": 1
       }
     }
@@ -9231,6 +11944,45 @@
       "active": true,
       "createdAt": "2026-11-16T22:55:42.975Z",
       "updatedAt": "2026-11-16T22:55:42.975Z"
+    },
+    "cls_d736678b9c": {
+      "id": "cls_d736678b9c",
+      "name": "Class A-1794909237178",
+      "subject": "arabic",
+      "level": 2,
+      "teacherId": "tch_c2bab9d3fd44",
+      "studentIds": [
+        "ch_29e2fdf9370a"
+      ],
+      "active": true,
+      "createdAt": "2026-11-17T09:53:57.955Z",
+      "updatedAt": "2026-11-17T09:53:57.955Z"
+    },
+    "cls_6678e52401": {
+      "id": "cls_6678e52401",
+      "name": "Explorers Class A",
+      "subject": "comprehensive",
+      "level": 2,
+      "teacherId": "tch_f1f093afb943",
+      "studentIds": [
+        "ch_d8534f0787b0"
+      ],
+      "active": true,
+      "createdAt": "2026-11-17T09:54:03.003Z",
+      "updatedAt": "2026-11-17T09:54:03.003Z"
+    },
+    "cls_35d5977c15": {
+      "id": "cls_35d5977c15",
+      "name": "Explorers Class B",
+      "subject": "english",
+      "level": 2,
+      "teacherId": "tch_b51d5493be54",
+      "studentIds": [
+        "ch_0fd1eec66d09"
+      ],
+      "active": true,
+      "createdAt": "2026-11-17T09:54:03.014Z",
+      "updatedAt": "2026-11-17T09:54:03.014Z"
     }
   },
   "teacherQuestions": {
@@ -9344,6 +12096,11 @@
           "code": "LOW_OPTION_COUNT",
           "severity": "warning",
           "message": "Recommended at least 3 choices for this question type."
+        },
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
         }
       ],
       "version": 1,
@@ -9395,7 +12152,13 @@
       "id": "tq_59425018ae0c",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:38.930Z",
@@ -9440,7 +12203,13 @@
       "id": "tq_91f12d8e59b3",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:38.936Z",
@@ -9485,7 +12254,13 @@
       "id": "tq_a45c0267d6c6",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:38.943Z",
@@ -9523,7 +12298,13 @@
       "id": "tq_542ced187112",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:38.949Z",
@@ -9561,7 +12342,13 @@
       "id": "tq_36af591a3337",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:38.956Z",
@@ -9614,6 +12401,11 @@
           "code": "LOW_OPTION_COUNT",
           "severity": "warning",
           "message": "Recommended at least 3 choices for this question type."
+        },
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
         }
       ],
       "version": 1,
@@ -9656,7 +12448,13 @@
       "id": "tq_1f3cdc71d62b",
       "teacherId": "tch_d1b2fdc9e522",
       "approvalStatus": "published",
-      "qualityFlags": [],
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
       "version": 1,
       "versions": [],
       "createdAt": "2026-11-16T21:25:39.119Z",
@@ -10135,6 +12933,480 @@
       "versions": [],
       "createdAt": "2026-11-16T22:55:43.250Z",
       "updatedAt": "2026-11-16T22:55:43.250Z"
+    },
+    "tq_69289cff35bf": {
+      "subject": "arabic",
+      "level": 2,
+      "lessonId": "L2-MA01",
+      "questionType": "multiple-choice",
+      "promptAr": "ما ناتج الجمع؟",
+      "promptEn": "",
+      "options": [
+        {
+          "id": "a",
+          "textAr": "٢",
+          "textEn": "2"
+        },
+        {
+          "id": "b",
+          "textAr": "٣",
+          "textEn": "3"
+        }
+      ],
+      "correctOptionId": "a",
+      "allowMultipleCorrect": false,
+      "marks": 2,
+      "difficulty": "medium",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_69289cff35bf",
+      "teacherId": "tch_c2bab9d3fd44",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "MISSING_AR_OR_EN",
+          "severity": "warning",
+          "message": "Bilingual parity check: question is missing either Arabic or English text."
+        },
+        {
+          "code": "LOW_OPTION_COUNT",
+          "severity": "warning",
+          "message": "Recommended at least 3 choices for this question type."
+        },
+        {
+          "code": "SUBJECT_LESSON_MISMATCH",
+          "severity": "warning",
+          "message": "Selected lesson (L2-MA01, subject math) differs from question subject (arabic)."
+        },
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:53:58.079Z",
+      "updatedAt": "2026-11-17T09:53:58.079Z"
+    },
+    "tq_4d1a602c27fc": {
+      "subject": "arabic",
+      "level": 2,
+      "lessonId": "L2-AR01",
+      "questionType": "multiple-choice",
+      "promptAr": "اختر الحرف بحركة الفتحة",
+      "promptEn": "Pick the letter with Fatha",
+      "options": [
+        {
+          "id": "a",
+          "textAr": "بَ",
+          "textEn": "Ba"
+        },
+        {
+          "id": "b",
+          "textAr": "بُ",
+          "textEn": "Bu"
+        }
+      ],
+      "correctOptionId": "a",
+      "allowMultipleCorrect": false,
+      "marks": 5,
+      "difficulty": "medium",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_4d1a602c27fc",
+      "teacherId": "tch_c2bab9d3fd44",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "LOW_OPTION_COUNT",
+          "severity": "warning",
+          "message": "Recommended at least 3 choices for this question type."
+        },
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:53:58.103Z",
+      "updatedAt": "2026-11-17T09:53:58.103Z"
+    },
+    "tq_3a606a4e1312": {
+      "subject": "arabic",
+      "level": 2,
+      "lessonId": "L2-AR01",
+      "questionType": "multiple-choice",
+      "promptAr": "ما صوت حرف الباء بالفتحة؟",
+      "promptEn": "What is the Fatha sound of Ba?",
+      "options": [
+        {
+          "id": "a",
+          "textAr": "بَ",
+          "textEn": "Ba"
+        },
+        {
+          "id": "b",
+          "textAr": "تَ",
+          "textEn": "Ta"
+        },
+        {
+          "id": "c",
+          "textAr": "ثَ",
+          "textEn": "Tha"
+        }
+      ],
+      "correctOptionId": "a",
+      "allowMultipleCorrect": false,
+      "marks": 2,
+      "difficulty": "easy",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_3a606a4e1312",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.051Z",
+      "updatedAt": "2026-11-17T09:54:03.051Z"
+    },
+    "tq_98a0ade889a1": {
+      "subject": "math",
+      "level": 2,
+      "lessonId": "L2-MA04",
+      "questionType": "true-false",
+      "promptAr": "٤ + ٣ = ٧",
+      "promptEn": "4 + 3 = 7",
+      "options": [
+        {
+          "id": "a",
+          "textAr": "صح",
+          "textEn": "True"
+        },
+        {
+          "id": "b",
+          "textAr": "خطأ",
+          "textEn": "False"
+        }
+      ],
+      "correctOptionId": "a",
+      "allowMultipleCorrect": false,
+      "marks": 2,
+      "difficulty": "easy",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_98a0ade889a1",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.062Z",
+      "updatedAt": "2026-11-17T09:54:03.062Z"
+    },
+    "tq_40b26cf40e37": {
+      "subject": "logic",
+      "level": 2,
+      "lessonId": "L2-LG02",
+      "questionType": "matching",
+      "promptAr": "طابق الكلمة بصفتها",
+      "promptEn": "Match each item to its trait",
+      "options": [],
+      "allowMultipleCorrect": false,
+      "matchingPairs": [
+        {
+          "id": "p1",
+          "left": "Sun",
+          "right": "Day"
+        },
+        {
+          "id": "p2",
+          "left": "Moon",
+          "right": "Night"
+        }
+      ],
+      "marks": 2,
+      "difficulty": "medium",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_40b26cf40e37",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.074Z",
+      "updatedAt": "2026-11-17T09:54:03.074Z"
+    },
+    "tq_6d8979f514e7": {
+      "subject": "math",
+      "level": 2,
+      "lessonId": "L2-MA01",
+      "questionType": "ordering",
+      "promptAr": "رتب الأرقام تصاعدياً",
+      "promptEn": "Order numbers ascending",
+      "options": [],
+      "allowMultipleCorrect": false,
+      "correctOrder": [
+        "11",
+        "15",
+        "20"
+      ],
+      "marks": 2,
+      "difficulty": "medium",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_6d8979f514e7",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.084Z",
+      "updatedAt": "2026-11-17T09:54:03.084Z"
+    },
+    "tq_30aa77023f29": {
+      "subject": "math",
+      "level": 2,
+      "lessonId": "L2-MA04",
+      "questionType": "short-answer",
+      "promptAr": "كم ناتج ٦ + ٤؟",
+      "promptEn": "What is 6 + 4?",
+      "options": [],
+      "allowMultipleCorrect": false,
+      "acceptedAnswers": [
+        "10",
+        "ten",
+        "١٠"
+      ],
+      "marks": 2,
+      "difficulty": "easy",
+      "explanation": {
+        "ar": "",
+        "en": ""
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_30aa77023f29",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.095Z",
+      "updatedAt": "2026-11-17T09:54:03.095Z"
+    },
+    "tq_5b1a31dbca9a": {
+      "subject": "english",
+      "level": 2,
+      "lessonId": "L2-EN01",
+      "questionType": "multiple-choice",
+      "promptAr": "ما صوت sh؟",
+      "promptEn": "What sound is sh?",
+      "options": [
+        {
+          "id": "a",
+          "textAr": "ش",
+          "textEn": "sh"
+        },
+        {
+          "id": "b",
+          "textAr": "تش",
+          "textEn": "ch"
+        }
+      ],
+      "correctOptionId": "a",
+      "allowMultipleCorrect": false,
+      "matchingPairs": [],
+      "correctOrder": [],
+      "acceptedAnswers": [],
+      "marks": 2,
+      "difficulty": "easy",
+      "explanation": {
+        "ar": "sh makes sh sound",
+        "en": "sh sounds like sh"
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_5b1a31dbca9a",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "LOW_OPTION_COUNT",
+          "severity": "warning",
+          "message": "Recommended at least 3 choices for this question type."
+        },
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.232Z",
+      "updatedAt": "2026-11-17T09:54:03.232Z"
+    },
+    "tq_6350e129b455": {
+      "subject": "math",
+      "level": 2,
+      "lessonId": "L2-MA05",
+      "questionType": "short-answer",
+      "promptAr": "كم ٩ - ٤؟",
+      "promptEn": "What is 9 - 4?",
+      "options": [],
+      "correctOptionId": "",
+      "allowMultipleCorrect": false,
+      "matchingPairs": [],
+      "correctOrder": [],
+      "acceptedAnswers": [
+        "5",
+        "five",
+        "٥"
+      ],
+      "marks": 3,
+      "difficulty": "medium",
+      "explanation": {
+        "ar": "٩ ناقص ٤ يساوي ٥",
+        "en": "9 minus 4 equals 5"
+      },
+      "feedbackCorrect": {
+        "ar": "أحسنت! إجابة صحيحة",
+        "en": "Great job! Correct answer!"
+      },
+      "feedbackIncorrect": {
+        "ar": "راجع القاعدة وحاول مجدداً",
+        "en": "Review the lesson tip and try again."
+      },
+      "active": true,
+      "id": "tq_6350e129b455",
+      "teacherId": "tch_f1f093afb943",
+      "approvalStatus": "published",
+      "qualityFlags": [
+        {
+          "code": "DUPLICATE_PROMPT",
+          "severity": "warning",
+          "message": "A very similar or identical question already exists for this lesson."
+        }
+      ],
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.353Z",
+      "updatedAt": "2026-11-17T09:54:03.353Z"
     }
   },
   "teacherExams": {
@@ -11433,6 +14705,687 @@
       "versions": [],
       "createdAt": "2026-11-16T22:55:43.278Z",
       "updatedAt": "2026-11-16T22:55:43.278Z"
+    },
+    "tex_6c50561225cb": {
+      "title": {
+        "ar": "اختبار المستكشفون الشامل",
+        "en": "Explorers Mastery Exam"
+      },
+      "description": {
+        "ar": "تقييم شامل",
+        "en": "Comprehensive teacher evaluation"
+      },
+      "subject": "comprehensive",
+      "level": 2,
+      "ageGroup": "1-4",
+      "lessonIds": [
+        "L2-AR01",
+        "L2-MA04",
+        "L2-LG02",
+        "L2-MA01"
+      ],
+      "questionIds": [
+        "tq_3a606a4e1312",
+        "tq_98a0ade889a1",
+        "tq_40b26cf40e37",
+        "tq_6d8979f514e7",
+        "tq_30aa77023f29"
+      ],
+      "questionSnapshots": {
+        "tq_3a606a4e1312": {
+          "subject": "arabic",
+          "level": 2,
+          "lessonId": "L2-AR01",
+          "questionType": "multiple-choice",
+          "promptAr": "ما صوت حرف الباء بالفتحة؟",
+          "promptEn": "What is the Fatha sound of Ba?",
+          "options": [
+            {
+              "id": "a",
+              "textAr": "بَ",
+              "textEn": "Ba"
+            },
+            {
+              "id": "b",
+              "textAr": "تَ",
+              "textEn": "Ta"
+            },
+            {
+              "id": "c",
+              "textAr": "ثَ",
+              "textEn": "Tha"
+            }
+          ],
+          "correctOptionId": "a",
+          "allowMultipleCorrect": false,
+          "marks": 2,
+          "difficulty": "easy",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_3a606a4e1312",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.051Z",
+          "updatedAt": "2026-11-17T09:54:03.051Z"
+        },
+        "tq_98a0ade889a1": {
+          "subject": "math",
+          "level": 2,
+          "lessonId": "L2-MA04",
+          "questionType": "true-false",
+          "promptAr": "٤ + ٣ = ٧",
+          "promptEn": "4 + 3 = 7",
+          "options": [
+            {
+              "id": "a",
+              "textAr": "صح",
+              "textEn": "True"
+            },
+            {
+              "id": "b",
+              "textAr": "خطأ",
+              "textEn": "False"
+            }
+          ],
+          "correctOptionId": "a",
+          "allowMultipleCorrect": false,
+          "marks": 2,
+          "difficulty": "easy",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_98a0ade889a1",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.062Z",
+          "updatedAt": "2026-11-17T09:54:03.062Z"
+        },
+        "tq_40b26cf40e37": {
+          "subject": "logic",
+          "level": 2,
+          "lessonId": "L2-LG02",
+          "questionType": "matching",
+          "promptAr": "طابق الكلمة بصفتها",
+          "promptEn": "Match each item to its trait",
+          "options": [],
+          "allowMultipleCorrect": false,
+          "matchingPairs": [
+            {
+              "id": "p1",
+              "left": "Sun",
+              "right": "Day"
+            },
+            {
+              "id": "p2",
+              "left": "Moon",
+              "right": "Night"
+            }
+          ],
+          "marks": 2,
+          "difficulty": "medium",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_40b26cf40e37",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.074Z",
+          "updatedAt": "2026-11-17T09:54:03.074Z"
+        },
+        "tq_6d8979f514e7": {
+          "subject": "math",
+          "level": 2,
+          "lessonId": "L2-MA01",
+          "questionType": "ordering",
+          "promptAr": "رتب الأرقام تصاعدياً",
+          "promptEn": "Order numbers ascending",
+          "options": [],
+          "allowMultipleCorrect": false,
+          "correctOrder": [
+            "11",
+            "15",
+            "20"
+          ],
+          "marks": 2,
+          "difficulty": "medium",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_6d8979f514e7",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.084Z",
+          "updatedAt": "2026-11-17T09:54:03.084Z"
+        },
+        "tq_30aa77023f29": {
+          "subject": "math",
+          "level": 2,
+          "lessonId": "L2-MA04",
+          "questionType": "short-answer",
+          "promptAr": "كم ناتج ٦ + ٤؟",
+          "promptEn": "What is 6 + 4?",
+          "options": [],
+          "allowMultipleCorrect": false,
+          "acceptedAnswers": [
+            "10",
+            "ten",
+            "١٠"
+          ],
+          "marks": 2,
+          "difficulty": "easy",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_30aa77023f29",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.095Z",
+          "updatedAt": "2026-11-17T09:54:03.095Z"
+        }
+      },
+      "totalQuestions": 5,
+      "totalMarks": 10,
+      "passingPercentage": 70,
+      "durationMinutes": 20,
+      "startDate": "2026-11-17T09:53:03.367Z",
+      "endDate": "2026-11-18T09:54:03.367Z",
+      "allowedAttempts": 2,
+      "randomizeQuestions": false,
+      "randomizeAnswers": false,
+      "showResults": false,
+      "showCorrectAnswers": true,
+      "status": "published",
+      "id": "tex_6c50561225cb",
+      "teacherId": "tch_f1f093afb943",
+      "version": 2,
+      "versions": [
+        {
+          "version": 1,
+          "editedBy": "tch_f1f093afb943",
+          "editedByName": "Ms. Nadia Hassan",
+          "editedAt": "2026-11-17T09:54:03.476Z",
+          "reason": "Teacher exam edit",
+          "snapshot": {
+            "title": {
+              "ar": "اختبار المستكشفون الشامل",
+              "en": "Explorers Mastery Exam"
+            },
+            "description": {
+              "ar": "تقييم شامل",
+              "en": "Comprehensive teacher evaluation"
+            },
+            "subject": "comprehensive",
+            "level": 2,
+            "ageGroup": "1-4",
+            "lessonIds": [
+              "L2-AR01",
+              "L2-MA04",
+              "L2-LG02",
+              "L2-MA01"
+            ],
+            "questionIds": [
+              "tq_3a606a4e1312",
+              "tq_98a0ade889a1",
+              "tq_40b26cf40e37",
+              "tq_6d8979f514e7",
+              "tq_30aa77023f29"
+            ],
+            "questionSnapshots": {
+              "tq_3a606a4e1312": {
+                "subject": "arabic",
+                "level": 2,
+                "lessonId": "L2-AR01",
+                "questionType": "multiple-choice",
+                "promptAr": "ما صوت حرف الباء بالفتحة؟",
+                "promptEn": "What is the Fatha sound of Ba?",
+                "options": [
+                  {
+                    "id": "a",
+                    "textAr": "بَ",
+                    "textEn": "Ba"
+                  },
+                  {
+                    "id": "b",
+                    "textAr": "تَ",
+                    "textEn": "Ta"
+                  },
+                  {
+                    "id": "c",
+                    "textAr": "ثَ",
+                    "textEn": "Tha"
+                  }
+                ],
+                "correctOptionId": "a",
+                "allowMultipleCorrect": false,
+                "marks": 2,
+                "difficulty": "easy",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_3a606a4e1312",
+                "teacherId": "tch_f1f093afb943",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:54:03.051Z",
+                "updatedAt": "2026-11-17T09:54:03.051Z"
+              },
+              "tq_98a0ade889a1": {
+                "subject": "math",
+                "level": 2,
+                "lessonId": "L2-MA04",
+                "questionType": "true-false",
+                "promptAr": "٤ + ٣ = ٧",
+                "promptEn": "4 + 3 = 7",
+                "options": [
+                  {
+                    "id": "a",
+                    "textAr": "صح",
+                    "textEn": "True"
+                  },
+                  {
+                    "id": "b",
+                    "textAr": "خطأ",
+                    "textEn": "False"
+                  }
+                ],
+                "correctOptionId": "a",
+                "allowMultipleCorrect": false,
+                "marks": 2,
+                "difficulty": "easy",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_98a0ade889a1",
+                "teacherId": "tch_f1f093afb943",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:54:03.062Z",
+                "updatedAt": "2026-11-17T09:54:03.062Z"
+              },
+              "tq_40b26cf40e37": {
+                "subject": "logic",
+                "level": 2,
+                "lessonId": "L2-LG02",
+                "questionType": "matching",
+                "promptAr": "طابق الكلمة بصفتها",
+                "promptEn": "Match each item to its trait",
+                "options": [],
+                "allowMultipleCorrect": false,
+                "matchingPairs": [
+                  {
+                    "id": "p1",
+                    "left": "Sun",
+                    "right": "Day"
+                  },
+                  {
+                    "id": "p2",
+                    "left": "Moon",
+                    "right": "Night"
+                  }
+                ],
+                "marks": 2,
+                "difficulty": "medium",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_40b26cf40e37",
+                "teacherId": "tch_f1f093afb943",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:54:03.074Z",
+                "updatedAt": "2026-11-17T09:54:03.074Z"
+              },
+              "tq_6d8979f514e7": {
+                "subject": "math",
+                "level": 2,
+                "lessonId": "L2-MA01",
+                "questionType": "ordering",
+                "promptAr": "رتب الأرقام تصاعدياً",
+                "promptEn": "Order numbers ascending",
+                "options": [],
+                "allowMultipleCorrect": false,
+                "correctOrder": [
+                  "11",
+                  "15",
+                  "20"
+                ],
+                "marks": 2,
+                "difficulty": "medium",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_6d8979f514e7",
+                "teacherId": "tch_f1f093afb943",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:54:03.084Z",
+                "updatedAt": "2026-11-17T09:54:03.084Z"
+              },
+              "tq_30aa77023f29": {
+                "subject": "math",
+                "level": 2,
+                "lessonId": "L2-MA04",
+                "questionType": "short-answer",
+                "promptAr": "كم ناتج ٦ + ٤؟",
+                "promptEn": "What is 6 + 4?",
+                "options": [],
+                "allowMultipleCorrect": false,
+                "acceptedAnswers": [
+                  "10",
+                  "ten",
+                  "١٠"
+                ],
+                "marks": 2,
+                "difficulty": "easy",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_30aa77023f29",
+                "teacherId": "tch_f1f093afb943",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:54:03.095Z",
+                "updatedAt": "2026-11-17T09:54:03.095Z"
+              }
+            },
+            "totalQuestions": 5,
+            "totalMarks": 10,
+            "passingPercentage": 70,
+            "durationMinutes": 20,
+            "startDate": "2026-11-17T09:53:03.367Z",
+            "endDate": "2026-11-18T09:54:03.367Z",
+            "allowedAttempts": 2,
+            "randomizeQuestions": false,
+            "randomizeAnswers": false,
+            "showResults": true,
+            "showCorrectAnswers": true,
+            "status": "published",
+            "id": "tex_6c50561225cb",
+            "teacherId": "tch_f1f093afb943",
+            "version": 1,
+            "createdAt": "2026-11-17T09:54:03.374Z",
+            "updatedAt": "2026-11-17T09:54:03.374Z"
+          }
+        }
+      ],
+      "createdAt": "2026-11-17T09:54:03.374Z",
+      "updatedAt": "2026-11-17T09:54:03.476Z"
+    },
+    "tex_614fc1cae423": {
+      "title": {
+        "ar": "امتحان مستقبلي",
+        "en": "Future Scheduled Exam"
+      },
+      "description": {
+        "ar": "",
+        "en": ""
+      },
+      "subject": "math",
+      "level": 2,
+      "ageGroup": "1-4",
+      "lessonIds": [
+        "L2-MA04"
+      ],
+      "questionIds": [
+        "tq_98a0ade889a1"
+      ],
+      "questionSnapshots": {
+        "tq_98a0ade889a1": {
+          "subject": "math",
+          "level": 2,
+          "lessonId": "L2-MA04",
+          "questionType": "true-false",
+          "promptAr": "٤ + ٣ = ٧",
+          "promptEn": "4 + 3 = 7",
+          "options": [
+            {
+              "id": "a",
+              "textAr": "صح",
+              "textEn": "True"
+            },
+            {
+              "id": "b",
+              "textAr": "خطأ",
+              "textEn": "False"
+            }
+          ],
+          "correctOptionId": "a",
+          "allowMultipleCorrect": false,
+          "marks": 2,
+          "difficulty": "easy",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_98a0ade889a1",
+          "teacherId": "tch_f1f093afb943",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:54:03.062Z",
+          "updatedAt": "2026-11-17T09:54:03.062Z"
+        }
+      },
+      "totalQuestions": 1,
+      "totalMarks": 2,
+      "passingPercentage": 70,
+      "durationMinutes": 10,
+      "startDate": "2026-11-17T11:54:03.367Z",
+      "endDate": "2026-11-18T11:54:03.367Z",
+      "allowedAttempts": 1,
+      "randomizeQuestions": false,
+      "randomizeAnswers": false,
+      "showResults": true,
+      "showCorrectAnswers": true,
+      "status": "published",
+      "id": "tex_614fc1cae423",
+      "teacherId": "tch_f1f093afb943",
+      "version": 1,
+      "versions": [],
+      "createdAt": "2026-11-17T09:54:03.384Z",
+      "updatedAt": "2026-11-17T09:54:03.384Z"
     }
   },
   "examAssignments": {
@@ -11476,6 +15429,27 @@
       "assignedAt": "2026-11-16T22:55:43.294Z",
       "availableStartDate": "2026-11-17T00:55:43.261Z",
       "deadline": "2026-11-18T00:55:43.261Z",
+      "status": "assigned"
+    },
+    "asgn_d1bf609a40eb": {
+      "id": "asgn_d1bf609a40eb",
+      "examId": "tex_6c50561225cb",
+      "studentId": "ch_d8534f0787b0",
+      "teacherId": "tch_f1f093afb943",
+      "classId": "cls_6678e52401",
+      "assignedAt": "2026-11-17T09:54:03.394Z",
+      "availableStartDate": "2026-11-17T09:53:03.367Z",
+      "deadline": "2026-11-18T09:54:03.367Z",
+      "status": "completed"
+    },
+    "asgn_a3fa46abbcbc": {
+      "id": "asgn_a3fa46abbcbc",
+      "examId": "tex_614fc1cae423",
+      "studentId": "ch_d8534f0787b0",
+      "teacherId": "tch_f1f093afb943",
+      "assignedAt": "2026-11-17T09:54:03.405Z",
+      "availableStartDate": "2026-11-17T11:54:03.367Z",
+      "deadline": "2026-11-18T11:54:03.367Z",
       "status": "assigned"
     }
   },
@@ -11795,6 +15769,174 @@
         },
         {
           "questionId": "tq_b67e8398f11f",
+          "questionType": "short-answer",
+          "prompt": {
+            "ar": "كم ناتج ٦ + ٤؟",
+            "en": "What is 6 + 4?"
+          },
+          "submittedAnswer": "  Ten ",
+          "correctAnswer": "10",
+          "isCorrect": true,
+          "marksAwarded": 2,
+          "maxMarks": 2,
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedback": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          }
+        }
+      ]
+    },
+    "att_e27ce1183ca8": {
+      "id": "att_e27ce1183ca8",
+      "assignmentId": "asgn_d1bf609a40eb",
+      "examId": "tex_6c50561225cb",
+      "studentId": "ch_d8534f0787b0",
+      "teacherId": "tch_f1f093afb943",
+      "attemptNumber": 1,
+      "questionIds": [
+        "tq_3a606a4e1312",
+        "tq_98a0ade889a1",
+        "tq_40b26cf40e37",
+        "tq_6d8979f514e7",
+        "tq_30aa77023f29"
+      ],
+      "optionOrderMap": {
+        "tq_3a606a4e1312": [
+          "a",
+          "b",
+          "c"
+        ],
+        "tq_98a0ade889a1": [
+          "a",
+          "b"
+        ]
+      },
+      "answers": {
+        "tq_3a606a4e1312": "a",
+        "tq_98a0ade889a1": "a",
+        "tq_40b26cf40e37": {
+          "p1": "Day",
+          "p2": "Night"
+        },
+        "tq_6d8979f514e7": [
+          "11",
+          "15",
+          "20"
+        ],
+        "tq_30aa77023f29": "  Ten "
+      },
+      "status": "submitted",
+      "startedAt": "2026-11-17T09:54:03.429Z",
+      "score": 10,
+      "totalMarks": 10,
+      "percentage": 100,
+      "passed": true,
+      "submittedAt": "2026-11-17T09:54:03.453Z",
+      "review": [
+        {
+          "questionId": "tq_3a606a4e1312",
+          "questionType": "multiple-choice",
+          "prompt": {
+            "ar": "ما صوت حرف الباء بالفتحة؟",
+            "en": "What is the Fatha sound of Ba?"
+          },
+          "submittedAnswer": "a",
+          "correctAnswer": "a",
+          "isCorrect": true,
+          "marksAwarded": 2,
+          "maxMarks": 2,
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedback": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          }
+        },
+        {
+          "questionId": "tq_98a0ade889a1",
+          "questionType": "true-false",
+          "prompt": {
+            "ar": "٤ + ٣ = ٧",
+            "en": "4 + 3 = 7"
+          },
+          "submittedAnswer": "a",
+          "correctAnswer": "a",
+          "isCorrect": true,
+          "marksAwarded": 2,
+          "maxMarks": 2,
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedback": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          }
+        },
+        {
+          "questionId": "tq_40b26cf40e37",
+          "questionType": "matching",
+          "prompt": {
+            "ar": "طابق الكلمة بصفتها",
+            "en": "Match each item to its trait"
+          },
+          "submittedAnswer": {
+            "p1": "Day",
+            "p2": "Night"
+          },
+          "correctAnswer": {
+            "p1": "Day",
+            "p2": "Night"
+          },
+          "isCorrect": true,
+          "marksAwarded": 2,
+          "maxMarks": 2,
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedback": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          }
+        },
+        {
+          "questionId": "tq_6d8979f514e7",
+          "questionType": "ordering",
+          "prompt": {
+            "ar": "رتب الأرقام تصاعدياً",
+            "en": "Order numbers ascending"
+          },
+          "submittedAnswer": [
+            "11",
+            "15",
+            "20"
+          ],
+          "correctAnswer": [
+            "11",
+            "15",
+            "20"
+          ],
+          "isCorrect": true,
+          "marksAwarded": 2,
+          "maxMarks": 2,
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedback": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          }
+        },
+        {
+          "questionId": "tq_30aa77023f29",
           "questionType": "short-answer",
           "prompt": {
             "ar": "كم ناتج ٦ + ٤؟",
@@ -12701,6 +16843,458 @@
       "adminFeedback": "Looks wonderful!",
       "reviewedBy": "admin-pin",
       "reviewedAt": "2026-11-16T22:55:38.541Z"
+    },
+    "hw_89ab9fc0cc01": {
+      "id": "hw_89ab9fc0cc01",
+      "teacherId": "tch_c2bab9d3fd44",
+      "title": {
+        "ar": "واجب الحركات",
+        "en": "Arabic Diacritics Homework"
+      },
+      "instructions": {
+        "ar": "أجب عن السؤال المرفق",
+        "en": "Answer the attached question"
+      },
+      "subject": "arabic",
+      "level": 2,
+      "lessonIds": [
+        "L2-AR01"
+      ],
+      "homeworkType": "multiple-choice",
+      "questionIds": [
+        "tq_4d1a602c27fc"
+      ],
+      "questionSnapshots": {
+        "tq_4d1a602c27fc": {
+          "subject": "arabic",
+          "level": 2,
+          "lessonId": "L2-AR01",
+          "questionType": "multiple-choice",
+          "promptAr": "اختر الحرف بحركة الفتحة",
+          "promptEn": "Pick the letter with Fatha",
+          "options": [
+            {
+              "id": "a",
+              "textAr": "بَ",
+              "textEn": "Ba"
+            },
+            {
+              "id": "b",
+              "textAr": "بُ",
+              "textEn": "Bu"
+            }
+          ],
+          "correctOptionId": "a",
+          "allowMultipleCorrect": false,
+          "marks": 5,
+          "difficulty": "medium",
+          "explanation": {
+            "ar": "",
+            "en": ""
+          },
+          "feedbackCorrect": {
+            "ar": "أحسنت! إجابة صحيحة",
+            "en": "Great job! Correct answer!"
+          },
+          "feedbackIncorrect": {
+            "ar": "راجع القاعدة وحاول مجدداً",
+            "en": "Review the lesson tip and try again."
+          },
+          "active": true,
+          "id": "tq_4d1a602c27fc",
+          "teacherId": "tch_c2bab9d3fd44",
+          "approvalStatus": "published",
+          "qualityFlags": [
+            {
+              "code": "LOW_OPTION_COUNT",
+              "severity": "warning",
+              "message": "Recommended at least 3 choices for this question type."
+            },
+            {
+              "code": "DUPLICATE_PROMPT",
+              "severity": "warning",
+              "message": "A very similar or identical question already exists for this lesson."
+            }
+          ],
+          "version": 1,
+          "versions": [],
+          "createdAt": "2026-11-17T09:53:58.103Z",
+          "updatedAt": "2026-11-17T09:53:58.103Z"
+        }
+      },
+      "attachments": [
+        {
+          "id": "attf_99a3955232fa",
+          "fileName": "worksheet.png",
+          "mimeType": "image/png",
+          "sizeBytes": 10,
+          "kind": "image",
+          "url": "/api/homework/attachments/attf_99a3955232fa",
+          "uploadedBy": "tch_c2bab9d3fd44",
+          "uploadedAt": "2026-11-17T09:53:58.141Z"
+        }
+      ],
+      "assignedClassIds": [
+        "cls_d736678b9c"
+      ],
+      "assignedStudentIds": [
+        "ch_29e2fdf9370a"
+      ],
+      "startDate": "2026-11-17T09:53:53.156Z",
+      "deadline": "2026-11-17T09:53:59.956Z",
+      "maxAttempts": 2,
+      "passingPercentage": 70,
+      "status": "published",
+      "version": 4,
+      "versions": [
+        {
+          "version": 1,
+          "editedBy": "admin-pin",
+          "editedByName": "Administrator",
+          "editedAt": "2026-11-17T09:53:58.196Z",
+          "reason": "Admin review - published",
+          "snapshot": {
+            "id": "hw_89ab9fc0cc01",
+            "teacherId": "tch_c2bab9d3fd44",
+            "title": {
+              "ar": "واجب الحركات",
+              "en": "Arabic Diacritics Homework"
+            },
+            "instructions": {
+              "ar": "أجب عن السؤال المرفق",
+              "en": "Answer the attached question"
+            },
+            "subject": "arabic",
+            "level": 2,
+            "lessonIds": [
+              "L2-AR01"
+            ],
+            "homeworkType": "multiple-choice",
+            "questionIds": [
+              "tq_4d1a602c27fc"
+            ],
+            "questionSnapshots": {
+              "tq_4d1a602c27fc": {
+                "subject": "arabic",
+                "level": 2,
+                "lessonId": "L2-AR01",
+                "questionType": "multiple-choice",
+                "promptAr": "اختر الحرف بحركة الفتحة",
+                "promptEn": "Pick the letter with Fatha",
+                "options": [
+                  {
+                    "id": "a",
+                    "textAr": "بَ",
+                    "textEn": "Ba"
+                  },
+                  {
+                    "id": "b",
+                    "textAr": "بُ",
+                    "textEn": "Bu"
+                  }
+                ],
+                "correctOptionId": "a",
+                "allowMultipleCorrect": false,
+                "marks": 5,
+                "difficulty": "medium",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_4d1a602c27fc",
+                "teacherId": "tch_c2bab9d3fd44",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "LOW_OPTION_COUNT",
+                    "severity": "warning",
+                    "message": "Recommended at least 3 choices for this question type."
+                  },
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:53:58.103Z",
+                "updatedAt": "2026-11-17T09:53:58.103Z"
+              }
+            },
+            "attachments": [
+              {
+                "id": "attf_99a3955232fa",
+                "fileName": "worksheet.png",
+                "mimeType": "image/png",
+                "sizeBytes": 10,
+                "kind": "image",
+                "url": "/api/homework/attachments/attf_99a3955232fa",
+                "uploadedBy": "tch_c2bab9d3fd44",
+                "uploadedAt": "2026-11-17T09:53:58.141Z"
+              }
+            ],
+            "assignedClassIds": [
+              "cls_d736678b9c"
+            ],
+            "assignedStudentIds": [
+              "ch_29e2fdf9370a"
+            ],
+            "startDate": "2026-11-17T09:53:53.156Z",
+            "deadline": "2026-11-17T09:53:59.956Z",
+            "maxAttempts": 2,
+            "passingPercentage": 70,
+            "status": "pending-review",
+            "version": 1,
+            "createdAt": "2026-11-17T09:53:58.160Z",
+            "updatedAt": "2026-11-17T09:53:58.177Z"
+          }
+        },
+        {
+          "version": 2,
+          "editedBy": "admin-pin",
+          "editedByName": "Administrator",
+          "editedAt": "2026-11-17T09:53:58.215Z",
+          "reason": "Admin review - suspended",
+          "snapshot": {
+            "id": "hw_89ab9fc0cc01",
+            "teacherId": "tch_c2bab9d3fd44",
+            "title": {
+              "ar": "واجب الحركات",
+              "en": "Arabic Diacritics Homework"
+            },
+            "instructions": {
+              "ar": "أجب عن السؤال المرفق",
+              "en": "Answer the attached question"
+            },
+            "subject": "arabic",
+            "level": 2,
+            "lessonIds": [
+              "L2-AR01"
+            ],
+            "homeworkType": "multiple-choice",
+            "questionIds": [
+              "tq_4d1a602c27fc"
+            ],
+            "questionSnapshots": {
+              "tq_4d1a602c27fc": {
+                "subject": "arabic",
+                "level": 2,
+                "lessonId": "L2-AR01",
+                "questionType": "multiple-choice",
+                "promptAr": "اختر الحرف بحركة الفتحة",
+                "promptEn": "Pick the letter with Fatha",
+                "options": [
+                  {
+                    "id": "a",
+                    "textAr": "بَ",
+                    "textEn": "Ba"
+                  },
+                  {
+                    "id": "b",
+                    "textAr": "بُ",
+                    "textEn": "Bu"
+                  }
+                ],
+                "correctOptionId": "a",
+                "allowMultipleCorrect": false,
+                "marks": 5,
+                "difficulty": "medium",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_4d1a602c27fc",
+                "teacherId": "tch_c2bab9d3fd44",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "LOW_OPTION_COUNT",
+                    "severity": "warning",
+                    "message": "Recommended at least 3 choices for this question type."
+                  },
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:53:58.103Z",
+                "updatedAt": "2026-11-17T09:53:58.103Z"
+              }
+            },
+            "attachments": [
+              {
+                "id": "attf_99a3955232fa",
+                "fileName": "worksheet.png",
+                "mimeType": "image/png",
+                "sizeBytes": 10,
+                "kind": "image",
+                "url": "/api/homework/attachments/attf_99a3955232fa",
+                "uploadedBy": "tch_c2bab9d3fd44",
+                "uploadedAt": "2026-11-17T09:53:58.141Z"
+              }
+            ],
+            "assignedClassIds": [
+              "cls_d736678b9c"
+            ],
+            "assignedStudentIds": [
+              "ch_29e2fdf9370a"
+            ],
+            "startDate": "2026-11-17T09:53:53.156Z",
+            "deadline": "2026-11-17T09:53:59.956Z",
+            "maxAttempts": 2,
+            "passingPercentage": 70,
+            "status": "published",
+            "version": 2,
+            "createdAt": "2026-11-17T09:53:58.160Z",
+            "updatedAt": "2026-11-17T09:53:58.195Z",
+            "adminFeedback": "Looks wonderful!",
+            "reviewedBy": "admin-pin",
+            "reviewedAt": "2026-11-17T09:53:58.195Z"
+          }
+        },
+        {
+          "version": 3,
+          "editedBy": "admin-pin",
+          "editedByName": "Administrator",
+          "editedAt": "2026-11-17T09:53:58.230Z",
+          "reason": "Admin review - published",
+          "snapshot": {
+            "id": "hw_89ab9fc0cc01",
+            "teacherId": "tch_c2bab9d3fd44",
+            "title": {
+              "ar": "واجب الحركات",
+              "en": "Arabic Diacritics Homework"
+            },
+            "instructions": {
+              "ar": "أجب عن السؤال المرفق",
+              "en": "Answer the attached question"
+            },
+            "subject": "arabic",
+            "level": 2,
+            "lessonIds": [
+              "L2-AR01"
+            ],
+            "homeworkType": "multiple-choice",
+            "questionIds": [
+              "tq_4d1a602c27fc"
+            ],
+            "questionSnapshots": {
+              "tq_4d1a602c27fc": {
+                "subject": "arabic",
+                "level": 2,
+                "lessonId": "L2-AR01",
+                "questionType": "multiple-choice",
+                "promptAr": "اختر الحرف بحركة الفتحة",
+                "promptEn": "Pick the letter with Fatha",
+                "options": [
+                  {
+                    "id": "a",
+                    "textAr": "بَ",
+                    "textEn": "Ba"
+                  },
+                  {
+                    "id": "b",
+                    "textAr": "بُ",
+                    "textEn": "Bu"
+                  }
+                ],
+                "correctOptionId": "a",
+                "allowMultipleCorrect": false,
+                "marks": 5,
+                "difficulty": "medium",
+                "explanation": {
+                  "ar": "",
+                  "en": ""
+                },
+                "feedbackCorrect": {
+                  "ar": "أحسنت! إجابة صحيحة",
+                  "en": "Great job! Correct answer!"
+                },
+                "feedbackIncorrect": {
+                  "ar": "راجع القاعدة وحاول مجدداً",
+                  "en": "Review the lesson tip and try again."
+                },
+                "active": true,
+                "id": "tq_4d1a602c27fc",
+                "teacherId": "tch_c2bab9d3fd44",
+                "approvalStatus": "published",
+                "qualityFlags": [
+                  {
+                    "code": "LOW_OPTION_COUNT",
+                    "severity": "warning",
+                    "message": "Recommended at least 3 choices for this question type."
+                  },
+                  {
+                    "code": "DUPLICATE_PROMPT",
+                    "severity": "warning",
+                    "message": "A very similar or identical question already exists for this lesson."
+                  }
+                ],
+                "version": 1,
+                "versions": [],
+                "createdAt": "2026-11-17T09:53:58.103Z",
+                "updatedAt": "2026-11-17T09:53:58.103Z"
+              }
+            },
+            "attachments": [
+              {
+                "id": "attf_99a3955232fa",
+                "fileName": "worksheet.png",
+                "mimeType": "image/png",
+                "sizeBytes": 10,
+                "kind": "image",
+                "url": "/api/homework/attachments/attf_99a3955232fa",
+                "uploadedBy": "tch_c2bab9d3fd44",
+                "uploadedAt": "2026-11-17T09:53:58.141Z"
+              }
+            ],
+            "assignedClassIds": [
+              "cls_d736678b9c"
+            ],
+            "assignedStudentIds": [
+              "ch_29e2fdf9370a"
+            ],
+            "startDate": "2026-11-17T09:53:53.156Z",
+            "deadline": "2026-11-17T09:53:59.956Z",
+            "maxAttempts": 2,
+            "passingPercentage": 70,
+            "status": "suspended",
+            "version": 3,
+            "createdAt": "2026-11-17T09:53:58.160Z",
+            "updatedAt": "2026-11-17T09:53:58.215Z",
+            "adminFeedback": "Looks wonderful!",
+            "reviewedBy": "admin-pin",
+            "reviewedAt": "2026-11-17T09:53:58.215Z"
+          }
+        }
+      ],
+      "createdAt": "2026-11-17T09:53:58.160Z",
+      "updatedAt": "2026-11-17T09:53:58.230Z",
+      "adminFeedback": "Looks wonderful!",
+      "reviewedBy": "admin-pin",
+      "reviewedAt": "2026-11-17T09:53:58.230Z"
     }
   },
   "homeworkSubmissions": {
@@ -12751,6 +17345,30 @@
       "completedAt": "2026-11-16T22:55:40.608Z",
       "teacherFeedback": "Excellent mastery of Fatha!",
       "gradedAt": "2026-11-16T22:55:40.608Z"
+    },
+    "hws_6c1f5f032697": {
+      "id": "hws_6c1f5f032697",
+      "assignmentId": "hw_89ab9fc0cc01",
+      "homeworkVersion": 1,
+      "studentId": "ch_29e2fdf9370a",
+      "teacherId": "tch_c2bab9d3fd44",
+      "attemptCount": 1,
+      "status": "completed",
+      "answers": {
+        "tq_4d1a602c27fc": "a"
+      },
+      "openedAt": "2026-11-17T09:53:58.253Z",
+      "extendedDeadline": "2026-11-18T09:54:00.280Z",
+      "extensionReason": "Family travel extension",
+      "startedAt": "2026-11-17T09:54:00.294Z",
+      "submittedAt": "2026-11-17T09:54:00.294Z",
+      "score": 100,
+      "totalMarks": 100,
+      "percentage": 100,
+      "passed": true,
+      "completedAt": "2026-11-17T09:54:00.315Z",
+      "teacherFeedback": "Excellent mastery of Fatha!",
+      "gradedAt": "2026-11-17T09:54:00.315Z"
     }
   },
   "homeworkAttachments": {
@@ -12775,6 +17393,17 @@
       "uploadedBy": "tch_fa9112512308",
       "uploadedAt": "2026-11-16T22:55:38.492Z",
       "storedPath": "/app/applet/server_uploads/homework/attf_7c2ba6199f17.png"
+    },
+    "attf_99a3955232fa": {
+      "id": "attf_99a3955232fa",
+      "fileName": "worksheet.png",
+      "mimeType": "image/png",
+      "sizeBytes": 10,
+      "kind": "image",
+      "url": "/api/homework/attachments/attf_99a3955232fa",
+      "uploadedBy": "tch_c2bab9d3fd44",
+      "uploadedAt": "2026-11-17T09:53:58.141Z",
+      "storedPath": "/app/applet/server_uploads/homework/attf_99a3955232fa.png"
     }
   },
   "importBatches": {
@@ -13001,6 +17630,118 @@
       "committed": true,
       "createdAt": "2026-11-16T22:55:43.241Z",
       "expiresAt": 1794870943241
+    },
+    "imp_c4dd0959a197": {
+      "id": "imp_c4dd0959a197",
+      "teacherId": "tch_f1f093afb943",
+      "fileName": "mixed-import.csv",
+      "format": "csv",
+      "storedUploadPath": "/app/applet/server_uploads/1794909243220-d1f1ac28.csv",
+      "validRows": [
+        {
+          "rowNumber": 2,
+          "question": {
+            "subject": "english",
+            "level": 2,
+            "lessonId": "L2-EN01",
+            "questionType": "multiple-choice",
+            "promptAr": "ما صوت sh؟",
+            "promptEn": "What sound is sh?",
+            "options": [
+              {
+                "id": "a",
+                "textAr": "ش",
+                "textEn": "sh"
+              },
+              {
+                "id": "b",
+                "textAr": "تش",
+                "textEn": "ch"
+              }
+            ],
+            "correctOptionId": "a",
+            "allowMultipleCorrect": false,
+            "matchingPairs": [],
+            "correctOrder": [],
+            "acceptedAnswers": [],
+            "marks": 2,
+            "difficulty": "easy",
+            "explanation": {
+              "ar": "sh makes sh sound",
+              "en": "sh sounds like sh"
+            },
+            "feedbackCorrect": {
+              "ar": "أحسنت! إجابة صحيحة",
+              "en": "Great job! Correct answer!"
+            },
+            "feedbackIncorrect": {
+              "ar": "راجع القاعدة وحاول مجدداً",
+              "en": "Review the lesson tip and try again."
+            },
+            "active": true
+          }
+        }
+      ],
+      "invalidRows": [
+        {
+          "rowNumber": 3,
+          "errors": [
+            "Question must reference a valid existing lesson ID"
+          ]
+        }
+      ],
+      "committed": true,
+      "createdAt": "2026-11-17T09:54:03.221Z",
+      "expiresAt": 1794910443221
+    },
+    "imp_c25b3ad1079f": {
+      "id": "imp_c25b3ad1079f",
+      "teacherId": "tch_f1f093afb943",
+      "fileName": "real-questions.xlsx",
+      "format": "xlsx",
+      "storedUploadPath": "/app/applet/server_uploads/1794909243342-5f9eb1fb.xlsx",
+      "validRows": [
+        {
+          "rowNumber": 2,
+          "question": {
+            "subject": "math",
+            "level": 2,
+            "lessonId": "L2-MA05",
+            "questionType": "short-answer",
+            "promptAr": "كم ٩ - ٤؟",
+            "promptEn": "What is 9 - 4?",
+            "options": [],
+            "correctOptionId": "",
+            "allowMultipleCorrect": false,
+            "matchingPairs": [],
+            "correctOrder": [],
+            "acceptedAnswers": [
+              "5",
+              "five",
+              "٥"
+            ],
+            "marks": 3,
+            "difficulty": "medium",
+            "explanation": {
+              "ar": "٩ ناقص ٤ يساوي ٥",
+              "en": "9 minus 4 equals 5"
+            },
+            "feedbackCorrect": {
+              "ar": "أحسنت! إجابة صحيحة",
+              "en": "Great job! Correct answer!"
+            },
+            "feedbackIncorrect": {
+              "ar": "راجع القاعدة وحاول مجدداً",
+              "en": "Review the lesson tip and try again."
+            },
+            "active": true
+          }
+        }
+      ],
+      "invalidRows": [],
+      "committed": true,
+      "createdAt": "2026-11-17T09:54:03.343Z",
+      "expiresAt": 1794910443343
     }
   },
   "certificates": {
@@ -13051,6 +17792,30 @@
       "passingPercentage": 70,
       "ageGroup": "1-4",
       "verificationUrl": "/api/certificates/verify/NLC-2026-A382D2"
+    },
+    "NLC-2026-807831": {
+      "id": "cert-ex_76629e858840",
+      "uniqueCode": "NLC-2026-807831",
+      "childName": "ليلى الصغيرة",
+      "worldId": "intelligence-castle",
+      "worldName": {
+        "ar": "امتحان نونو لاند الشامل",
+        "en": "NonoLand Comprehensive Academy"
+      },
+      "achievementTitle": {
+        "ar": "شهادة اجتياز الامتحان الرسمي — امتحان نونو لاند الشامل",
+        "en": "Official Certified Exam — NonoLand Comprehensive Academy"
+      },
+      "issuedAt": "2026-11-17T09:53:47.731Z",
+      "levelCompleted": 1,
+      "isOfficialExam": true,
+      "examSubject": "comprehensive",
+      "score": 28,
+      "totalQuestions": 40,
+      "percentage": 70,
+      "passingPercentage": 70,
+      "ageGroup": "1-4",
+      "verificationUrl": "/api/certificates/verify/NLC-2026-807831"
     }
   },
   "processedSyncKeys": {
@@ -13072,6 +17837,11 @@
     "sync_1794869737841_unique_1": {
       "childId": "ch_c33b40f108a3",
       "processedAt": "2026-11-16T22:55:40.628Z",
+      "summary": "game-attempt synced"
+    },
+    "sync_1794909237178_unique_1": {
+      "childId": "ch_29e2fdf9370a",
+      "processedAt": "2026-11-17T09:54:00.353Z",
       "summary": "game-attempt synced"
     }
   },
@@ -13528,9 +18298,9 @@
     "ch_f2d6e7247638:2026-11-16": 1
   },
   "operationalMetrics": {
-    "totalApiRequests": 599,
+    "totalApiRequests": 786,
     "apiFailures5xx": 1,
-    "apiClientErrors4xx": 184,
+    "apiClientErrors4xx": 243,
     "syncFailures": 0,
     "lastErrors": [
       {
@@ -13542,6 +18312,1004 @@
     ]
   },
   "securityLogs": [
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Admin updated teacher tch_f1f093afb943: status=suspended",
+      "id": "sec_3a522e2447",
+      "createdAt": "2026-11-17T09:54:03.646Z"
+    },
+    {
+      "eventType": "PASSWORD_CHANGED",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "User updated password and rotated sessions",
+      "id": "sec_6b4d4bdb8b",
+      "createdAt": "2026-11-17T09:54:03.627Z"
+    },
+    {
+      "eventType": "CONTENT_VERSION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Updated exam tex_6c50561225cb -> v2",
+      "id": "sec_546598cf02",
+      "createdAt": "2026-11-17T09:54:03.476Z"
+    },
+    {
+      "id": "aud_ca125fcdf270",
+      "eventType": "EXAM_COMPLETED",
+      "actorId": "stu_8017d96107e5",
+      "actorRole": "student",
+      "role": "student",
+      "actionType": "EXAM_SUBMIT",
+      "recordType": "exam_attempt",
+      "recordId": "att_e27ce1183ca8",
+      "newValue": "10/10 (100%)",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Student ch_d8534f0787b0 submitted teacher exam tex_6c50561225cb: 10/10 (100%)",
+      "createdAt": "2026-11-17T09:54:03.453Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Assigned exam tex_614fc1cae423 to 1 students (publishNow=true)",
+      "id": "sec_00face0555",
+      "createdAt": "2026-11-17T09:54:03.405Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Assigned exam tex_6c50561225cb to 1 students (publishNow=true)",
+      "id": "sec_d18a886fca",
+      "createdAt": "2026-11-17T09:54:03.395Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created exam tex_614fc1cae423 (1 Qs, status=published)",
+      "id": "sec_3329c25d61",
+      "createdAt": "2026-11-17T09:54:03.384Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created exam tex_6c50561225cb (5 Qs, status=published)",
+      "id": "sec_aafcee8e5d",
+      "createdAt": "2026-11-17T09:54:03.374Z"
+    },
+    {
+      "eventType": "BULK_IMPORT",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Committed bulk import imp_c25b3ad1079f (1 questions, skipped 0)",
+      "id": "sec_7ad5bfdfc4",
+      "createdAt": "2026-11-17T09:54:03.353Z"
+    },
+    {
+      "eventType": "BULK_IMPORT",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Committed bulk import imp_c4dd0959a197 (1 questions, skipped 1)",
+      "id": "sec_f01985092b",
+      "createdAt": "2026-11-17T09:54:03.232Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_30aa77023f29 (L2-MA04, short-answer, flags=1)",
+      "id": "sec_25284ac5c4",
+      "createdAt": "2026-11-17T09:54:03.095Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_6d8979f514e7 (L2-MA01, ordering, flags=1)",
+      "id": "sec_62cea4bafa",
+      "createdAt": "2026-11-17T09:54:03.084Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_40b26cf40e37 (L2-LG02, matching, flags=1)",
+      "id": "sec_b450a0a31b",
+      "createdAt": "2026-11-17T09:54:03.074Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_98a0ade889a1 (L2-MA04, true-false, flags=1)",
+      "id": "sec_9cccf2744a",
+      "createdAt": "2026-11-17T09:54:03.062Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_3a606a4e1312 (L2-AR01, multiple-choice, flags=1)",
+      "id": "sec_77f99dec80",
+      "createdAt": "2026-11-17T09:54:03.051Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Blocked teacher tch_f1f093afb943 from viewing unassigned student ch_0fd1eec66d09",
+      "id": "sec_5b00ea6c45",
+      "createdAt": "2026-11-17T09:54:03.033Z"
+    },
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Created class Explorers Class B assigned to teacher tch_b51d5493be54",
+      "id": "sec_8233a407f1",
+      "createdAt": "2026-11-17T09:54:03.014Z"
+    },
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Created class Explorers Class A assigned to teacher tch_f1f093afb943",
+      "id": "sec_f957ed6a17",
+      "createdAt": "2026-11-17T09:54:03.004Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "stu_8017d96107e5",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Non-teacher role student blocked from teacher endpoint",
+      "id": "sec_daf76eb5c8",
+      "createdAt": "2026-11-17T09:54:02.991Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_56eb99ddacc4",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Non-teacher role parent blocked from teacher endpoint",
+      "id": "sec_aaf33ff337",
+      "createdAt": "2026-11-17T09:54:02.980Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "stu_8017d96107e5",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_9f74c46e86",
+      "createdAt": "2026-11-17T09:54:02.969Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_56eb99ddacc4",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Parent created student login (ziad.student.1794909242353@example.com) for child ch_d8534f0787b0",
+      "id": "sec_a943f5fc72",
+      "createdAt": "2026-11-17T09:54:02.915Z"
+    },
+    {
+      "id": "aud_2d39170b9638",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_56eb99ddacc4",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_0fd1eec66d09",
+      "newValue": {
+        "displayName": "Hana Learner",
+        "ageGroup": "1-4",
+        "language": "en"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_0fd1eec66d09 (Hana Learner)",
+      "createdAt": "2026-11-17T09:54:02.857Z"
+    },
+    {
+      "id": "aud_e2a7ba991c40",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_56eb99ddacc4",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_d8534f0787b0",
+      "newValue": {
+        "displayName": "Ziad Explorer",
+        "ageGroup": "1-4",
+        "language": "ar"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_d8534f0787b0 (Ziad Explorer)",
+      "createdAt": "2026-11-17T09:54:02.844Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_56eb99ddacc4",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (mona.parent.1794909242353@example.com)",
+      "id": "sec_49c9ed814d",
+      "createdAt": "2026-11-17T09:54:02.832Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "tch_b51d5493be54",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_8995fbac79",
+      "createdAt": "2026-11-17T09:54:02.773Z"
+    },
+    {
+      "id": "aud_4be622755495",
+      "eventType": "ADMIN_ACTION",
+      "actionType": "TEACHER_CREATE",
+      "recordType": "user",
+      "recordId": "tch_b51d5493be54",
+      "newValue": "teacher.two.1794909242353@example.com:active",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Admin created teacher teacher.two.1794909242353@example.com (status=active)",
+      "createdAt": "2026-11-17T09:54:02.714Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Blocked mass-assignment privilege escalation attempt on /api/auth/profile",
+      "id": "sec_c507622e5c",
+      "createdAt": "2026-11-17T09:54:02.654Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_c31f303db0",
+      "createdAt": "2026-11-17T09:54:02.642Z"
+    },
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Admin updated teacher tch_f1f093afb943: status=active",
+      "id": "sec_3060915588",
+      "createdAt": "2026-11-17T09:54:02.580Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "tch_f1f093afb943",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Teacher registration requested (pending admin approval): teacher.one.1794909242353@example.com",
+      "id": "sec_609717c299",
+      "createdAt": "2026-11-17T09:54:02.553Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "ip": "127.0.0.1",
+      "summary": "Blocked privilege escalation attempt on /api/auth/register with role=teacher",
+      "id": "sec_e5cf4ee29b",
+      "createdAt": "2026-11-17T09:54:02.485Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "ip": "127.0.0.1",
+      "summary": "Blocked privilege escalation attempt on /api/auth/register with role=super_admin",
+      "id": "sec_55205b1a86",
+      "createdAt": "2026-11-17T09:54:02.462Z"
+    },
+    {
+      "eventType": "BACKUP_RESTORE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Restored database collections from verified backup snapshot",
+      "id": "sec_a2954eefe3",
+      "createdAt": "2026-11-17T09:54:00.419Z"
+    },
+    {
+      "eventType": "BACKUP_RESTORE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Exported sanitized database backup snapshot",
+      "id": "sec_d07c4570b2",
+      "createdAt": "2026-11-17T09:54:00.375Z"
+    },
+    {
+      "eventType": "OFFLINE_SYNC",
+      "actorId": "stu_175fa9f0d99c",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Synced 1 offline items for child ch_29e2fdf9370a (deduped 0)",
+      "id": "sec_9d18373d00",
+      "createdAt": "2026-11-17T09:54:00.353Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: requireTeacherContentApproval=false",
+      "id": "sec_5bf00595c5",
+      "createdAt": "2026-11-17T09:54:00.342Z"
+    },
+    {
+      "eventType": "HOMEWORK_ACTION",
+      "actorId": "stu_175fa9f0d99c",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Student ch_29e2fdf9370a submitted homework hw_89ab9fc0cc01 (status=completed)",
+      "id": "sec_4c3939e4d6",
+      "createdAt": "2026-11-17T09:54:00.294Z"
+    },
+    {
+      "eventType": "HOMEWORK_ACTION",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Extended homework deadline for student ch_29e2fdf9370a on hw_89ab9fc0cc01",
+      "id": "sec_8e44cc98f4",
+      "createdAt": "2026-11-17T09:54:00.283Z"
+    },
+    {
+      "eventType": "CONTENT_REVIEW",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Reviewed homework hw_89ab9fc0cc01 -> published",
+      "id": "sec_46295844b7",
+      "createdAt": "2026-11-17T09:53:58.230Z"
+    },
+    {
+      "eventType": "CONTENT_REVIEW",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Reviewed homework hw_89ab9fc0cc01 -> suspended",
+      "id": "sec_ed5c706a28",
+      "createdAt": "2026-11-17T09:53:58.215Z"
+    },
+    {
+      "eventType": "CONTENT_REVIEW",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Reviewed homework hw_89ab9fc0cc01 -> published",
+      "id": "sec_d41f5b571e",
+      "createdAt": "2026-11-17T09:53:58.196Z"
+    },
+    {
+      "eventType": "HOMEWORK_ACTION",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created homework hw_89ab9fc0cc01 (multiple-choice, status=pending-review, students=1)",
+      "id": "sec_cbe529add2",
+      "createdAt": "2026-11-17T09:53:58.160Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: requireTeacherContentApproval=true",
+      "id": "sec_26e2776980",
+      "createdAt": "2026-11-17T09:53:58.115Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_4d1a602c27fc (L2-AR01, multiple-choice, flags=2)",
+      "id": "sec_e5b7326470",
+      "createdAt": "2026-11-17T09:53:58.103Z"
+    },
+    {
+      "eventType": "TEACHER_ACTION",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Created question tq_69289cff35bf (L2-MA01, multiple-choice, flags=4)",
+      "id": "sec_a2651e0ae2",
+      "createdAt": "2026-11-17T09:53:58.079Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: paidAssessmentsEnabled=true",
+      "id": "sec_d2dfe516c7",
+      "createdAt": "2026-11-17T09:53:58.067Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: paidAssessmentsEnabled=false",
+      "id": "sec_d81ab1ebed",
+      "createdAt": "2026-11-17T09:53:58.048Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: level2Enabled=true",
+      "id": "sec_5aa10ad329",
+      "createdAt": "2026-11-17T09:53:58.035Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: level2Enabled=false",
+      "id": "sec_d279602489",
+      "createdAt": "2026-11-17T09:53:58.015Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: teacherHomeworkEnabled=true",
+      "id": "sec_c902486aa9",
+      "createdAt": "2026-11-17T09:53:58.001Z"
+    },
+    {
+      "eventType": "FEATURE_FLAG_CHANGE",
+      "actorId": "admin-pin",
+      "role": "super_admin",
+      "ip": "127.0.0.1",
+      "summary": "Updated feature flags: teacherHomeworkEnabled=false",
+      "id": "sec_7270d7c378",
+      "createdAt": "2026-11-17T09:53:57.982Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "stu_175fa9f0d99c",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "RBAC denied manage_exam_config for role student",
+      "id": "sec_2579a71f64",
+      "createdAt": "2026-11-17T09:53:57.968Z"
+    },
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Created class Class A-1794909237178 assigned to teacher tch_c2bab9d3fd44",
+      "id": "sec_0146b40ca3",
+      "createdAt": "2026-11-17T09:53:57.955Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "stu_8ca35d1dc4d3",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_5bf6513647",
+      "createdAt": "2026-11-17T09:53:57.941Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_bdfed2b4be08",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Parent created student login (other.stu.1794909237178@example.com) for child ch_cad7daf02380",
+      "id": "sec_10a79a908e",
+      "createdAt": "2026-11-17T09:53:57.878Z"
+    },
+    {
+      "id": "aud_1c8494244b87",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_bdfed2b4be08",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_cad7daf02380",
+      "newValue": {
+        "displayName": "Unassigned Kid",
+        "ageGroup": "1-4",
+        "language": "en"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_cad7daf02380 (Unassigned Kid)",
+      "createdAt": "2026-11-17T09:53:57.803Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_bdfed2b4be08",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (other.parent.1794909237178@example.com)",
+      "id": "sec_35cb2ce349",
+      "createdAt": "2026-11-17T09:53:57.787Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "stu_175fa9f0d99c",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_b83645bda6",
+      "createdAt": "2026-11-17T09:53:57.713Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_4c67841a3daf",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Parent created student login (zain.1794909237178@example.com) for child ch_29e2fdf9370a",
+      "id": "sec_1be82387c5",
+      "createdAt": "2026-11-17T09:53:57.641Z"
+    },
+    {
+      "id": "aud_a7bc79d43238",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_4c67841a3daf",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_29e2fdf9370a",
+      "newValue": {
+        "displayName": "Zain",
+        "ageGroup": "1-4",
+        "language": "ar"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_29e2fdf9370a (Zain)",
+      "createdAt": "2026-11-17T09:53:57.571Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_4c67841a3daf",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (hw.parent.1794909237178@example.com)",
+      "id": "sec_a3396541d6",
+      "createdAt": "2026-11-17T09:53:57.556Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_c3fb517143",
+      "createdAt": "2026-11-17T09:53:57.479Z"
+    },
+    {
+      "eventType": "ADMIN_ACTION",
+      "ip": "127.0.0.1",
+      "summary": "Admin updated teacher tch_c2bab9d3fd44: status=active",
+      "id": "sec_00c04d9986",
+      "createdAt": "2026-11-17T09:53:57.386Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "tch_c2bab9d3fd44",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Teacher registration requested (pending admin approval): hw.teacher.1794909237178@example.com",
+      "id": "sec_a70122d444",
+      "createdAt": "2026-11-17T09:53:57.353Z"
+    },
+    {
+      "id": "aud_81e15d88a545",
+      "eventType": "AI_SAFETY_BLOCK",
+      "actorId": "stu_7c009612353b",
+      "actorRole": "student",
+      "role": "student",
+      "actionType": "AI_SAFETY_BLOCK",
+      "recordType": "child_ai",
+      "recordId": "ch_1c68caf725a9",
+      "reason": "Blocked personal information request",
+      "outcome": "blocked",
+      "ip": "127.0.0.1",
+      "summary": "Nono AI safety blocked pii prompt for child ch_1c68caf725a9",
+      "createdAt": "2026-11-17T09:53:50.431Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_365e07e7e111",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Blocked IDOR access to child ch_1c68caf725a9",
+      "id": "sec_4f11de69e9",
+      "createdAt": "2026-11-17T09:53:50.415Z"
+    },
+    {
+      "id": "aud_7f3e2fb65b34",
+      "eventType": "PARENT_SETTING_CHANGE",
+      "actorId": "usr_34d3158ba8e8",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "UPDATE_AI_SETTING",
+      "recordType": "child_ai_setting",
+      "recordId": "ch_1c68caf725a9",
+      "previousValue": {
+        "aiAssistantEnabled": false
+      },
+      "newValue": {
+        "aiAssistantEnabled": true
+      },
+      "reason": "Parent toggled Nono AI Assistant permission",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Parent set aiAssistantEnabled=true for child ch_1c68caf725a9",
+      "createdAt": "2026-11-17T09:53:50.397Z"
+    },
+    {
+      "id": "aud_e719c2de53e1",
+      "eventType": "ACCESS_DENIED",
+      "actorId": "stu_7c009612353b",
+      "actorRole": "student",
+      "role": "student",
+      "actionType": "AI_CHAT_DENIED",
+      "recordType": "child_ai",
+      "recordId": "ch_1c68caf725a9",
+      "reason": "Nono AI Assistant disabled by parent",
+      "outcome": "denied",
+      "ip": "127.0.0.1",
+      "summary": "Blocked AI chat for child ch_1c68caf725a9: disabled by parent",
+      "createdAt": "2026-11-17T09:53:50.382Z"
+    },
+    {
+      "id": "aud_757608a496ff",
+      "eventType": "PARENT_SETTING_CHANGE",
+      "actorId": "usr_34d3158ba8e8",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "UPDATE_AI_SETTING",
+      "recordType": "child_ai_setting",
+      "recordId": "ch_1c68caf725a9",
+      "previousValue": {
+        "aiAssistantEnabled": true
+      },
+      "newValue": {
+        "aiAssistantEnabled": false
+      },
+      "reason": "Parent toggled Nono AI Assistant permission",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Parent set aiAssistantEnabled=false for child ch_1c68caf725a9",
+      "createdAt": "2026-11-17T09:53:50.367Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "tch_d5aa975bc5b0",
+      "role": "teacher",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_1098afdf23",
+      "createdAt": "2026-11-17T09:53:50.326Z"
+    },
+    {
+      "id": "aud_fda15d202e7a",
+      "eventType": "ADMIN_ACTION",
+      "actionType": "TEACHER_CREATE",
+      "recordType": "user",
+      "recordId": "tch_d5aa975bc5b0",
+      "newValue": "teacher.smart.1794909229747@example.com:active",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Admin created teacher teacher.smart.1794909229747@example.com (status=active)",
+      "createdAt": "2026-11-17T09:53:50.259Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_365e07e7e111",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (parent.smart.b.1794909229747@example.com)",
+      "id": "sec_8c9e85b79e",
+      "createdAt": "2026-11-17T09:53:50.176Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_SUCCESS",
+      "actorId": "stu_7c009612353b",
+      "role": "student",
+      "ip": "127.0.0.1",
+      "summary": "Parent/User logged in cleanly",
+      "id": "sec_7bf51a73c2",
+      "createdAt": "2026-11-17T09:53:50.103Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_34d3158ba8e8",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Parent created student login (student.smart.1794909229747@example.com) for child ch_1c68caf725a9",
+      "id": "sec_372882d3f7",
+      "createdAt": "2026-11-17T09:53:50.031Z"
+    },
+    {
+      "id": "aud_e68c67c6738a",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_34d3158ba8e8",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_1c68caf725a9",
+      "newValue": {
+        "displayName": "Noor",
+        "ageGroup": "1-4",
+        "language": "ar"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_1c68caf725a9 (Noor)",
+      "createdAt": "2026-11-17T09:53:49.951Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_34d3158ba8e8",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (parent.smart.a.1794909229747@example.com)",
+      "id": "sec_d5b47b72c8",
+      "createdAt": "2026-11-17T09:53:49.920Z"
+    },
+    {
+      "eventType": "PASSWORD_RESET",
+      "actorId": "usr_d9ec3c49aa9a",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Password reset completed and all active sessions revoked",
+      "id": "sec_f495fc11d0",
+      "createdAt": "2026-11-17T09:53:48.248Z"
+    },
+    {
+      "eventType": "AUTH_LOCKOUT",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Temporary 5-minute lockout after 5 failed logins",
+      "id": "sec_5a0a360834",
+      "createdAt": "2026-11-17T09:53:48.169Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_FAIL",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Failed password attempt (4/5)",
+      "id": "sec_8f3998d94f",
+      "createdAt": "2026-11-17T09:53:48.112Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_FAIL",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Failed password attempt (3/5)",
+      "id": "sec_50eb098b6a",
+      "createdAt": "2026-11-17T09:53:48.046Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_FAIL",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Failed password attempt (2/5)",
+      "id": "sec_acf03bba7d",
+      "createdAt": "2026-11-17T09:53:47.972Z"
+    },
+    {
+      "eventType": "AUTH_LOGIN_FAIL",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Failed password attempt (1/5)",
+      "id": "sec_6b48d89409",
+      "createdAt": "2026-11-17T09:53:47.914Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_8eb164eafc6e",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (lock.1794909227166@example.com)",
+      "id": "sec_fd3630db4d",
+      "createdAt": "2026-11-17T09:53:47.839Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_5525970da179",
+      "role": "content_admin",
+      "ip": "127.0.0.1",
+      "summary": "RBAC denied manage_exam_config for role content_admin",
+      "id": "sec_281e5eb6be",
+      "createdAt": "2026-11-17T09:53:47.769Z"
+    },
+    {
+      "id": "aud_1f8cf0eeaae6",
+      "eventType": "ADMIN_ACTION",
+      "actorRole": "admin",
+      "role": "admin",
+      "actionType": "UPDATE_USER_ROLE",
+      "recordType": "user_role",
+      "recordId": "usr_5525970da179",
+      "previousValue": {
+        "role": "parent"
+      },
+      "newValue": {
+        "role": "content_admin"
+      },
+      "reason": "Administrator updated user role",
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Updated role for usr_5525970da179: parent -> content_admin",
+      "createdAt": "2026-11-17T09:53:47.756Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "RBAC denied manage_lessons for role parent",
+      "id": "sec_04d7eff2d2",
+      "createdAt": "2026-11-17T09:53:47.745Z"
+    },
+    {
+      "eventType": "EXAM_COMPLETED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "ip": "127.0.0.1",
+      "summary": "Completed official exam (28/40 = 70%)",
+      "id": "sec_b5891b18cb",
+      "createdAt": "2026-11-17T09:53:47.731Z"
+    },
+    {
+      "eventType": "CERT_ISSUED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "ip": "127.0.0.1",
+      "summary": "Issued certificate NLC-2026-807831 (28/40)",
+      "id": "sec_5f76b860f9",
+      "createdAt": "2026-11-17T09:53:47.731Z"
+    },
+    {
+      "eventType": "PAYMENT_VERIFIED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "ip": "127.0.0.1",
+      "summary": "Verified 50 EGP exam checkout chk_a0c53ede639d",
+      "id": "sec_6ccb157674",
+      "createdAt": "2026-11-17T09:53:47.706Z"
+    },
+    {
+      "eventType": "EXAM_COMPLETED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "ip": "127.0.0.1",
+      "summary": "Completed official exam (27/40 = 68%)",
+      "id": "sec_aca9a10efa",
+      "createdAt": "2026-11-17T09:53:47.687Z"
+    },
+    {
+      "eventType": "PAYMENT_VERIFIED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "ip": "127.0.0.1",
+      "summary": "Verified 50 EGP exam checkout chk_e483e8c1fa51",
+      "id": "sec_6f9edc6602",
+      "createdAt": "2026-11-17T09:53:47.659Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_5525970da179",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Blocked IDOR access to child ch_6b111768e928",
+      "id": "sec_68f4d89371",
+      "createdAt": "2026-11-17T09:53:47.591Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_5525970da179",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Blocked IDOR access to child ch_6b111768e928",
+      "id": "sec_ba4e37d943",
+      "createdAt": "2026-11-17T09:53:47.580Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_5525970da179",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Blocked IDOR access to child ch_6b111768e928",
+      "id": "sec_c49e1895fa",
+      "createdAt": "2026-11-17T09:53:47.566Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_5525970da179",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (beta.1794909227166@example.com)",
+      "id": "sec_19b0e33d8d",
+      "createdAt": "2026-11-17T09:53:47.548Z"
+    },
+    {
+      "id": "aud_3b524b50a0ef",
+      "eventType": "CHILD_PROFILE_CHANGE",
+      "actorId": "usr_d9ec3c49aa9a",
+      "actorRole": "parent",
+      "role": "parent",
+      "actionType": "CREATE_CHILD_PROFILE",
+      "recordType": "child_profile",
+      "recordId": "ch_6b111768e928",
+      "newValue": {
+        "displayName": "ليلى الصغيرة",
+        "ageGroup": "1-4",
+        "language": "ar"
+      },
+      "outcome": "success",
+      "ip": "127.0.0.1",
+      "summary": "Created child profile ch_6b111768e928 (ليلى الصغيرة)",
+      "createdAt": "2026-11-17T09:53:47.473Z"
+    },
+    {
+      "eventType": "ACCESS_DENIED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "CSRF mismatch on POST /api/children",
+      "id": "sec_1b94f75883",
+      "createdAt": "2026-11-17T09:53:47.414Z"
+    },
+    {
+      "eventType": "EMAIL_VERIFIED",
+      "actorId": "usr_d9ec3c49aa9a",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Email verified",
+      "id": "sec_cb2c4be586",
+      "createdAt": "2026-11-17T09:53:47.391Z"
+    },
+    {
+      "eventType": "AUTH_REGISTER",
+      "actorId": "usr_d9ec3c49aa9a",
+      "role": "parent",
+      "ip": "127.0.0.1",
+      "summary": "Registered parent account (parent.alpha.1794909227166@example.com)",
+      "id": "sec_a1581ea4e2",
+      "createdAt": "2026-11-17T09:53:47.370Z"
+    },
     {
       "eventType": "ADMIN_ACTION",
       "ip": "127.0.0.1",
@@ -17014,5 +22782,5 @@
       "createdAt": "2026-11-16T21:00:06.577Z"
     }
   ],
-  "backupExportedAt": "2026-11-16T22:55:40.643Z"
+  "backupExportedAt": "2026-11-17T09:54:00.375Z"
 }

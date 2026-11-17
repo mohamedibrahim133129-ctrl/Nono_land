@@ -31,13 +31,8 @@ export function getAgeGroupMeta(ageGroup: StoredAgeGroupId | string | undefined 
     return UNIFIED_STAGE_META;
   }
   return {
-    label:
-      ageGroup === '5-6'
-        ? { ar: 'سجل محفوظ (٥–٦ سنوات)', en: 'Preserved (5–6 yrs)' }
-        : ageGroup === '7'
-          ? { ar: 'سجل محفوظ (٧ سنوات)', en: 'Preserved (7 yrs)' }
-          : { ar: 'سجل محفوظ (٨ سنوات)', en: 'Preserved (8 yrs)' },
-    badgeTitle: { ar: 'سجل تعليمي محفوظ', en: 'Preserved Learning Record' },
+    label: { ar: 'سجل تعليمي محفوظ', en: 'Archived Learning Record' },
+    badgeTitle: { ar: 'سجل تعليمي محفوظ', en: 'Archived Learning Record' },
     description: UNIFIED_STAGE_META.description,
     styleFocus: UNIFIED_STAGE_META.styleFocus,
     color: '#8054D9',

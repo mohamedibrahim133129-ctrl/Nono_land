@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2, RotateCcw, Sparkles, Volume2 } from 'lucide-react';
 import { LabExperimentSpec } from '../../data/worldCatalog';
 import { Language, LocalizedText, StoredAgeGroupId } from '../../types/nonoland';
-import { getInternalAgeBand } from '../../utils/ageAdaptation';
+import { getInternalAgeBand, isLegacyFiveToEight } from '../../utils/ageAdaptation';
 import { soundEngine } from '../../utils/soundEngine';
 
 interface Props {
@@ -21,9 +21,7 @@ function getAgeTier(
   birthYear?: number,
   birthMonth?: number,
 ): 'young' | 'mid' | 'older' {
-  if (ageGroup === '3-4') return 'young';
-  if (ageGroup === '5-6') return 'mid';
-  if (ageGroup === '7' || ageGroup === '8') return 'older';
+  if (isLegacyFiveToEight(ageGroup)) return 'older';
   const band = getInternalAgeBand({ ageGroup, birthYear, birthMonth });
   if (band === '1-2') return 'young';
   if (band === '2-3') return 'mid';

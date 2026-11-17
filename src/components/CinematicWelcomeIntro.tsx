@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,26 +11,29 @@ import {
   Volume2,
   VolumeX,
 } from 'lucide-react';
-import { CharacterActor } from './CharacterCast';
 import { NonoLandLogo } from './NonoLandLogo';
 import { useNonoLand } from '../context/NonoLandContext';
-import { getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
-import { OfficialCharacterId } from '../types/nonoland';
+import { UNIFIED_STAGE_AGE_RANGE, UNIFIED_STAGE_NAME } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 
 export const INTRO_SKIP_STORAGE_KEY = 'nonoland_skip_intro_v1';
 
-const CHARACTER_ENTRANCE_ORDER: Array<{
-  id: OfficialCharacterId;
-  mood: 'waving' | 'jumping' | 'excited' | 'dancing' | 'laughing' | 'celebrating';
-  label: { ar: string; en: string };
-}> = [
-  { id: 'nono', mood: 'waving', label: { ar: 'نونو', en: 'Nono' } },
-  { id: 'lolo', mood: 'jumping', label: { ar: 'لولو', en: 'Lolo' } },
-  { id: 'leo', mood: 'excited', label: { ar: 'ليو', en: 'Leo' } },
-  { id: 'bobo', mood: 'dancing', label: { ar: 'بوبو', en: 'Bobo' } },
-  { id: 'ellie', mood: 'laughing', label: { ar: 'إيلي', en: 'Ellie' } },
-  { id: 'titi', mood: 'celebrating', label: { ar: 'تيتي', en: 'Titi' } },
+const MAGICAL_PARTICLES = [
+  { x: '16%', delay: '0s', duration: '4.6s', size: 7, color: '#FFD84D' },
+  { x: '28%', delay: '-1.4s', duration: '5.2s', size: 5, color: '#39BDF2' },
+  { x: '42%', delay: '-0.7s', duration: '4.2s', size: 8, color: '#FFD84D' },
+  { x: '56%', delay: '-2.3s', duration: '5.4s', size: 6, color: '#FF78B7' },
+  { x: '70%', delay: '-1.1s', duration: '4.8s', size: 7, color: '#55D98B' },
+  { x: '84%', delay: '-2.9s', duration: '5.0s', size: 5, color: '#FFD84D' },
+];
+
+const SKY_STARS = [
+  { top: '8%', left: '9%', size: 14, color: '#FFD84D', delay: '0s' },
+  { top: '14%', left: '84%', size: 16, color: '#39BDF2', delay: '-0.9s' },
+  { top: '28%', left: '46%', size: 10, color: '#FFD84D', delay: '-1.8s' },
+  { top: '72%', left: '7%', size: 12, color: '#FF78B7', delay: '-1.3s' },
+  { top: '78%', left: '91%', size: 14, color: '#55D98B', delay: '-0.4s' },
+  { top: '54%', left: '95%', size: 10, color: '#FFD84D', delay: '-2.2s' },
 ];
 
 export const CinematicWelcomeIntro: React.FC = () => {
@@ -41,11 +44,8 @@ export const CinematicWelcomeIntro: React.FC = () => {
     parentSettings,
     updateParentSettings,
     authSession,
-    childrenList,
-    selectChild,
   } = useNonoLand();
 
-  const [scene, setScene] = useState<1 | 2 | 3 | 4>(1);
   const [dontShowAgain, setDontShowAgain] = useState<boolean>(() => {
     try {
       return localStorage.getItem(INTRO_SKIP_STORAGE_KEY) === 'true';
@@ -53,10 +53,13 @@ export const CinematicWelcomeIntro: React.FC = () => {
       return false;
     }
   });
-  const [visibleFriendsCount, setVisibleFriendsCount] = useState(1);
-  const [autoAdvance, setAutoAdvance] = useState(true);
+  const [bookPulseKey, setBookPulseKey] = useState(0);
 
-  const reduced = Boolean(parentSettings.reducedMotion);
+  const osReducedMotion =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = Boolean(parentSettings.reducedMotion) || osReducedMotion;
   const ArrowIcon = language === 'ar' ? ArrowLeft : ArrowRight;
 
   const destinationAfterIntro = () => {
@@ -67,6 +70,7 @@ export const CinematicWelcomeIntro: React.FC = () => {
         // ignore storage quota errors
       }
     }
+    soundEngine.playPop();
     if (authSession.authenticated && authSession.user) {
       const role = authSession.user.role;
       if (role === 'teacher') return navigate('teacher-dashboard');
@@ -85,58 +89,13 @@ export const CinematicWelcomeIntro: React.FC = () => {
     navigate('parent-auth');
   };
 
-  // Auto-skip if user explicitly selected "Don't show this intro again" or returning session is active
+  // Respect authenticated session or saved "Don't show intro again" preference immediately
   useEffect(() => {
     if (authSession.authenticated) {
       destinationAfterIntro();
-      return;
-    }
-    try {
-      if (localStorage.getItem(INTRO_SKIP_STORAGE_KEY) === 'true') {
-        setScene(4);
-        setAutoAdvance(false);
-      }
-    } catch {
-      // ignore
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authSession.authenticated]);
-
-  // Automatic 4-scene progression unless user paused/skipped or reducedMotion jumps gently
-  useEffect(() => {
-    if (!autoAdvance) return;
-    if (scene === 1) {
-      const timer = setTimeout(() => {
-        soundEngine.playPop();
-        setScene(2);
-      }, reduced ? 700 : 2100);
-      return () => clearTimeout(timer);
-    }
-    if (scene === 2) {
-      const friendInterval = setInterval(() => {
-        setVisibleFriendsCount((prev) => {
-          if (prev >= CHARACTER_ENTRANCE_ORDER.length) return prev;
-          soundEngine.playMusicNote(prev);
-          return prev + 1;
-        });
-      }, reduced ? 120 : 380);
-      const timer = setTimeout(() => {
-        soundEngine.playSuccess();
-        setScene(3);
-      }, reduced ? 1000 : 3200);
-      return () => {
-        clearInterval(friendInterval);
-        clearTimeout(timer);
-      };
-    }
-    if (scene === 3) {
-      soundEngine.playCelebration();
-      const timer = setTimeout(() => {
-        setScene(4);
-      }, reduced ? 900 : 2900);
-      return () => clearTimeout(timer);
-    }
-  }, [scene, autoAdvance, reduced]);
 
   const toggleDontShow = (checked: boolean) => {
     setDontShowAgain(checked);
@@ -148,73 +107,67 @@ export const CinematicWelcomeIntro: React.FC = () => {
     }
   };
 
+  const handleBookTap = () => {
+    soundEngine.playMusicNote(bookPulseKey % 5);
+    setBookPulseKey((k) => k + 1);
+  };
+
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#141B38] via-[#2F2166] to-[#693EC7] text-white flex flex-col justify-between p-4 sm:p-8 select-none">
-      {/* Deep Sky Floating Stars & Magical Particles */}
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#0F183E] via-[#1D2D6E] to-[#4A2B93] text-white flex flex-col justify-between px-4 sm:px-8 lg:px-12 py-5 sm:py-7">
+      {/* Atmospheric Storybook Sky, Distant Clouds & Twinkling Stars */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        {[
-          { top: '8%', left: '12%', size: 8, color: '#FFD84D', delay: '0s' },
-          { top: '16%', left: '78%', size: 10, color: '#39BDF2', delay: '-0.8s' },
-          { top: '34%', left: '18%', size: 6, color: '#FF78B7', delay: '-1.5s' },
-          { top: '24%', left: '54%', size: 9, color: '#55D98B', delay: '-2.1s' },
-          { top: '68%', left: '84%', size: 8, color: '#FFD84D', delay: '-1.2s' },
-          { top: '76%', left: '14%', size: 7, color: '#39BDF2', delay: '-0.5s' },
-          { top: '52%', left: '92%', size: 6, color: '#FF9360', delay: '-1.9s' },
-        ].map((st, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full animate-twinkle"
+        {/* Soft celestial nebulae */}
+        <div className="absolute -top-36 -start-24 w-[32rem] h-[32rem] rounded-full bg-[#39BDF2]/18 blur-3xl" />
+        <div className="absolute -bottom-36 -end-24 w-[34rem] h-[34rem] rounded-full bg-[#FF78B7]/14 blur-3xl" />
+        <div className="hidden lg:block absolute top-1/3 start-1/2 -translate-x-1/2 w-[26rem] h-[26rem] rounded-full bg-[#FFD84D]/8 blur-3xl" />
+
+        {/* Soft Drifting Clouds */}
+        <div className="hidden md:block absolute top-20 start-[6%] w-44 h-14 rounded-full bg-white/[0.06] blur-[2px] animate-drift-cloud" />
+        <div
+          className="hidden md:block absolute top-28 end-[8%] w-56 h-16 rounded-full bg-white/[0.05] blur-[2px] animate-drift-cloud"
+          style={{ animationDelay: '-5s' }}
+        />
+
+        {/* Twinkling Four-Point Stars */}
+        {SKY_STARS.map((st, idx) => (
+          <svg
+            key={idx}
+            viewBox="0 0 24 24"
+            className="absolute animate-twinkle"
             style={{
               top: st.top,
               left: st.left,
               width: st.size,
               height: st.size,
-              backgroundColor: st.color,
-              boxShadow: `0 0 14px ${st.color}`,
               animationDelay: st.delay,
             }}
-          />
+          >
+            <path
+              d="M12 1.5 L14.4 9.6 L22.5 12 L14.4 14.4 L12 22.5 L9.6 14.4 L1.5 12 L9.6 9.6 Z"
+              fill={st.color}
+              opacity="0.88"
+            />
+          </svg>
         ))}
-        <div className="absolute -top-32 -start-20 w-[28rem] h-[28rem] rounded-full bg-[#39BDF2]/15 blur-3xl" />
-        <div className="absolute -bottom-32 -end-20 w-[30rem] h-[30rem] rounded-full bg-[#FF78B7]/15 blur-3xl" />
       </div>
 
-      {/* Top Controls: Logo · Scene Stepper · Sound · Language · Skip Intro */}
-      <div className="relative z-20 max-w-6xl w-full mx-auto flex flex-wrap items-center justify-between gap-3">
+      {/* Top Bar: Clean 3-Control Navigation Header */}
+      <header className="relative z-20 max-w-7xl w-full mx-auto flex items-center justify-between gap-4">
         <NonoLandLogo variant="compact" size="md" tone="dark" language={language} />
 
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Scene Indicator Dots */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/15">
-            {[1, 2, 3, 4].map((num) => (
-              <button
-                key={num}
-                type="button"
-                onClick={() => {
-                  setAutoAdvance(false);
-                  setVisibleFriendsCount(CHARACTER_ENTRANCE_ORDER.length);
-                  setScene(num as 1 | 2 | 3 | 4);
-                }}
-                aria-label={`Scene ${num}`}
-                className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                  scene === num ? 'w-7 bg-[#FFD84D]' : 'w-2.5 bg-white/40 hover:bg-white/70'
-                }`}
-              />
-            ))}
-          </div>
-
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           <button
             type="button"
             onClick={() => updateParentSettings({ muted: !parentSettings.muted })}
             aria-label={parentSettings.muted ? 'Unmute intro audio' : 'Mute intro audio'}
-            className="min-h-[44px] px-3 rounded-xl bg-white/12 hover:bg-white/22 border border-white/20 text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+            className="min-h-[44px] px-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/18 text-xs font-bold flex items-center gap-1.5 whitespace-nowrap cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD84D]"
           >
             {parentSettings.muted ? (
               <VolumeX className="w-4 h-4 text-[#FF9360]" />
             ) : (
               <Volume2 className="w-4 h-4 text-[#FFD84D]" />
             )}
-            <span className="hidden md:inline">
+            <span className="hidden sm:inline">
               {parentSettings.muted
                 ? language === 'ar'
                   ? 'صامت'
@@ -228,7 +181,8 @@ export const CinematicWelcomeIntro: React.FC = () => {
           <button
             type="button"
             onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-            className="min-h-[44px] px-3.5 rounded-xl bg-white/12 hover:bg-white/22 border border-white/20 text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+            aria-label="Toggle Arabic/English"
+            className="min-h-[44px] px-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/18 text-xs font-bold flex items-center gap-1.5 whitespace-nowrap cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD84D]"
           >
             <Languages className="w-4 h-4 text-[#FFD84D]" />
             <span>{language === 'ar' ? 'English' : 'العربية'}</span>
@@ -237,322 +191,248 @@ export const CinematicWelcomeIntro: React.FC = () => {
           <button
             type="button"
             onClick={destinationAfterIntro}
-            className="min-h-[44px] px-4 rounded-xl bg-white/18 hover:bg-white/30 border border-white/30 text-xs sm:text-sm font-extrabold flex items-center gap-1.5 cursor-pointer"
+            className="min-h-[44px] px-4 rounded-xl bg-white/16 hover:bg-white/28 border border-white/28 text-xs sm:text-sm font-extrabold flex items-center gap-1.5 whitespace-nowrap cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD84D]"
           >
             <FastForward className="w-4 h-4 text-[#FFD84D]" />
             <span>{language === 'ar' ? 'تخطي المقدمة' : 'Skip Intro'}</span>
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* MAIN CINEMATIC PORTAL STAGE */}
-      <div className="relative z-10 max-w-6xl w-full mx-auto my-auto py-4">
-        <AnimatePresence mode="wait">
-          {/* SCENE 1: MAGICAL ARRIVAL & GLOWING PORTAL */}
-          {scene === 1 && (
-            <motion.div
-              key="scene-1"
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.06 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center justify-center text-center py-10 space-y-6"
-            >
-              <motion.div
-                animate={reduced ? undefined : { scale: [1, 1.03, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative flex items-center justify-center"
+      {/* Main Responsive Split Stage (Right Content + Left Magical Book Portal in RTL) */}
+      <main className="relative z-10 max-w-7xl w-full mx-auto my-auto py-6 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* CONTENT AREA (Right side in Arabic RTL, Left side in English LTR) */}
+          <motion.section
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 space-y-5 text-center lg:text-start order-2 lg:order-1"
+          >
+            {/* Unboxed Editorial Kicker (Zero pill clutter) */}
+            <p className="text-xs sm:text-sm font-extrabold text-[#FFD84D] tracking-normal">
+              {language === 'ar'
+                ? 'عالم تعليمي تفاعلي للأطفال من سنة إلى ٤ سنوات · المستكشفون الصغار'
+                : `Interactive Educational World for Ages 1 to 4 · ${UNIFIED_STAGE_NAME.en}`}
+            </p>
+
+            {/* Primary Headline */}
+            <h1 className="text-3xl sm:text-5xl xl:text-[3.35rem] font-extrabold leading-[1.22] text-balance text-white">
+              {language === 'ar'
+                ? 'كل طفل جواه عالم من الخيال!'
+                : 'Every Child Holds a World of Imagination!'}
+            </h1>
+
+            {/* Supporting Headline */}
+            <p className="text-base sm:text-xl text-white/90 max-w-xl mx-auto lg:mx-0 leading-relaxed font-semibold">
+              {language === 'ar'
+                ? 'في NonoLand، كل يوم مغامرة جديدة للتعلم واللعب والاكتشاف.'
+                : 'At NonoLand, every day is a new adventure to learn, play, and discover.'}
+            </p>
+
+            {/* Clear Target Audience Label & Unified Stage */}
+            <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-sm font-extrabold text-[#8CE7FF]">
+              <span>
+                {language === 'ar'
+                  ? 'مصمم للأطفال من سنة إلى ٤ سنوات'
+                  : 'Designed for Ages 1 to 4 Years'}
+              </span>
+              <span aria-hidden="true" className="text-white/40">
+                ·
+              </span>
+              <span className="text-white/80 font-bold">
+                {UNIFIED_STAGE_NAME[language]} ({UNIFIED_STAGE_AGE_RANGE[language]})
+              </span>
+            </div>
+
+            {/* Primary & Secondary CTAs */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-2">
+              <button
+                type="button"
+                onClick={destinationAfterIntro}
+                className="nono-btn-tactile min-h-[54px] px-8 rounded-2xl bg-[#FFD84D] hover:bg-[#ffe16e] text-[#1A2447] text-base sm:text-lg font-extrabold flex items-center justify-center gap-2.5 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-[#39BDF2] via-[#FFD84D] to-[#FF78B7] opacity-65 blur-2xl" />
-                <NonoLandLogo
-                  variant="main"
-                  size="lg"
-                  tone="dark"
-                  showWordmark={false}
-                  language={language}
-                  className="relative z-10"
-                />
-              </motion.div>
-
-              <div className="space-y-2 max-w-xl">
-                <p className="text-sm font-extrabold tracking-wide text-[#FFD84D]">
-                  {language === 'ar' ? 'تفتح البوابة السحرية...' : 'Opening the Magical Portal...'}
-                </p>
-                <h1 className="text-3xl sm:text-5xl font-extrabold text-balance">
-                  {language === 'ar' ? 'مرحباً بكم في عالم نونو لاند' : 'Welcome to NonoLand'}
-                </h1>
-              </div>
+                <Sparkles className="w-5 h-5 shrink-0" />
+                <span>{language === 'ar' ? 'هيا نكتشف!' : "Let's Explore!"}</span>
+                <ArrowIcon className="w-5 h-5 shrink-0" />
+              </button>
 
               <button
                 type="button"
                 onClick={() => {
-                  setAutoAdvance(false);
                   soundEngine.playPop();
-                  setScene(2);
+                  navigate('onboarding');
                 }}
-                className="min-h-[44px] px-5 py-2.5 rounded-2xl bg-white/15 hover:bg-white/25 text-xs font-extrabold cursor-pointer"
+                className="min-h-[54px] px-6 rounded-2xl bg-white/12 hover:bg-white/22 border border-white/30 text-white text-base font-extrabold flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD84D]"
               >
-                {language === 'ar' ? 'قابل الأصدقاء ←' : 'Meet the Friends →'}
+                <Compass className="w-5 h-5 text-[#39BDF2] shrink-0" />
+                <span>{language === 'ar' ? 'جولة تعريفية' : 'Guided Tour'}</span>
               </button>
-            </motion.div>
-          )}
+            </div>
 
-          {/* SCENE 2: CHARACTER ENTRANCE (NONO, LOLO, LEO, BOBO, ELLIE, TITI) */}
-          {scene === 2 && (
-            <motion.div
-              key="scene-2"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -14 }}
-              transition={{ duration: 0.5 }}
-              className="text-center space-y-7 py-6"
-            >
-              <div className="space-y-2">
-                <p className="text-xs sm:text-sm font-extrabold text-[#39BDF2]">
-                  {language === 'ar' ? 'أصدقاء المغامرة يرحبون بك!' : 'Your Adventure Friends Are Here!'}
-                </p>
-                <h2 className="text-3xl sm:text-4xl font-extrabold">
-                  {language === 'ar'
-                    ? 'نونو، لولو، ليو، بوبو، إيلي وتيتي!'
-                    : 'Meet Nono, Lolo, Leo, Bobo, Ellie & Titi!'}
-                </h2>
-              </div>
+            {/* Quiet Unboxed Learning Pillars */}
+            <div className="pt-4 border-t border-white/12 flex flex-wrap items-center justify-center lg:justify-start gap-x-4 gap-y-1 text-xs sm:text-sm font-bold text-white/75">
+              <span>{language === 'ar' ? 'حروف وأصوات' : 'Letters & Phonics'}</span>
+              <span aria-hidden="true" className="text-[#FFD84D]">
+                ·
+              </span>
+              <span>{language === 'ar' ? 'ألوان وأرقام' : 'Colors & Counting'}</span>
+              <span aria-hidden="true" className="text-[#FFD84D]">
+                ·
+              </span>
+              <span>{language === 'ar' ? 'قصص ومختبر نونو' : "Stories & Nono's Lab"}</span>
+            </div>
+          </motion.section>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 items-end max-w-5xl mx-auto">
-                {CHARACTER_ENTRANCE_ORDER.map((ch, idx) => {
-                  const isVisible = idx < visibleFriendsCount;
-                  return (
-                    <motion.div
-                      key={ch.id}
-                      initial={{ opacity: 0, y: 28, scale: 0.7 }}
-                      animate={
-                        isVisible
-                          ? { opacity: 1, y: 0, scale: 1 }
-                          : { opacity: 0.12, y: 20, scale: 0.8 }
-                      }
-                      transition={{ duration: 0.45 }}
-                      className="rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 flex flex-col items-center gap-1"
-                    >
-                      <CharacterActor
-                        characterId={ch.id}
-                        mood={ch.mood}
-                        size="sm"
-                        language={language}
-                        onTap={() => soundEngine.playMusicNote(idx)}
-                      />
-                      <span className="text-sm font-extrabold text-[#FFD84D]">
-                        {t(ch.label, language)}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
+          {/* VISUAL AREA (Left side in Arabic RTL, Right side in English LTR) */}
+          <motion.section
+            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 order-1 lg:order-2 flex flex-col items-center justify-center"
+          >
+            <div className="relative w-full max-w-[33rem] mx-auto px-2 pt-3 pb-4">
+              {/* Soft Ambient Book Glow Aura */}
+              <div
+                className="pointer-events-none absolute inset-x-6 top-6 bottom-10 rounded-[3rem] bg-gradient-to-tr from-[#39BDF2]/45 via-[#FFD84D]/35 to-[#FF78B7]/35 blur-2xl animate-magical-glow"
+                aria-hidden="true"
+              />
 
-              <button
-                type="button"
-                onClick={() => {
-                  setAutoAdvance(false);
-                  soundEngine.playCelebration();
-                  setScene(3);
-                }}
-                className="min-h-[44px] px-6 py-2.5 rounded-2xl bg-[#FFD84D] text-[#27345C] text-sm font-extrabold cursor-pointer"
+              {/* Subtle Castle Silhouette & Rainbow Halo Framing */}
+              <div
+                className="pointer-events-none absolute inset-x-2 -top-3 flex justify-center opacity-55"
+                aria-hidden="true"
               >
-                {language === 'ar' ? 'افتح بوابة نونو لاند ✨' : 'Reveal NonoLand ✨'}
-              </button>
-            </motion.div>
-          )}
-
-          {/* SCENE 3: MINIATURE NONOLAND UNIVERSE PARALLAX REVEAL */}
-          {scene === 3 && (
-            <motion.div
-              key="scene-3"
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.55 }}
-              className="space-y-6 text-center py-4"
-            >
-              <div className="relative max-w-4xl mx-auto rounded-[2.2rem] p-5 sm:p-8 bg-gradient-to-b from-[#39BDF2]/30 via-[#8054D9]/35 to-[#55D98B]/25 border-2 border-[#FFD84D]/50 shadow-2xl overflow-hidden">
-                {/* Miniature Parallax Universe SVG */}
-                <svg viewBox="0 0 800 290" className="w-full h-48 sm:h-64 drop-shadow-xl">
-                  <defs>
-                    <linearGradient id="portalSky" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#1D2A5C" />
-                      <stop offset="60%" stopColor="#5D40B5" />
-                      <stop offset="100%" stopColor="#39BDF2" />
-                    </linearGradient>
-                  </defs>
-                  <rect width="800" height="290" rx="28" fill="url(#portalSky)" />
-                  {/* Floating Clouds */}
-                  <ellipse cx="150" cy="65" rx="56" ry="18" fill="rgba(255,255,255,0.65)" />
-                  <ellipse cx="640" cy="58" rx="64" ry="20" fill="rgba(255,255,255,0.6)" />
-                  {/* Distant Castle Island */}
-                  <ellipse cx="400" cy="235" rx="220" ry="38" fill="#55D98B" />
-                  <rect x="345" y="135" width="110" height="90" rx="12" fill="#FFF8E9" stroke="#27345C" strokeWidth="4" />
-                  <polygon points="340,135 400,72 460,135" fill="#FF78B7" stroke="#27345C" strokeWidth="4" />
-                  <rect x="315" y="160" width="35" height="65" rx="6" fill="#FFD84D" stroke="#27345C" strokeWidth="3" />
-                  <polygon points="312,160 332,126 352,160" fill="#8054D9" stroke="#27345C" strokeWidth="3" />
-                  <rect x="450" y="160" width="35" height="65" rx="6" fill="#FFD84D" stroke="#27345C" strokeWidth="3" />
-                  <polygon points="448,160 468,126 488,160" fill="#39BDF2" stroke="#27345C" strokeWidth="3" />
-                  {/* Left Island (Trees + Lab Dome) */}
-                  <ellipse cx="145" cy="220" rx="105" ry="26" fill="#55D98B" />
-                  <circle cx="115" cy="182" r="24" fill="#2A9D8F" />
-                  <rect x="110" y="198" width="10" height="22" fill="#8B5A2B" />
-                  <path d="M150 212 A30 30 0 0 1 210 212 Z" fill="#39BDF2" stroke="#FFF8E9" strokeWidth="3" />
-                  {/* Right Island (Storybook Treehouse) */}
-                  <ellipse cx="655" cy="220" rx="105" ry="26" fill="#55D98B" />
-                  <circle cx="660" cy="172" r="32" fill="#FF9360" />
-                  <rect x="653" y="196" width="14" height="26" fill="#8B5A2B" />
-                  {/* Rainbow Arch */}
+                <svg viewBox="0 0 420 90" className="w-72 sm:w-88 h-auto">
                   <path
-                    d="M170 210 Q400 35 630 210"
+                    d="M40 84 Q210 4 380 84"
                     fill="none"
                     stroke="#FFD84D"
-                    strokeWidth="6"
-                    strokeDasharray="10 8"
-                    opacity="0.85"
+                    strokeWidth="2.5"
+                    strokeDasharray="6 6"
+                    opacity="0.7"
+                  />
+                  <path
+                    d="M65 86 Q210 18 355 86"
+                    fill="none"
+                    stroke="#39BDF2"
+                    strokeWidth="2"
+                    opacity="0.55"
                   />
                 </svg>
-
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-                  <CharacterActor characterId="nono" mood="celebrating" size="md" language={language} />
-                  <div className="text-start space-y-1 max-w-md">
-                    <p className="text-xs font-extrabold text-[#FFD84D]">
-                      {language === 'ar' ? 'جزر متصلة · مختبر علوم · قصص · غرفة الأحلام' : 'Connected Islands · Science Lab · Stories · Dream Room'}
-                    </p>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold">
-                      {language === 'ar' ? 'عالم نونو لاند السحري' : 'Welcome to NonoLand Universe'}
-                    </h2>
-                  </div>
-                </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setAutoAdvance(false);
-                  setScene(4);
-                }}
-                className="nono-btn-tactile min-h-[48px] px-7 py-3 rounded-2xl bg-[#FFD84D] text-[#27345C] font-extrabold text-base cursor-pointer"
+              {/* Rising Magical Light Particles Emerging From The Book */}
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-8 top-0 overflow-hidden z-20"
+                aria-hidden="true"
               >
-                {language === 'ar' ? 'هيا نكتشف!' : "Let's Explore!"}
-              </button>
-            </motion.div>
-          )}
-
-          {/* SCENE 4: FINAL CTA -> LOGIN/SIGNUP + PRESERVED DEMO/ONBOARDING */}
-          {scene === 4 && (
-            <motion.div
-              key="scene-4"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-4"
-            >
-              <div className="lg:col-span-7 space-y-5 text-center lg:text-start">
-                <div className="flex justify-center lg:justify-start">
-                  <NonoLandLogo
-                    variant="main"
-                    size="sm"
-                    tone="dark"
-                    showWordmark={false}
-                    language={language}
+                {MAGICAL_PARTICLES.map((p, idx) => (
+                  <span
+                    key={idx}
+                    className="absolute bottom-14 rounded-full animate-float-particle"
+                    style={{
+                      left: p.x,
+                      width: p.size,
+                      height: p.size,
+                      backgroundColor: p.color,
+                      boxShadow: `0 0 12px ${p.color}`,
+                      animationDelay: p.delay,
+                      animationDuration: p.duration,
+                    }}
                   />
-                </div>
-                <p className="text-sm font-extrabold text-[#FFD84D]">
-                  {language === 'ar'
-                    ? 'عالم تعليمي تفاعلي للأعمار ١ – ٤ سنوات'
-                    : 'Interactive Educational World · Ages 1 to 4'}
-                </p>
-                <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-balance">
-                  {language === 'ar'
-                    ? 'لكل طفل عالمه السحري ومغامرته المختلفة'
-                    : 'Every Child. A Different World. A Unique Adventure.'}
-                </h1>
-                <p className="text-base sm:text-lg text-white/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  {language === 'ar'
-                    ? 'سجّل الدخول لبناء شخصية طفلك، استكشاف مختبر نونو، قراءة القصص، وتزيين غرفته ومتابعة تطوره بتقرير شهري شامل.'
-                    : 'Sign in to customize your child avatar, experiment in Nono’s Lab, read interactive stories, adopt a virtual pet, and track real progress.'}
-                </p>
-
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
-                  <button
-                    type="button"
-                    onClick={destinationAfterIntro}
-                    className="nono-btn-tactile h-14 px-7 rounded-2xl bg-[#FFD84D] text-[#27345C] text-lg font-extrabold flex items-center gap-2.5 cursor-pointer"
-                  >
-                    <Sparkles className="w-5 h-5" />
-                    <span>{language === 'ar' ? 'هيا نكتشف! (دخول / تسجيل)' : "Let's Explore! (Sign In / Up)"}</span>
-                    <ArrowIcon className="w-5 h-5" />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => navigate('onboarding')}
-                    className="h-14 px-5 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white font-bold flex items-center gap-2 cursor-pointer transition-colors"
-                  >
-                    <Compass className="w-5 h-5 text-[#39BDF2]" />
-                    <span>{language === 'ar' ? 'جولة التعريف' : 'Guided Tour'}</span>
-                  </button>
-                </div>
-
-                {/* Preserved Sample Exploration Profiles */}
-                <div className="pt-3">
-                  <p className="text-xs font-bold text-white/75 mb-2">
-                    {language === 'ar'
-                      ? 'أو معاينة فورية مع أصدقاء المستكشفون الصغار (١–٤ سنوات):'
-                      : 'Or jump right in with a Little Explorers (1–4 Years) preview:'}
-                  </p>
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-2">
-                    {childrenList.map((child) => (
-                      <button
-                        key={child.id}
-                        type="button"
-                        onClick={() => {
-                          selectChild(child.id);
-                          navigate('home');
-                        }}
-                        className="min-h-[44px] px-3.5 py-2 rounded-xl bg-white/12 hover:bg-white/25 border border-white/20 text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer transition-colors"
-                      >
-                        <span>{child.displayName}</span>
-                        <span className="text-[#FFD84D]">· {t(getAgeGroupMeta(child.ageGroup).label, language)}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="lg:col-span-5 flex flex-col items-center gap-4">
-                <div className="relative rounded-[2.2rem] p-6 bg-white/10 border-2 border-white/25 shadow-2xl grid grid-cols-3 gap-3 items-center justify-items-center">
-                  {CHARACTER_ENTRANCE_ORDER.map((ch) => (
-                    <CharacterActor
-                      key={ch.id}
-                      characterId={ch.id}
-                      mood={ch.mood}
-                      size="sm"
+              {/* Storybook Showcase Container Housing the Approved NonoLand Artwork */}
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="animate-float-slow w-full flex justify-center">
+                  <div className="relative rounded-[2rem] p-2 sm:p-3 bg-white/10 backdrop-blur-md border border-white/25 shadow-[0_24px_60px_-15px_rgba(9,15,44,0.65)]">
+                    <NonoLandLogo
+                      variant="main"
+                      size="xl"
+                      tone="dark"
+                      showWordmark={false}
                       language={language}
+                      className="[&>div]:w-full [&>div]:max-w-[26rem] sm:[&>div]:max-w-[28rem] [&>div]:shadow-xl"
                     />
-                  ))}
+                  </div>
                 </div>
+
+                {/* Interactive Glowing Open Magical Book Pedestal */}
                 <button
                   type="button"
-                  onClick={() => {
-                    setVisibleFriendsCount(1);
-                    setScene(1);
-                    setAutoAdvance(true);
-                  }}
-                  className="text-xs font-bold text-white/80 hover:text-[#FFD84D] underline cursor-pointer"
+                  onClick={handleBookTap}
+                  aria-label={
+                    language === 'ar'
+                      ? 'الكتاب السحري لنونو لاند — انقر لصوت موسيقي لطيف'
+                      : 'NonoLand Magical Book — tap for a musical chime'
+                  }
+                  className="group relative -mt-4 w-72 sm:w-88 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD84D] rounded-2xl"
                 >
-                  {language === 'ar' ? 'إعادة تشغيل العرض الترحيبي' : 'Replay Welcome Intro'}
+                  <svg
+                    viewBox="0 0 360 96"
+                    className="w-full h-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.45)] transition-transform duration-200 group-hover:scale-[1.02]"
+                  >
+                    <defs>
+                      <radialGradient id="bookLightBeam" cx="50%" cy="20%" r="70%">
+                        <stop offset="0%" stopColor="#FFE57F" stopOpacity="0.85" />
+                        <stop offset="55%" stopColor="#39BDF2" stopOpacity="0.25" />
+                        <stop offset="100%" stopColor="#39BDF2" stopOpacity="0" />
+                      </radialGradient>
+                      <linearGradient id="bookCoverGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#6D44C7" />
+                        <stop offset="100%" stopColor="#3B2378" />
+                      </linearGradient>
+                      <linearGradient id="pageGradLeft" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#FFF4D8" />
+                        <stop offset="100%" stopColor="#FFFDF7" />
+                      </linearGradient>
+                      <linearGradient id="pageGradRight" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#FFFDF7" />
+                        <stop offset="100%" stopColor="#FFEFC8" />
+                      </linearGradient>
+                    </defs>
+                    {/* Warm Upward Glow Cone */}
+                    <ellipse cx="180" cy="24" rx="135" ry="22" fill="url(#bookLightBeam)" />
+                    {/* Book Hardcover Base */}
+                    <path
+                      d="M28 48 Q104 68 180 62 Q256 68 332 48 L342 66 Q260 88 180 78 Q100 88 18 66 Z"
+                      fill="url(#bookCoverGrad)"
+                      stroke="#FFD84D"
+                      strokeWidth="2.5"
+                    />
+                    {/* Left & Right Illuminated Open Pages */}
+                    <path
+                      d="M36 42 Q106 24 178 44 L178 62 Q106 54 32 52 Z"
+                      fill="url(#pageGradLeft)"
+                      stroke="#E9C97B"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M324 42 Q254 24 182 44 L182 62 Q254 54 328 52 Z"
+                      fill="url(#pageGradRight)"
+                      stroke="#E9C97B"
+                      strokeWidth="1.5"
+                    />
+                    {/* Subtle Golden Story Lines */}
+                    <path d="M68 42 Q115 34 156 45" stroke="#8054D9" strokeOpacity="0.35" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+                    <path d="M64 49 Q115 43 156 52" stroke="#FF78B7" strokeOpacity="0.35" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+                    <path d="M204 45 Q245 34 292 42" stroke="#39BDF2" strokeOpacity="0.4" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+                    <path d="M204 52 Q245 43 296 49" stroke="#55D98B" strokeOpacity="0.4" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+                    {/* Center Spine Star Gem */}
+                    <circle cx="180" cy="54" r="9" fill="#FFD84D" stroke="#27345C" strokeWidth="2" />
+                    <circle cx="180" cy="54" r="3.5" fill="#FFFDF7" />
+                  </svg>
                 </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+            </div>
+          </motion.section>
+        </div>
+      </main>
 
-      {/* Footer: Child Safety Note + Don't Show Intro Again */}
-      <div className="relative z-20 max-w-6xl w-full mx-auto flex flex-wrap items-center justify-between gap-3 text-xs text-white/75 pt-3 border-t border-white/15">
+      {/* Quiet Accessible Footer */}
+      <footer className="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-3 text-xs text-white/75 pt-3 border-t border-white/12">
         <label className="inline-flex items-center gap-2 cursor-pointer min-h-[44px]">
           <input
             type="checkbox"
@@ -565,22 +445,22 @@ export const CinematicWelcomeIntro: React.FC = () => {
           </span>
         </label>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <span>
             {language === 'ar'
-              ? 'مساحة آمنة للأطفال · بدون إعلانات أو تواصل مفتوح'
-              : 'Child-Safe Space · Zero Ads · Parent-Gated Controls'}
+              ? 'مساحة آمنة للأطفال (١–٤ سنوات) · بدون إعلانات'
+              : 'Child-Safe Space (Ages 1–4) · Zero Ads'}
           </span>
           <button
             type="button"
             onClick={() => navigate('parent-auth')}
-            className="hover:text-white underline cursor-pointer inline-flex items-center gap-1 font-bold"
+            className="min-h-[44px] inline-flex items-center gap-1.5 font-bold text-white/90 hover:text-[#FFD84D] underline cursor-pointer"
           >
             <Lock className="w-3.5 h-3.5" />
             <span>{language === 'ar' ? 'دخول الأهل' : 'Parent Sign In'}</span>
           </button>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

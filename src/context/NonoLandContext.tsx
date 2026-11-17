@@ -66,8 +66,18 @@ export interface AuthSessionState {
 }
 
 const STORAGE_KEY = 'nonoland_universe_state_v1';
+const LEGACY_DEMO_IDS = new Set([
+  'demo-layla-34',
+  'demo-omar-56',
+  'demo-zain-7',
+  'demo-salma-8',
+  'sample-layla-34',
+  'sample-omar-23',
+  'sample-maya-12',
+]);
 
 interface PersistedState {
+  sampleSchemaVersion?: number;
   parentAccount: ParentAccount | null;
   parentSettings: ParentSettings;
   subscription: SubscriptionState;
@@ -97,9 +107,28 @@ function getInitialPersistedState(): PersistedState {
     if (raw) {
       const parsed = JSON.parse(raw) as PersistedState;
       if (parsed && Array.isArray(parsed.children) && parsed.children.length > 0) {
+        // Clean obsolete demo templates (e.g. cached 5-6 / 7 / 8 demo records) without ever removing or altering real child profiles
+        const cleanedRealOrCurrent = parsed.children
+          .filter((c) => {
+            const isBuiltInDemo =
+              LEGACY_DEMO_IDS.has(c.id) ||
+              (c.id.startsWith('demo-') && c.ageGroup !== '1-4' && c.ageGroup !== '3-4') ||
+              (c.id.startsWith('sample-') && parsed.sampleSchemaVersion !== 2);
+            return !isBuiltInDemo;
+          })
+          .map(migrateChildProfileSafely);
+
+        const nextChildren =
+          cleanedRealOrCurrent.length > 0 ? cleanedRealOrCurrent : createSampleChildProfiles();
+        const nextActiveId = nextChildren.some((c) => c.id === parsed.activeChildId)
+          ? parsed.activeChildId
+          : nextChildren[0].id;
+
         return {
           ...parsed,
-          children: parsed.children.map(migrateChildProfileSafely),
+          sampleSchemaVersion: 2,
+          children: nextChildren,
+          activeChildId: nextActiveId,
         };
       }
     }
@@ -108,6 +137,7 @@ function getInitialPersistedState(): PersistedState {
   }
   const sampleChildren = createSampleChildProfiles();
   return {
+    sampleSchemaVersion: 2,
     parentAccount: {
       id: 'parent-demo-1',
       name: 'عائلة نونو',

@@ -155,9 +155,44 @@ export function isContentAppropriateForChild(
 }
 
 /**
+ * Formats the child's actual chronological age within the 1–4 launch audience.
+ */
+export function formatChildActualAgeLabel(
+  child?: { birthYear?: number; birthMonth?: number } | null,
+  language: Language = 'ar',
+  refDate: Date = new Date(),
+): string {
+  const years = Math.max(1, Math.min(4, getChildAgeYears(child, refDate)));
+  if (language === 'ar') {
+    if (years === 1) return 'سنة واحدة';
+    if (years === 2) return 'سنتان';
+    if (years === 3) return '٣ سنوات';
+    return '٤ سنوات';
+  }
+  return years === 1 ? '1 Year' : `${years} Years`;
+}
+
+/**
+ * Formats the child profile option inside the top header child selector.
+ * Never exposes removed 5–6, 7, or 8 educational stages as selectable options.
+ */
+export function getHeaderChildSelectorLabel(
+  child: { displayName: string; ageGroup?: StoredAgeGroupId | string | null; birthYear?: number; birthMonth?: number },
+  language: Language,
+): string {
+  if (isLegacyFiveToEight(child.ageGroup)) {
+    return language === 'ar'
+      ? `${child.displayName} · سجل محفوظ`
+      : `${child.displayName} · Archived Record`;
+  }
+  const actualAge = formatChildActualAgeLabel(child, language);
+  return `${child.displayName} · ${actualAge} · ${UNIFIED_STAGE_NAME[language]} (${UNIFIED_STAGE_AGE_RANGE[language]})`;
+}
+
+/**
  * Returns a clean localized stage label. For all active children ('1-4' or migrated '3-4'),
  * always returns the single unified stage "Little Explorers (1–4 Years)".
- * For preserved legacy 5-8 accounts, returns an archived/preserved label without exposing 5-8 as an active stage.
+ * For preserved legacy records, returns an archived label without exposing obsolete stage numbers.
  */
 export function getSafeStageDisplay(
   ageGroup: StoredAgeGroupId | string | undefined | null,
@@ -166,14 +201,8 @@ export function getSafeStageDisplay(
   if (!ageGroup || ageGroup === '1-4' || ageGroup === '3-4') {
     return UNIFIED_STAGE_BADGE[language];
   }
-  if (ageGroup === '5-6') {
-    return language === 'ar' ? 'سجل محفوظ (٥–٦ سنوات)' : 'Preserved Record (5–6 yrs)';
-  }
-  if (ageGroup === '7') {
-    return language === 'ar' ? 'سجل محفوظ (٧ سنوات)' : 'Preserved Record (7 yrs)';
-  }
-  if (ageGroup === '8') {
-    return language === 'ar' ? 'سجل محفوظ (٨ سنوات)' : 'Preserved Record (8 yrs)';
+  if (isLegacyFiveToEight(ageGroup)) {
+    return language === 'ar' ? 'سجل تعليمي سابق محفوظ' : 'Archived Learning Record';
   }
   return UNIFIED_STAGE_BADGE[language];
 }
@@ -185,9 +214,9 @@ export function getSafeStageShortLabel(
   if (!ageGroup || ageGroup === '1-4' || ageGroup === '3-4') {
     return UNIFIED_STAGE_AGE_RANGE[language];
   }
-  if (ageGroup === '5-6') return language === 'ar' ? '٥–٦ (محفوظ)' : '5–6 (preserved)';
-  if (ageGroup === '7') return language === 'ar' ? '٧ (محفوظ)' : '7 (preserved)';
-  if (ageGroup === '8') return language === 'ar' ? '٨ (محفوظ)' : '8 (preserved)';
+  if (isLegacyFiveToEight(ageGroup)) {
+    return language === 'ar' ? 'سجل محفوظ' : 'Archived';
+  }
   return UNIFIED_STAGE_AGE_RANGE[language];
 }
 
@@ -200,9 +229,9 @@ export function getRecommendedAgeLabel(
 }
 
 /**
- * Safely migrates a stored ChildProfile without ever reassigning 5–8 children to 1–4.
+ * Safely migrates a stored ChildProfile without ever reassigning older children to 1–4.
  * - Existing '3-4' children -> migrated cleanly to '1-4'
- * - Existing '5-6' | '7' | '8' children -> left completely untouched
+ * - Existing legacy accounts -> left completely untouched
  * - All completed lessons, achievements, rewards, and historical progress are preserved.
  */
 export function migrateChildProfileSafely<T extends Pick<ChildProfile, 'ageGroup'>>(child: T): T {

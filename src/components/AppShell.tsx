@@ -18,8 +18,9 @@ import {
 } from 'lucide-react';
 import { useNonoLand } from '../context/NonoLandContext';
 import { DEFAULT_AVATAR_CONFIG } from '../data/worldCatalog';
-import { formatNumber, getAgeGroupMeta, t, UI_COPY } from '../i18n/translations';
+import { formatNumber, t, UI_COPY } from '../i18n/translations';
 import { AppScreen } from '../types/nonoland';
+import { getHeaderChildSelectorLabel, UNIFIED_STAGE_BADGE } from '../utils/ageAdaptation';
 import { soundEngine } from '../utils/soundEngine';
 import { ChildAvatarPreview } from './CharacterCast';
 import { NonoLandLogo } from './NonoLandLogo';
@@ -142,13 +143,14 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             <div className="relative">
               <select
                 aria-label={language === 'ar' ? 'اختر ملف الطفل' : 'Switch child profile'}
+                title={UNIFIED_STAGE_BADGE[language]}
                 value={activeChild.id}
                 onChange={(e) => selectChild(e.target.value)}
-                className="h-10 ps-3 pe-7 rounded-xl bg-white border border-[#27345C]/15 text-xs sm:text-sm font-bold text-[#27345C] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8054D9]"
+                className="h-10 max-w-[165px] sm:max-w-[260px] truncate ps-3 pe-7 rounded-xl bg-white border border-[#27345C]/15 text-xs sm:text-sm font-bold text-[#27345C] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8054D9]"
               >
                 {childrenList.map((c) => (
                   <option key={c.id} value={c.id}>
-                    {c.displayName} · {t(getAgeGroupMeta(c.ageGroup).label, language)}
+                    {getHeaderChildSelectorLabel(c, language)}
                   </option>
                 ))}
               </select>
